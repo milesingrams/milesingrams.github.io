@@ -9,12 +9,10 @@ module.exports = {
   siteDescription: 'Miles Ingram\'s Website',
   plugins: [
     {
-      // Create posts from markdown files
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'Experience',
-        path: 'experience/*.md',
-        route: '/:slug'
+        path: 'experiences/*.md'
       }
     }
   ],
