@@ -5,4 +5,7 @@
 </template>
 
 <style lang="scss">
+.page-content {
+  padding: 40px 20px;
+}
 </style>

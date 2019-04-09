@@ -1,14 +1,14 @@
 <template>
     <g>
-      <circle class="droplet" :cx="cx" :cy="cy" :r="r" :opacity="opacity" v-if="!split && cornersInPoly" @mouseenter="onMouseEnter"/>
-      <logo-droplets-droplet v-if="split" v-for="corner in corners" :cx="corner.cx" :cy="corner.cy" :r="r / 2" :opacity="cornersInPoly / 4" :depth="depth + 1" :options="options" :key="`${corner.cx}_${corner.cy}`"></logo-droplets-droplet>
+      <circle class="droplet" :cx="cx" :cy="cy" :r="r" :opacity="opacity" v-if="!split && cornersInPoly.length" @mouseenter="onMouseEnter"/>
+      <logo-droplets-droplet v-if="split" v-for="corner in corners" :cx="corner.cx" :cy="corner.cy" :r="r / 2" :depth="depth + 1" :options="options" :key="`${corner.cx}_${corner.cy}`"></logo-droplets-droplet>
     </g>
 </template>
 
 <script>
 export default {
   name: 'logoDropletsDroplet',
-  props: ['cx', 'cy', 'r', 'opacity', 'depth', 'options'],
+  props: ['cx', 'cy', 'r', 'depth', 'options'],
   data () {
     return {
       split: false,
@@ -39,11 +39,8 @@ export default {
   		return corners
     },
     cornersInPoly () {
-      let cornersInPoly = 0
-      this.corners.forEach((corner) => {
-        if (this.insidePoly(corner)) {
-          cornersInPoly++
-        }
+      let cornersInPoly = this.corners.filter((corner) => {
+        return this.insidePoly(corner)
       })
       return cornersInPoly
     },
@@ -102,7 +99,7 @@ export default {
 
 <style lang="scss" scoped>
 .droplet {
-  fill: #ed2332;
+  fill: #fff;
   animation: fadeIn .3s
 }
 </style>

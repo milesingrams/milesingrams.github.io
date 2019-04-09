@@ -47,14 +47,12 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 0 20px;
 }
 
 .logo-wrap {
-  width: 240px;
-  height: 240px;
-  margin: 0 auto;
-  margin-bottom: 24px;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
   position: relative;
 }
 
@@ -67,6 +65,5 @@ export default {
 .my-pitch {
   text-align: center;
   font-weight: 300;
-  margin-bottom: 8px;
 }
 </style>
