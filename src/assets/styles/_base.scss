@@ -1,0 +1,11 @@
+html, body {
+  font-family: $font-stack;
+  color: white;
+  background-color: #222d38;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-size: 2rem;
+}
