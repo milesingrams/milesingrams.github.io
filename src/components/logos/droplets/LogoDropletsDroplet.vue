@@ -11,7 +11,8 @@ export default {
   props: ['cx', 'cy', 'r', 'opacity', 'depth', 'options'],
   data () {
     return {
-      split: false
+      split: false,
+      splitTimeout: null
     }
   },
   computed: {
@@ -50,6 +51,14 @@ export default {
       return this.depth < this.options.maxDepth && this.cornersInPoly
     }
   },
+  watch: {
+    'options.mouseControl' () {
+      this.clearSplitTimer()
+      if (!this.options.mouseControl) {
+        this.beginSplitTimer()
+      }
+    }
+  },
   methods: {
     insidePoly (circle) {
   		let insidePoly = false
@@ -61,25 +70,32 @@ export default {
   		}
   		return insidePoly
   	},
-    subDivide () {
-      this.split = true
-    },
     onMouseEnter () {
       if (this.splittable) {
         if (this.options.mouseControl) {
-          this.subDivide()
+          this.split = true
         }
+      }
+    },
+    beginSplitTimer () {
+      if (this.splittable && !this.options.mouseControl) {
+        this.splitTimeout = setTimeout(() => {
+          this.split = true
+        }, Math.random() * this.options.subdivideSeconds * this.cx * 10)
+      }
+    },
+    clearSplitTimer () {
+      if (this.splitTimeout) {
+        clearTimeout(this.splitTimeout)
+        this.splitTimeout = null
       }
     }
   },
   created () {
-    if (this.splittable) {
-      setTimeout(() => {
-        if (!this.options.mouseControl) {
-          this.subDivide()
-        }
-      }, Math.random() * this.options.subdivideSeconds * this.cx * 10)
-    }
+    this.beginSplitTimer()
+  },
+  beforeDestroy () {
+    this.clearSplitTimer()
   }
 }
 </script>

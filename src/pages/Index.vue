@@ -6,8 +6,6 @@
       </div>
       <h1 class="my-name">Miles Ingram</h1>
       <p class="my-pitch">Bits, Bio, Bots, Battlestar Galactica</p>
-      <div><a href="tel:646-244-8568">646-244-8569</a></div>
-      <div><a href="mailto:milesingrams@gmail.com">milesingrams@gmail.com</a></div>
     </section>
 
     {{$page.experiences}}

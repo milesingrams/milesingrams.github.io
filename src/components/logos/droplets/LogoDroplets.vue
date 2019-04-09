@@ -1,5 +1,5 @@
 <template>
-  <svg class="logo-svg" viewbox="0 0 100 100" @mouseenter="onMouseEnter">
+  <svg class="logo-svg" viewbox="0 0 100 100" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
     <logo-droplets-droplet :cx="50" :cy="50" :r="50" :opacity="1" :depth="0" :options="options"></logo-droplets-droplet>
   </svg>
 </template>
@@ -34,6 +34,9 @@ export default {
   methods: {
     onMouseEnter () {
       this.options.mouseControl = true
+    },
+    onMouseLeave () {
+      this.options.mouseControl = false
     }
   }
 }
