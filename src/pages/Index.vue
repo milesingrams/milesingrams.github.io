@@ -6,10 +6,12 @@
 
 <page-query>
 {
-  experiences: allExperience {
+  experiences: allExperience (sortBy: "date", order: DESC) {
     edges {
       node {
         title
+        date
+        dateText
         tags
         description
       }

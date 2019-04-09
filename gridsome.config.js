@@ -4,9 +4,29 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
+const path = require('path')
+
+function addStyleResource (rule) {
+  rule.use('style-resource')
+    .loader('style-resources-loader')
+    .options({
+      patterns: [
+      	path.resolve(__dirname, './src/assets/styles/_variables.sass')
+      ]
+    })
+}
+
 module.exports = {
   siteName: 'Miles Ingram',
   siteDescription: 'Miles Ingram\'s Website',
+  transformers: {
+    remark: {
+      externalLinksTarget: '_blank',
+      externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
+      anchorClassName: 'icon icon-link',
+      plugins: []
+    }
+  },
   plugins: [
     {
       use: '@gridsome/source-filesystem',
