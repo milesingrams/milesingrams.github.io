@@ -38,12 +38,6 @@ export default {
       return this.depth < this.options.maxDepth && this.cornersInPoly.length
     }
   },
-  watch: {
-    'options.mouseOver' () {
-      this.clearSplitTimer()
-      this.beginSplitTimer()
-    }
-  },
   methods: {
     insidePoly (point) {
   		let insidePoly = false
@@ -64,9 +58,6 @@ export default {
     beginSplitTimer () {
       if (this.splittable) {
         let delay = Math.random() * this.options.subdivideSeconds * this.center[0] * 2
-        if (this.options.mouseOver) {
-          delay *= 5
-        }
         this.splitTimeout = setTimeout(() => {
           this.clearSplitTimer()
           this.split = true
