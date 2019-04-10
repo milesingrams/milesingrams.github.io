@@ -5,20 +5,24 @@
         <polygon :points="polyPointString"/>
       </clipPath>
     </defs>
-    <g clip-path="url(#logo-clip-path)">
-      <path class="path" v-for="(path, index) in paths" :d="path.dString" :opacity="path.opacity" :style="{'animation-delay': path.delay}" vector-effect="non-scaling-stroke" :key="index"></path>
+    <g clip-path="url(#logo-clip-path)" ref="parallax">
+      <g data-depth="0.1">
+        <path class="path" v-for="(path, index) in paths" :d="path.dString" :opacity="path.opacity" :style="{'animation-delay': path.delay}" vector-effect="non-scaling-stroke" :key="index"></path>
+      </g>
     </g>
   </svg>
 </template>
 
 <script>
+import Parallax from 'parallax-js'
+
 export default {
   name: 'LogoWebs',
   props: ['poly'],
   data () {
     return {
       paths: [],
-      numPaths: 40,
+      numPaths: 50,
       radius: 75,
       maxDelay: 1.5,
       minOpacity: 0.1
@@ -66,6 +70,9 @@ export default {
   },
   created () {
     this.generatePaths()
+  },
+  mounted () {
+    new Parallax(this.$refs.parallax)
   }
 }
 </script>
