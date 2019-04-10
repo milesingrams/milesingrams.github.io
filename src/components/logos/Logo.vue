@@ -47,7 +47,7 @@ export default {
   },
   created () {
     this.rotateLogo()
-    this.currentLogo = LogoDroplets
+    this.currentLogo = LogoWebs
   }
 }
 </script>

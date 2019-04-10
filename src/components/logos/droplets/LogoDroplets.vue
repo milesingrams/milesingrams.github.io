@@ -1,5 +1,5 @@
 <template>
-  <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
     <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" :parent="droplet.parent" @mouseenter="onDropletMouseEnter(droplet)" :key="index"></circle>
   </svg>
 </template>
@@ -13,7 +13,8 @@ export default {
     return {
       droplets: [],
       maxDepth: 5,
-      subdivideSeconds: 6
+      subdivideSeconds: 6,
+      slowMo: false
     }
   },
   methods: {
@@ -54,6 +55,9 @@ export default {
         if (depth < this.maxDepth) {
           droplet.splittable = true
           let delay = Math.random() * this.subdivideSeconds * droplet.cx * 2
+          if (this.slowMo) {
+            delay *= 2
+          }
           droplet.splitTimeout = setTimeout(() => {
             this.splitDroplet(droplet)
           }, delay)
@@ -96,6 +100,12 @@ export default {
         clearTimeout(droplet.splitTimeout)
         this.splitDroplet(droplet)
       }
+    },
+    onMouseEnter () {
+      this.slowMo = true
+    },
+    onMouseLeave () {
+      this.slowMo = false
     }
   },
   created () {

@@ -6,8 +6,8 @@
       </clipPath>
     </defs>
     <g clip-path="url(#logo-clip-path)" ref="parallax">
-      <g data-depth="0.1">
-        <path class="path" v-for="(path, index) in paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :style="{'animation-delay': path.delay}" vector-effect="non-scaling-stroke" :key="index"></path>
+      <g v-for="(layer, layerIndex) in layers" :data-depth="layer.depth" :key="layerIndex">
+        <path class="path" v-for="(path, pathIndex) in layer.paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :style="{'animation-delay': path.delay}" vector-effect="non-scaling-stroke" :key="pathIndex"></path>
       </g>
     </g>
   </svg>
@@ -21,11 +21,14 @@ export default {
   props: ['poly'],
   data () {
     return {
-      paths: [],
-      numPaths: 75,
-      radius: 75,
+      layers: [],
+      numPathsPerLayer: 15,
+      numLayers: 5,
+      numInternalPoints: 2,
+      minDepth: 0.1,
+      maxDepth: 0.125,
       maxDelay: 1.5,
-      minOpacity: 0.1
+      radius: 75
     }
   },
   computed: {
@@ -49,23 +52,31 @@ export default {
       return [x, y]
     },
     generatePaths () {
-      this.paths = []
-      for (let i = 0; i < this.numPaths; i++) {
-        let startingPoint = this.randomPointPerimeter()
-        let endingPoint = this.randomPointPerimeter()
-        let dString = `M${startingPoint.join(',')}`
-        for (let j = 0; j < 2; j++) {
-          let point = this.randomPointInternal()
-          dString += ` T${point.join(',')}`
+      this.layers = []
+      for (let i = 0; i < this.numLayers; i++) {
+        let layer = {
+          depth: this.minDepth + (i / this.numLayers) * (this.maxDepth - this.minDepth),
+          paths: []
         }
-        dString += ` T${endingPoint.join(',')}`
-        let path = {
-          dString,
-          color: `hsl(${Math.random() * 360}, 80%, 65%)`,
-          delay: `${Math.random() * this.maxDelay}s`,
-          opacity: this.minOpacity + Math.random() * (1 - this.minOpacity)
+
+        for (let j = 0; j < this.numPathsPerLayer; j++) {
+          let startingPoint = this.randomPointPerimeter()
+          let endingPoint = this.randomPointPerimeter()
+          let dString = `M${startingPoint.join(',')}`
+          for (let k = 0; k < this.numInternalPoints; k++) {
+            let point = this.randomPointInternal()
+            dString += ` T${point.join(',')}`
+          }
+          dString += ` T${endingPoint.join(',')}`
+          let path = {
+            dString,
+            color: `hsl(${Math.random() * 360}, 80%, 65%)`,
+            delay: `${Math.random() * this.maxDelay}s`,
+            opacity: (i + Math.random()) / this.numLayers
+          }
+          layer.paths.push(path)
         }
-        this.paths.push(path)
+        this.layers.push(layer)
       }
     }
   },
