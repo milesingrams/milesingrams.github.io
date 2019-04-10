@@ -14,7 +14,7 @@ export default {
   data () {
     return {
       options: {
-        mouseControl: false,
+        mouseOver: false,
         maxDepth: 5,
         subdivideSeconds: 3
       }
@@ -22,10 +22,10 @@ export default {
   },
   methods: {
     onMouseEnter () {
-      this.options.mouseControl = true
+      this.options.mouseOver = true
     },
     onMouseLeave () {
-      this.options.mouseControl = false
+      this.options.mouseOver = false
     }
   }
 }

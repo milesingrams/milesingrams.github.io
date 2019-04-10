@@ -35,8 +35,11 @@ export default {
   },
   methods: {
     rotateLogo () {
+
       if (!this.logosToView.length) {
-        this.logosToView = [...this.logos]
+        this.logosToView = this.logos.filter((logo) => {
+          return logo !== this.currentLogo
+        })
       }
       let randomIndex = Math.floor(Math.random() * this.logosToView.length)
       this.currentLogo = this.logosToView[randomIndex]

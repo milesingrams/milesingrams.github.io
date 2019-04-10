@@ -1,6 +1,6 @@
 <template>
     <g>
-      <circle class="droplet" :cx="center[0]" :cy="center[1]" :r="r" v-if="!split && cornersInPoly.length" @mouseenter="onMouseEnter"/>
+      <circle class="droplet" :cx="center[0]" :cy="center[1]" :r="r" :fill-opacity="opacity" v-if="!split && cornersInPoly.length" @mouseenter="onMouseEnter"/>
       <logo-droplets-droplet v-if="split" v-for="(corner, index) in corners" :center="corner" :r="r / 2" :depth="depth + 1" :poly="poly" :options="options" :key="index"></logo-droplets-droplet>
     </g>
 </template>
@@ -11,6 +11,7 @@ export default {
   props: ['center', 'r', 'depth', 'poly', 'options'],
   data () {
     return {
+      opacity: 0.5 + Math.random() * 0.5,
       split: false,
       splitTimeout: null
     }
@@ -33,15 +34,13 @@ export default {
       return cornersInPoly
     },
     splittable () {
-      return this.depth < this.options.maxDepth && this.cornersInPoly
+      return this.depth < this.options.maxDepth && this.cornersInPoly.length
     }
   },
   watch: {
-    'options.mouseControl' () {
+    'options.mouseOver' () {
       this.clearSplitTimer()
-      if (!this.options.mouseControl) {
-        this.beginSplitTimer()
-      }
+      this.beginSplitTimer()
     }
   },
   methods: {
@@ -57,16 +56,20 @@ export default {
   	},
     onMouseEnter () {
       if (this.splittable) {
-        if (this.options.mouseControl) {
-          this.split = true
-        }
+        this.clearSplitTimer()
+        this.split = true
       }
     },
     beginSplitTimer () {
-      if (this.splittable && !this.options.mouseControl) {
+      if (this.splittable) {
+        let delay = Math.random() * this.options.subdivideSeconds * this.center[0] * 2
+        if (this.options.mouseOver) {
+          delay *= 10
+        }
         this.splitTimeout = setTimeout(() => {
+          this.clearSplitTimer()
           this.split = true
-        }, Math.random() * this.options.subdivideSeconds * this.center[0] * 2)
+        }, delay)
       }
     },
     clearSplitTimer () {
