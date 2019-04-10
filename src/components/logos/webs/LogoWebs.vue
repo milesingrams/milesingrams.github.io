@@ -53,6 +53,7 @@ export default {
     },
     generatePaths () {
       this.layers = []
+
       for (let i = 0; i < this.numLayers; i++) {
         let layer = {
           depth: this.minDepth + (i / this.numLayers) * (this.maxDepth - this.minDepth),
@@ -62,20 +63,24 @@ export default {
         for (let j = 0; j < this.numPathsPerLayer; j++) {
           let startingPoint = this.randomPointPerimeter()
           let endingPoint = this.randomPointPerimeter()
+
           let dString = `M${startingPoint.join(',')}`
           for (let k = 0; k < this.numInternalPoints; k++) {
             let point = this.randomPointInternal()
             dString += ` T${point.join(',')}`
           }
           dString += ` T${endingPoint.join(',')}`
+
           let path = {
             dString,
             color: `hsl(${Math.random() * 360}, 80%, 65%)`,
             delay: `${Math.random() * this.maxDelay}s`,
             opacity: (i + Math.random()) / this.numLayers
           }
+
           layer.paths.push(path)
         }
+
         this.layers.push(layer)
       }
     }

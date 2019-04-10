@@ -6,6 +6,7 @@
 
 <script>
 import LogoDroplets from '~/components/logos/droplets/LogoDroplets'
+import LogoSlices from '~/components/logos/slices/LogoSlices'
 import LogoWebs from '~/components/logos/webs/LogoWebs'
 
 export default {
@@ -26,9 +27,10 @@ export default {
         [80, 45],
         [50, 75],
         [20, 45],
-        [20, 100]
+        [20, 100],
+        [0, 100]
       ],
-      logos: [LogoDroplets, LogoWebs],
+      logos: [LogoDroplets, LogoSlices, LogoWebs],
       logosToView: [],
       currentLogo: null
     }
@@ -47,6 +49,7 @@ export default {
   },
   created () {
     this.rotateLogo()
+    this.currentLogo = LogoSlices
   }
 }
 </script>
