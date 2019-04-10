@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     rotateLogo () {
-
       if (!this.logosToView.length) {
         this.logosToView = this.logos.filter((logo) => {
           return logo !== this.currentLogo

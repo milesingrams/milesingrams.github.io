@@ -1,6 +1,6 @@
 <template>
     <g>
-      <circle class="droplet" :cx="center[0]" :cy="center[1]" :r="r" :fill-opacity="opacity" v-if="!split && cornersInPoly.length" @mouseenter="onMouseEnter"/>
+      <circle class="droplet" :cx="center[0]" :cy="center[1]" :r="r" :fill="color" :fill-opacity="opacity" v-if="!split && cornersInPoly.length" @mouseenter="onMouseEnter"/>
       <logo-droplets-droplet v-if="split" v-for="(corner, index) in corners" :center="corner" :r="r / 2" :depth="depth + 1" :poly="poly" :options="options" :key="index"></logo-droplets-droplet>
     </g>
 </template>
@@ -12,6 +12,7 @@ export default {
   data () {
     return {
       opacity: 0.5 + Math.random() * 0.5,
+      color: `hsl(${Math.random() * 360}, 80%, 65%)`,
       split: false,
       splitTimeout: null
     }
@@ -90,7 +91,6 @@ export default {
 
 <style lang="scss" scoped>
 .droplet {
-  fill: #fff;
   animation: fadeIn .3s
 }
 </style>

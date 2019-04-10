@@ -7,7 +7,7 @@
     </defs>
     <g clip-path="url(#logo-clip-path)" ref="parallax">
       <g data-depth="0.1">
-        <path class="path" v-for="(path, index) in paths" :d="path.dString" :opacity="path.opacity" :style="{'animation-delay': path.delay}" vector-effect="non-scaling-stroke" :key="index"></path>
+        <path class="path" v-for="(path, index) in paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :style="{'animation-delay': path.delay}" vector-effect="non-scaling-stroke" :key="index"></path>
       </g>
     </g>
   </svg>
@@ -22,7 +22,7 @@ export default {
   data () {
     return {
       paths: [],
-      numPaths: 50,
+      numPaths: 75,
       radius: 75,
       maxDelay: 1.5,
       minOpacity: 0.1
@@ -44,8 +44,8 @@ export default {
       return [x, y]
     },
     randomPointInternal () {
-      let x = Math.floor(Math.random() * 100)
-      let y = Math.floor(Math.random() * 100)
+      let x = Math.random() * 100
+      let y = Math.random() * 100
       return [x, y]
     },
     generatePaths () {
@@ -61,6 +61,7 @@ export default {
         dString += ` T${endingPoint.join(',')}`
         let path = {
           dString,
+          color: `hsl(${Math.random() * 360}, 80%, 65%)`,
           delay: `${Math.random() * this.maxDelay}s`,
           opacity: this.minOpacity + Math.random() * (1 - this.minOpacity)
         }
@@ -86,7 +87,6 @@ export default {
 
 .path {
   fill: none;
-  stroke: white;
   stroke-width: 1;
   stroke-dasharray: 1500;
   stroke-dashoffset: 1500;
