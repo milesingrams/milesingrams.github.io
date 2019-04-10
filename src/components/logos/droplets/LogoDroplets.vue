@@ -1,6 +1,6 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
-    <logo-droplets-droplet :cx="50" :cy="50" :r="50" :depth="0" :options="options"></logo-droplets-droplet>
+    <logo-droplets-droplet :cx="50" :cy="50" :r="50" :depth="0" :poly="poly" :options="options"></logo-droplets-droplet>
   </svg>
 </template>
 
@@ -10,21 +10,10 @@ export default {
   components: {
     LogoDropletsDroplet
   },
+  props: ['poly'],
   data () {
     return {
       options: {
-        poly: [
-          [0, 100],
-          [0, 0],
-          [50, 50],
-          [100, 0],
-          [100, 100],
-          [80, 100],
-          [80, 45],
-          [50, 75],
-          [20, 45],
-          [20, 100]
-        ],
         mouseControl: false,
         maxDepth: 5,
         subdivideSeconds: 2

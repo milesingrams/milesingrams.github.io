@@ -2,7 +2,7 @@
   <Layout>
     <section class="my-info">
       <div class="logo-wrap">
-        <logo-droplets></logo-droplets>
+        <logo></logo>
       </div>
       <h1 class="my-name">Miles Ingram</h1>
       <p class="my-pitch">Bits, Bio, Bots, Battlestar Galactica</p>
@@ -29,11 +29,11 @@
 </page-query>
 
 <script>
-import LogoDroplets from '~/components/logos/droplets/LogoDroplets'
+import Logo from '~/components/logos/Logo'
 
 export default {
   components: {
-    LogoDroplets
+    Logo
   },
   metaInfo: {
     title: 'Miles Ingram'
