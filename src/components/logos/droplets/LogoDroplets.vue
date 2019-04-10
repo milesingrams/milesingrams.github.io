@@ -1,12 +1,11 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <transition-group appear v-on:enter="onDropletEnter" v-on:leave="onDropletLeave" v-bind:css="false" tag="g">
-      <circle class="droplet" v-for="droplet in droplets" :cx="droplet.center[0]" :cy="droplet.center[1]" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" @mouseenter="onDropletMouseEnter(droplet)" :key="`${droplet.center[0]},${droplet.center[1]}`"></circle>
-    </transition-group>
+    <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" :parent="droplet.parent" @mouseenter="onDropletMouseEnter(droplet)" :key="index"></circle>
   </svg>
 </template>
 
 <script>
+import anime from 'animejs'
 
 export default {
   props: ['poly'],
@@ -28,67 +27,91 @@ export default {
   		}
   		return insidePoly
   	},
-    createDroplet (center, radius, depth) {
+    createDroplet (cx, cy, radius, depth, parent) {
+      let opacity = 1 - depth * Math.random() * 0.1
+      let color = `hsl(${Math.random() * 360}, 80%, ${100 - depth * 6}%)`
+
       let droplet = {
-        center,
+        cx,
+        cy,
         radius,
         depth,
-        opacity: 0.5 + Math.random() * 0.5,
-        color: `hsl(${Math.random() * 360}, 80%, 65%)`
+        opacity,
+        color,
+        splittable: false
       }
 
-      if (droplet.depth < this.maxDepth) {
-        let delay = Math.random() * this.subdivideSeconds * droplet.center[0] * 2
-        droplet.splitTimeout = setTimeout(() => {
-          this.splitDroplet(droplet)
-        }, delay)
-      }
+      let animation = anime({
+        targets: droplet,
+        cx: [parent.cx, cx],
+        cy: [parent.cy, cy],
+        radius: [parent.radius, radius],
+        opacity: [parent.opacity, opacity],
+        easing: 'easeInQuad',
+        duration: 300
+      })
+      animation.finished.then(() => {
+        if (depth < this.maxDepth) {
+          droplet.splittable = true
+          let delay = Math.random() * this.subdivideSeconds * droplet.cx * 2
+          droplet.splitTimeout = setTimeout(() => {
+            this.splitDroplet(droplet)
+          }, delay)
+        }
+      })
 
       this.droplets.push(droplet)
     },
     splitDroplet (droplet) {
       let halfRad = droplet.radius / 2
   		let corners = [
-  			[droplet.center[0] - halfRad, droplet.center[1] - halfRad],
-  			[droplet.center[0] + halfRad, droplet.center[1] - halfRad],
-  			[droplet.center[0] + halfRad, droplet.center[1] + halfRad],
-  			[droplet.center[0] - halfRad, droplet.center[1] + halfRad]
+  			[droplet.cx - halfRad, droplet.cy - halfRad],
+  			[droplet.cx + halfRad, droplet.cy - halfRad],
+  			[droplet.cx + halfRad, droplet.cy + halfRad],
+  			[droplet.cx - halfRad, droplet.cy + halfRad]
   		]
       let cornersInPoly = corners.filter((corner) => {
         return this.insidePoly(corner)
       })
       if (droplet.depth + 1 < this.maxDepth && cornersInPoly.length) {
         corners.forEach((corner) => {
-          this.createDroplet(corner, halfRad, droplet.depth + 1)
+          this.createDroplet(corner[0], corner[1], halfRad, droplet.depth + 1, droplet)
         })
       } else {
         cornersInPoly.forEach((corner) => {
-          this.createDroplet(corner, halfRad, droplet.depth + 1)
+          this.createDroplet(corner[0], corner[1], halfRad, droplet.depth + 1, droplet)
         })
       }
-      this.droplets.splice(this.droplets.indexOf(droplet), 1)
+
+      let animation = anime({
+        targets: droplet,
+        radius: 0,
+        opacity: 0,
+        easing: 'easeOutQuad',
+        duration: 300
+      })
     },
     onDropletMouseEnter (droplet) {
-      if (droplet.depth < this.maxDepth) {
+      if (droplet.splittable) {
         clearTimeout(droplet.splitTimeout)
         this.splitDroplet(droplet)
       }
-    },
-    onDropletEnter (el, done) {
-      done()
-    },
-    onDropletLeave (el, done) {
-      done()
     }
   },
   created () {
-    this.createDroplet([50, 50], 50, 0)
+    this.createDroplet(50, 50, 50, 0, {
+      cx: 50,
+      cy: 50,
+      radius: 50,
+      opacity: 1
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .droplet {
-  animation: fadeIn .3s
+  animation: fadeIn .3s;
+  mix-blend-mode: lighten;
 }
 </style>
