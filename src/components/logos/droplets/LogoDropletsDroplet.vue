@@ -65,7 +65,7 @@ export default {
       if (this.splittable) {
         let delay = Math.random() * this.options.subdivideSeconds * this.center[0] * 2
         if (this.options.mouseOver) {
-          delay *= 10
+          delay *= 5
         }
         this.splitTimeout = setTimeout(() => {
           this.clearSplitTimer()

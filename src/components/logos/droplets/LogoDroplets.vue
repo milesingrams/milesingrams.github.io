@@ -16,7 +16,7 @@ export default {
       options: {
         mouseOver: false,
         maxDepth: 5,
-        subdivideSeconds: 3
+        subdivideSeconds: 6
       }
     }
   },
