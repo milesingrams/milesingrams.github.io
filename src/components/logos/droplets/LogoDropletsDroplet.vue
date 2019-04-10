@@ -1,14 +1,14 @@
 <template>
     <g>
-      <circle class="droplet" :cx="cx" :cy="cy" :r="r" v-if="!split && cornersInPoly.length" @mouseenter="onMouseEnter"/>
-      <logo-droplets-droplet v-if="split" v-for="corner in corners" :cx="corner.cx" :cy="corner.cy" :r="r / 2" :depth="depth + 1" :poly="poly" :options="options" :key="`${corner.cx}_${corner.cy}`"></logo-droplets-droplet>
+      <circle class="droplet" :cx="center[0]" :cy="center[1]" :r="r" v-if="!split && cornersInPoly.length" @mouseenter="onMouseEnter"/>
+      <logo-droplets-droplet v-if="split" v-for="(corner, index) in corners" :center="corner" :r="r / 2" :depth="depth + 1" :poly="poly" :options="options" :key="index"></logo-droplets-droplet>
     </g>
 </template>
 
 <script>
 export default {
   name: 'logoDropletsDroplet',
-  props: ['cx', 'cy', 'r', 'depth', 'poly', 'options'],
+  props: ['center', 'r', 'depth', 'poly', 'options'],
   data () {
     return {
       split: false,
@@ -19,22 +19,10 @@ export default {
     corners () {
       let halfRad = this.r / 2
   		let corners = [
-  			{
-          cx: this.cx - halfRad,
-          cy: this.cy - halfRad
-        },
-  			{
-          cx: this.cx + halfRad,
-          cy: this.cy - halfRad
-        },
-  			{
-          cx: this.cx + halfRad,
-          cy: this.cy + halfRad
-        },
-  			{
-          cx: this.cx - halfRad,
-          cy: this.cy + halfRad
-        }
+  			[this.center[0] - halfRad, this.center[1] - halfRad],
+  			[this.center[0] + halfRad, this.center[1] - halfRad],
+  			[this.center[0] + halfRad, this.center[1] + halfRad],
+  			[this.center[0] - halfRad, this.center[1] + halfRad]
   		]
   		return corners
     },
@@ -57,12 +45,12 @@ export default {
     }
   },
   methods: {
-    insidePoly (circle) {
+    insidePoly (point) {
   		let insidePoly = false
   		for (let i = 0, j = this.poly.length - 1; i < this.poly.length; j = i++) {
   			let xi = this.poly[i][0], yi = this.poly[i][1]
   			let xj = this.poly[j][0], yj = this.poly[j][1]
-  			let intersect = ((yi > circle.cy) != (yj > circle.cy)) && (circle.cx < (xj - xi) * (circle.cy - yi) / (yj - yi) + xi)
+  			let intersect = ((yi > point[1]) != (yj > point[1])) && (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi)
   			if (intersect) insidePoly = !insidePoly
   		}
   		return insidePoly
@@ -78,7 +66,7 @@ export default {
       if (this.splittable && !this.options.mouseControl) {
         this.splitTimeout = setTimeout(() => {
           this.split = true
-        }, Math.random() * this.options.subdivideSeconds * this.cx * 10)
+        }, Math.random() * this.options.subdivideSeconds * this.center[0] * 2)
       }
     },
     clearSplitTimer () {

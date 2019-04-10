@@ -1,5 +1,5 @@
 <template>
-  <div class="logo">
+  <div class="logo" @click="rotateLogo">
     <component :is="currentLogo" :poly="poly"></component>
   </div>
 </template>
@@ -29,13 +29,18 @@ export default {
         [20, 100]
       ],
       logos: [LogoDroplets, LogoWebs],
+      logosToView: [],
       currentLogo: null
     }
   },
   methods: {
     rotateLogo () {
-      let randomIndex = Math.floor(Math.random() * this.logos.length)
-      this.currentLogo = this.logos[randomIndex]
+      if (!this.logosToView.length) {
+        this.logosToView = [...this.logos]
+      }
+      let randomIndex = Math.floor(Math.random() * this.logosToView.length)
+      this.currentLogo = this.logosToView[randomIndex]
+      this.logosToView.splice(randomIndex, 1)
     }
   },
   created () {
@@ -45,6 +50,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.logo {
+  cursor: pointer;
+}
+
 .logo, .logo-svg {
   width: 100%;
   height: 100%;

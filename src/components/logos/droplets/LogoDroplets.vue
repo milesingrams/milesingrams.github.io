@@ -1,6 +1,6 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
-    <logo-droplets-droplet :cx="50" :cy="50" :r="50" :depth="0" :poly="poly" :options="options"></logo-droplets-droplet>
+    <logo-droplets-droplet :center="[50, 50]" :r="50" :depth="0" :poly="poly" :options="options"></logo-droplets-droplet>
   </svg>
 </template>
 
@@ -16,7 +16,7 @@ export default {
       options: {
         mouseControl: false,
         maxDepth: 5,
-        subdivideSeconds: 2
+        subdivideSeconds: 3
       }
     }
   },
