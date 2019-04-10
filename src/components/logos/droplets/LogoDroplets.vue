@@ -1,6 +1,6 @@
 <template>
-  <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
-    <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" :parent="droplet.parent" @mouseenter="onDropletMouseEnter(droplet)" :key="index"></circle>
+  <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" :parent="droplet.parent" :key="index"></circle>
   </svg>
 </template>
 
@@ -13,8 +13,7 @@ export default {
     return {
       droplets: [],
       maxDepth: 5,
-      subdivideSeconds: 6,
-      slowMo: false
+      subdivideSeconds: 6
     }
   },
   methods: {
@@ -30,7 +29,7 @@ export default {
   	},
     createDroplet (cx, cy, radius, depth, parent) {
       let opacity = 1 - depth * Math.random() * 0.1
-      let color = `hsl(${Math.random() * 360}, 80%, ${100 - depth * 6}%)`
+      let color = `hsl(${Math.random() * 360}, 80%, ${90 - depth * 5}%)`
 
       let droplet = {
         cx,
@@ -49,15 +48,12 @@ export default {
         radius: [parent.radius, radius],
         opacity: [parent.opacity, opacity],
         easing: 'easeInQuad',
-        duration: 300
+        duration: 200
       })
       animation.finished.then(() => {
         if (depth < this.maxDepth) {
           droplet.splittable = true
           let delay = Math.random() * this.subdivideSeconds * droplet.cx * 2
-          if (this.slowMo) {
-            delay *= 2
-          }
           droplet.splitTimeout = setTimeout(() => {
             this.splitDroplet(droplet)
           }, delay)
@@ -92,20 +88,8 @@ export default {
         radius: 0,
         opacity: 0,
         easing: 'easeOutQuad',
-        duration: 300
+        duration: 200
       })
-    },
-    onDropletMouseEnter (droplet) {
-      if (droplet.splittable) {
-        clearTimeout(droplet.splitTimeout)
-        this.splitDroplet(droplet)
-      }
-    },
-    onMouseEnter () {
-      this.slowMo = true
-    },
-    onMouseLeave () {
-      this.slowMo = false
     }
   },
   created () {
@@ -122,6 +106,6 @@ export default {
 <style lang="scss" scoped>
 .droplet {
   animation: fadeIn .3s;
-  mix-blend-mode: lighten;
+  mix-blend-mode: screen;
 }
 </style>

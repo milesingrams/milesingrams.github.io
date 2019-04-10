@@ -22,12 +22,12 @@ export default {
   data () {
     return {
       layers: [],
-      numPathsPerLayer: 15,
+      numPathsPerLayer: 8,
       numLayers: 5,
-      numInternalPoints: 2,
-      minDepth: 0.1,
+      numInternalPoints: 5,
+      minDepth: 0.05,
       maxDepth: 0.125,
-      maxDelay: 1.5,
+      maxDelay: 3,
       radius: 75
     }
   },
@@ -99,8 +99,8 @@ export default {
 .path {
   fill: none;
   stroke-width: 1;
-  stroke-dasharray: 1500;
-  stroke-dashoffset: 1500;
-  animation: dash 3s ease-in-out forwards;
+  stroke-dasharray: 5000;
+  stroke-dashoffset: 5000;
+  animation: dash 3s ease-in forwards;
 }
 </style>
