@@ -27,7 +27,7 @@ export default {
       maxDepth: 0.75,
       minOpacity: 0.05,
       maxOpacity: 0.3,
-      maxDelay: 3
+      maxDelay: 2.5
     }
   },
   computed: {
@@ -69,7 +69,6 @@ export default {
         let slice = {
           dString,
           color: `hsl(${Math.random() * 360}, 80%, 65%)`,
-          delay: `${Math.random() * this.maxDelay}s`,
           opacity: this.minOpacity + Math.random() * (this.maxOpacity - this.minOpacity),
           depth: this.minDepth + Math.random() * (this.maxDepth - this.minDepth),
           translateX: 0,
@@ -84,8 +83,8 @@ export default {
           translateX: [(startingPoint[0] - 50) / 2, slice.translateX],
           translateY: [(startingPoint[1] - 50) / 2, slice.translateY],
           easing: 'easeInOutQuad',
-          duration: 1000 + Math.random() * 1000,
-          delay: Math.random() * 2000
+          duration: 1000,
+          delay: Math.random() * this.maxDelay * 1000
         })
 
         this.slices.push(slice)
