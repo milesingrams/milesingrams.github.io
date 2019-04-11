@@ -1,8 +1,6 @@
 <template>
   <div class="logo" @click="rotateLogo">
-    <transition name="fadeOut" mode="out-in">
-      <component :is="currentLogo" :poly="poly"></component>
-    </transition>
+    <component :is="currentLogo" :poly="poly"></component>
   </div>
 </template>
 
@@ -48,7 +46,6 @@ export default {
   },
   created () {
     this.rotateLogo()
-    this.currentLogo = LogoGradient
   }
 }
 </script>
