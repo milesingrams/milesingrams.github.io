@@ -12,6 +12,7 @@
     "animejs": "^3.0.1",
     "gridsome": "^0.5.7",
     "include-media": "^1.4.9",
+    "noisejs": "^2.1.0",
     "parallax-js": "^3.1.0",
     "polygon-clipping": "^0.14.0",
     "typeface-open-sans": "0.0.54",

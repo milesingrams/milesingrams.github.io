@@ -5,9 +5,10 @@
 </template>
 
 <script>
-import LogoDroplets from '~/components/logos/droplets/LogoDroplets'
-import LogoSlices from '~/components/logos/slices/LogoSlices'
-import LogoWebs from '~/components/logos/webs/LogoWebs'
+import LogoDroplets from '~/components/logos/LogoDroplets'
+import LogoGradient from '~/components/logos/LogoGradient'
+import LogoSlices from '~/components/logos/LogoSlices'
+import LogoWebs from '~/components/logos/LogoWebs'
 
 export default {
   name: 'Logo',
@@ -26,7 +27,7 @@ export default {
         [20, 100],
         [0, 100]
       ],
-      logos: [LogoDroplets, LogoSlices, LogoWebs],
+      logos: [LogoDroplets, LogoGradient, LogoSlices, LogoWebs],
       logosToView: [],
       currentLogo: null
     }
@@ -45,6 +46,7 @@ export default {
   },
   created () {
     this.rotateLogo()
+    this.currentLogo = LogoGradient
   }
 }
 </script>
@@ -54,7 +56,7 @@ export default {
   cursor: pointer;
 }
 
-.logo, .logo-svg {
+.logo, .logo-svg, .logo-canvas {
   width: 100%;
   height: 100%;
 }
