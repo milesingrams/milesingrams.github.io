@@ -45,7 +45,7 @@ export default {
   },
   created () {
     this.rotateLogo()
-    this.currentLogo = LogoWebs
+    this.currentLogo = LogoSlices
   }
 }
 </script>

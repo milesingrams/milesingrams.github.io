@@ -3,7 +3,7 @@
     <rect x="-200" y="-100" width="500" height="300" fill="none" ref="parallaxInput"></rect>
     <g ref="parallaxScene">
       <g v-for="(slice, index) in slices" :data-depth="slice.depth" :key="index">
-        <path class="slice" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :transform="`translate(${slice.translateX} ${slice.translateY}) scale(${slice.scale})`" vector-effect="non-scaling-stroke"></path>
+        <path class="slice" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :style="{transform: `translate3d(${slice.translateX}px, ${slice.translateY}px, 0px) scale(${slice.scale})`}"></path>
       </g>
     </g>
   </svg>
@@ -25,7 +25,7 @@ export default {
       radius: 75,
       minDepth: -0.75,
       maxDepth: 0.75,
-      minOpacity: 0.05,
+      minOpacity: 0.1,
       maxOpacity: 0.3,
       maxDelay: 2.5
     }
@@ -83,7 +83,7 @@ export default {
           opacity: [0, slice.opacity],
           translateX: [(startingPoint[0] - 50) / 3, slice.translateX],
           translateY: [(startingPoint[1] - 50) / 3, slice.translateY],
-          scale: [1.5, 1],
+          scale: [1.5, slice.scale],
           easing: 'easeInOutQuad',
           duration: 1000,
           delay: Math.random() * this.maxDelay * 1000
@@ -118,5 +118,6 @@ export default {
 .slice {
   mix-blend-mode: color-dodge;
   transform-origin: center;
+  transform-style: preserve-3d;
 }
 </style>
