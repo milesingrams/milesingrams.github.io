@@ -105,6 +105,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.logo-svg {
+  width: 100%;
+  height: 100%;
+  animation: fadeIn .5s;
+}
+
 .droplet {
   animation: fadeIn .3s;
   mix-blend-mode: screen;

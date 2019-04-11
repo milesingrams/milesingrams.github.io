@@ -1,3 +1,15 @@
+.fadeIn {
+  &-enter-active {
+    animation: fadeIn .2s var(--ease-in-quad) both;
+  }
+}
+
+.fadeOut {
+  &-leave-active {
+    animation: fadeOut .2s var(--ease-out-quad) both;
+  }
+}
+
 .fadeInOut {
   &-enter-active {
     animation: fadeIn .2s var(--ease-in-quad) both;
@@ -8,46 +20,6 @@
   }
 }
 
-.fadeInOutBottom {
-  &-enter-active {
-    animation: fadeInUp .2s var(--ease-out-back) both;
-  }
-
-  &-leave-active {
-    animation: fadeOutDown .2s var(--ease-in-back) both;
-  }
-}
-
-.fadeInOutTop {
-  &-enter-active {
-    animation: fadeInDown .2s var(--ease-out-back) both;
-  }
-
-  &-leave-active {
-    animation: fadeOutUp .2s var(--ease-in-back) both;
-  }
-}
-
-.fadeInOutLeft {
-    &-enter-active {
-    animation: fadeInLeft .2s var(--ease-out-back) both;
-  }
-
-  &-leave-active {
-    animation: fadeOutLeft .2s var(--ease-in-back) both;
-  }
-}
-
-.fadeInOutRight {
-    &-enter-active {
-    animation: fadeInRight .2s var(--ease-out-back) both;
-  }
-
-  &-leave-active {
-    animation: fadeOutRight .2s var(--ease-in-back) both;
-  }
-}
-
 .scaleInOut {
   &-enter-active {
     animation: fadeInGrow .2s var(--ease-out-back) both;
@@ -55,15 +27,5 @@
 
   &-leave-active {
     animation: fadeOutShrink .2s var(--ease-in-back) both;
-  }
-}
-
-.scaleInOutSmall{
-  &-enter-active {
-    animation: fadeInGrowSmall .2s var(--ease-out-back) both;
-  }
-
-  &-leave-active {
-    animation: fadeOutShrinkSmall .2s var(--ease-in-back) both;
   }
 }

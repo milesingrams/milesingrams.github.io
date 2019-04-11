@@ -1,11 +1,11 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <defs>
-      <clipPath class="logo-clip-path" id="logo-clip-path">
+      <clipPath class="logo-clip" id="logo-clip">
         <polygon :points="polyPointString"></polygon>
       </clipPath>
     </defs>
-    <g clip-path="url(#logo-clip-path)" ref="parallaxScene">
+    <g clip-path="url(#logo-clip)" ref="parallaxScene">
       <g v-for="(layer, layerIndex) in layers" :data-depth="layer.depth" :key="layerIndex">
         <path class="path" v-for="(path, pathIndex) in layer.paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :style="{'animation-delay': path.delay}" vector-effect="non-scaling-stroke" :key="pathIndex"></path>
       </g>
@@ -102,10 +102,12 @@ export default {
 
 <style lang="scss" scoped>
 .logo-svg {
+  width: 100%;
+  height: 100%;
   overflow: visible;
 }
 
-.logo-clip-path {
+.logo-clip {
   transform-origin: center;
   animation: clipShrink 5s ease-in-out forwards;
 }

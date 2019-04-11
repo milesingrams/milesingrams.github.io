@@ -1,6 +1,8 @@
 <template>
   <div class="logo" @click="rotateLogo">
-    <component :is="currentLogo" :poly="poly"></component>
+    <transition name="fadeOut" mode="out-in">
+      <component :is="currentLogo" :poly="poly"></component>
+    </transition>
   </div>
 </template>
 
@@ -53,11 +55,9 @@ export default {
 
 <style lang="scss" scoped>
 .logo {
-  cursor: pointer;
-}
-
-.logo, .logo-svg, .logo-canvas {
+  position: relative;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 </style>
