@@ -2,7 +2,9 @@
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <rect x="-100" y="-100" width="300" height="300" fill="none" ref="parallaxInput"></rect>
     <g ref="parallaxScene">
-      <path class="slice" v-for="(slice, index) in slices" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :data-depth="slice.depth" vector-effect="non-scaling-stroke" :key="index"></path>
+      <g v-for="(slice, index) in slices" :data-depth="slice.depth" :key="index">
+        <path class="slice" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :transform="`translate(${slice.translateX} ${slice.translateY})`" vector-effect="non-scaling-stroke"></path>
+      </g>
     </g>
   </svg>
 </template>
@@ -18,14 +20,14 @@ export default {
   data () {
     return {
       slices: [],
-      numSlices: 35,
+      numSlices: 20,
       numPointsPerBool: 3,
       radius: 75,
       minDepth: -0.75,
       maxDepth: 0.75,
       minOpacity: 0.05,
-      maxOpacity: 0.2,
-      maxDelay: 3,
+      maxOpacity: 0.3,
+      maxDelay: 3
     }
   },
   computed: {
@@ -63,13 +65,29 @@ export default {
             dString += ` L${intersectionPoly[k].join(',')}`
           }
         }
+
         let slice = {
           dString,
           color: `hsl(${Math.random() * 360}, 80%, 65%)`,
           delay: `${Math.random() * this.maxDelay}s`,
           opacity: this.minOpacity + Math.random() * (this.maxOpacity - this.minOpacity),
-          depth: this.minDepth + Math.random() * (this.maxDepth - this.minDepth)
+          depth: this.minDepth + Math.random() * (this.maxDepth - this.minDepth),
+          translateX: 0,
+          translateY: 0
         }
+
+        let startingPoint = this.randomPointPerimeter()
+
+        let animation = anime({
+          targets: slice,
+          opacity: [0, slice.opacity],
+          translateX: [(startingPoint[0] - 50) / 2, slice.translateX],
+          translateY: [(startingPoint[1] - 50) / 2, slice.translateY],
+          easing: 'easeInOutQuad',
+          duration: 1000 + Math.random() * 1000,
+          delay: Math.random() * 2000
+        })
+
         this.slices.push(slice)
       }
     }
@@ -98,11 +116,6 @@ export default {
 
 .slice {
   mix-blend-mode: color-dodge;
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
+  transform-origin: center;
 }
 </style>

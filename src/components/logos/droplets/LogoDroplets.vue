@@ -43,13 +43,14 @@ export default {
 
       let animation = anime({
         targets: droplet,
-        cx: [parent.cx, cx],
-        cy: [parent.cy, cy],
-        radius: [parent.radius, radius],
-        opacity: [parent.opacity, opacity],
+        cx: [parent.cx, droplet.cx],
+        cy: [parent.cy, droplet.cy],
+        radius: [parent.radius, droplet.radius],
+        opacity: [parent.opacity, droplet.opacity],
         easing: 'easeInQuad',
         duration: 200
       })
+
       animation.finished.then(() => {
         if (depth < this.maxDepth) {
           droplet.splittable = true
