@@ -11,10 +11,6 @@ import LogoWebs from '~/components/logos/webs/LogoWebs'
 
 export default {
   name: 'Logo',
-  components: {
-    LogoDroplets,
-    LogoWebs
-  },
   data () {
     return {
       poly: [

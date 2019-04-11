@@ -77,7 +77,7 @@ export default {
 
         let startingPoint = this.randomPointPerimeter()
 
-        let animation = anime({
+        anime({
           targets: slice,
           opacity: [0, slice.opacity],
           translateX: [(startingPoint[0] - 50) / 2, slice.translateX],
