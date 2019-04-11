@@ -5,7 +5,8 @@
         <polygon :points="polyPointString"/>
       </clipPath>
     </defs>
-    <g clip-path="url(#logo-clip-path)" ref="parallax">
+    <rect x="-100" y="-100" width="300" height="300" fill="none" ref="parallaxInput"></rect>
+    <g clip-path="url(#logo-clip-path)" ref="parallaxScene">
       <g v-for="(layer, layerIndex) in layers" :data-depth="layer.depth" :key="layerIndex">
         <path class="path" v-for="(path, pathIndex) in layer.paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :style="{'animation-delay': path.delay}" vector-effect="non-scaling-stroke" :key="pathIndex"></path>
       </g>
@@ -26,7 +27,7 @@ export default {
       numLayers: 5,
       numInternalPoints: 5,
       minDepth: 0.05,
-      maxDepth: 0.125,
+      maxDepth: 0.2,
       maxDelay: 3,
       radius: 75
     }
@@ -89,7 +90,15 @@ export default {
     this.generatePaths()
   },
   mounted () {
-    new Parallax(this.$refs.parallax)
+    new Parallax(this.$refs.parallaxScene, {
+      inputElement: this.$refs.parallaxInput,
+      relativeInput: true,
+      hoverOnly: true,
+      limitX: 75,
+      limitY: 75,
+      frictionX: 0.05,
+      frictionY: 0.05
+    })
   }
 }
 </script>

@@ -1,14 +1,16 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <g ref="parallax">
+    <rect x="-100" y="-100" width="300" height="300" fill="none" ref="parallaxInput"></rect>
+    <g ref="parallaxScene">
       <path class="slice" v-for="(slice, index) in slices" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :data-depth="slice.depth" vector-effect="non-scaling-stroke" :key="index"></path>
     </g>
   </svg>
 </template>
 
 <script>
-import polygonClipping from 'polygon-clipping'
+import anime from 'animejs'
 import Parallax from 'parallax-js'
+import polygonClipping from 'polygon-clipping'
 
 export default {
   name: 'LogoSlices',
@@ -16,13 +18,13 @@ export default {
   data () {
     return {
       slices: [],
-      numSlices: 20,
-      numPointsPerBool: 4,
+      numSlices: 35,
+      numPointsPerBool: 3,
       radius: 75,
-      minDepth: -1,
-      maxDepth: 1,
-      minOpacity: 0.1,
-      maxOpacity: 0.3,
+      minDepth: -0.75,
+      maxDepth: 0.75,
+      minOpacity: 0.05,
+      maxOpacity: 0.2,
       maxDelay: 3,
     }
   },
@@ -76,7 +78,15 @@ export default {
     this.generateSlices()
   },
   mounted () {
-    new Parallax(this.$refs.parallax)
+    new Parallax(this.$refs.parallaxScene, {
+      inputElement: this.$refs.parallaxInput,
+      relativeInput: true,
+      hoverOnly: true,
+      limitX: 75,
+      limitY: 75,
+      frictionX: 0.05,
+      frictionY: 0.05
+    })
   }
 }
 </script>

@@ -7,8 +7,6 @@
       <h1 class="my-name">Miles Ingram</h1>
       <p class="my-pitch">Bits, Bio, Bots, Battlestar Galactica</p>
     </section>
-
-    {{$page.experiences}}
   </Layout>
 </template>
 
@@ -43,6 +41,7 @@ export default {
 
 <style lang="scss" scoped>
 .my-info {
+  margin-top: 50px;
   width: 100%;
   display: flex;
   align-items: center;
