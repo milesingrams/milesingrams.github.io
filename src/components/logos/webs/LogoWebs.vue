@@ -1,8 +1,8 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <defs>
-      <clipPath id="logo-clip-path">
-        <polygon :points="polyPointString"/>
+      <clipPath class="logo-clip-path" id="logo-clip-path">
+        <polygon :points="polyPointString"></polygon>
       </clipPath>
     </defs>
     <g clip-path="url(#logo-clip-path)" ref="parallaxScene">
@@ -101,10 +101,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
+.logo-svg {
+  overflow: visible;
+}
+
+.logo-clip-path {
+  transform-origin: center;
+  animation: clipShrink 5s ease-in-out forwards;
 }
 
 .path {
@@ -112,6 +115,21 @@ export default {
   stroke-width: 1;
   stroke-dasharray: 5000;
   stroke-dashoffset: 5000;
-  animation: dash 3s ease-in forwards;
+  animation: pathDash 3s ease-in forwards;
+}
+
+@keyframes clipShrink {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes pathDash {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 </style>

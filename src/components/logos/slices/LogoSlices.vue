@@ -3,7 +3,7 @@
     <rect x="-200" y="-100" width="500" height="300" fill="none" ref="parallaxInput"></rect>
     <g ref="parallaxScene">
       <g v-for="(slice, index) in slices" :data-depth="slice.depth" :key="index">
-        <path class="slice" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :transform="`translate(${slice.translateX} ${slice.translateY})`" vector-effect="non-scaling-stroke"></path>
+        <path class="slice" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :transform="`translate(${slice.translateX} ${slice.translateY}) scale(${slice.scale})`" vector-effect="non-scaling-stroke"></path>
       </g>
     </g>
   </svg>
@@ -72,7 +72,8 @@ export default {
           opacity: this.minOpacity + Math.random() * (this.maxOpacity - this.minOpacity),
           depth: this.minDepth + Math.random() * (this.maxDepth - this.minDepth),
           translateX: 0,
-          translateY: 0
+          translateY: 0,
+          scale: 1
         }
 
         let startingPoint = this.randomPointPerimeter()
@@ -80,8 +81,9 @@ export default {
         anime({
           targets: slice,
           opacity: [0, slice.opacity],
-          translateX: [(startingPoint[0] - 50) / 2, slice.translateX],
-          translateY: [(startingPoint[1] - 50) / 2, slice.translateY],
+          translateX: [(startingPoint[0] - 50) / 3, slice.translateX],
+          translateY: [(startingPoint[1] - 50) / 3, slice.translateY],
+          scale: [1.5, 1],
           easing: 'easeInOutQuad',
           duration: 1000,
           delay: Math.random() * this.maxDelay * 1000
