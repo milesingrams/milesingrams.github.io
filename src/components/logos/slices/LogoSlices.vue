@@ -27,7 +27,7 @@ export default {
       maxDepth: 0.75,
       minOpacity: 0.1,
       maxOpacity: 0.3,
-      maxDelay: 2.5
+      maxDelay: 2
     }
   },
   computed: {
@@ -84,7 +84,7 @@ export default {
           translateX: [(startingPoint[0] - 50) / 3, slice.translateX],
           translateY: [(startingPoint[1] - 50) / 3, slice.translateY],
           scale: [1.5, slice.scale],
-          easing: 'easeInOutQuad',
+          easing: 'easeOutQuad',
           duration: 1000,
           delay: Math.random() * this.maxDelay * 1000
         })
