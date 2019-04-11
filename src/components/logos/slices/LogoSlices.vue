@@ -1,6 +1,6 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <rect x="-100" y="-100" width="300" height="300" fill="none" ref="parallaxInput"></rect>
+    <rect x="-200" y="-100" width="500" height="300" fill="none" ref="parallaxInput"></rect>
     <g ref="parallaxScene">
       <g v-for="(slice, index) in slices" :data-depth="slice.depth" :key="index">
         <path class="slice" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :transform="`translate(${slice.translateX} ${slice.translateY})`" vector-effect="non-scaling-stroke"></path>
@@ -99,8 +99,8 @@ export default {
       inputElement: this.$refs.parallaxInput,
       relativeInput: true,
       hoverOnly: true,
-      limitX: 75,
-      limitY: 75,
+      limitX: 50,
+      limitY: 25,
       frictionX: 0.05,
       frictionY: 0.05
     })
