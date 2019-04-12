@@ -1,6 +1,6 @@
 <template>
   <div class="logo-clip" :style="{'clip-path': `polygon(${polyPointString})`}">
-    <canvas class="logo-canvas" ref="canvas" width="100" height="100"></canvas>
+    <canvas class="logo-canvas" ref="canvas" width="20" height="20"></canvas>
   </div>
 </template>
 
@@ -13,9 +13,9 @@ export default {
   data () {
     return {
       context: null,
-      noiseH: null,
-      noiseScale: 30,
-      noiseSpeed: 0.2,
+      noise: null,
+      noiseScale: 20,
+      noiseSpeed: 0.1,
       baseColorVal: 172,
       animationFrame: null
     }
@@ -36,8 +36,8 @@ export default {
         for (let y = 0; y <= this.$refs.canvas.height; y++) {
           let yPos = y / this.noiseScale
 
-          let hue = this.noiseH.noise3D(xPos + timestampSeconds / 5, yPos, timestampSeconds * this.noiseSpeed) * 360
-          this.context.fillStyle = `hsl(${hue}, 80%, 65%)`
+          let hue = this.noise.noise3D(xPos + timestampSeconds / 10, yPos, timestampSeconds * this.noiseSpeed) * 360
+          this.context.fillStyle = `hsl(${hue}, 80%, 75%)`
           this.context.fillRect(x, y, 1, 1)
         }
       }
@@ -48,7 +48,7 @@ export default {
     }
   },
   mounted () {
-    this.noiseH = new SimplexNoise()
+    this.noise = new SimplexNoise()
     this.context = this.$refs.canvas.getContext('2d')
     this.run()
   },
@@ -60,11 +60,14 @@ export default {
 
 <style lang="scss" scoped>
 .logo-canvas {
+  position: absolute;
   width: 100%;
-  height: 100%;
+  filter: blur(5px);
 }
 
 .logo-clip {
+  width: 100%;
+  height: 100%;
   animation: clipShrink 6s;
 }
 
