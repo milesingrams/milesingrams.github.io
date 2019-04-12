@@ -19,6 +19,7 @@ function addStyleResource (rule) {
 module.exports = {
   siteName: 'Miles Ingram',
   siteDescription: 'Miles Ingram\'s Website',
+  host: '0.0.0.0',
   transformers: {
     remark: {
       externalLinksTarget: '_blank',

@@ -60,8 +60,8 @@ export default {
 
 <style lang="scss" scoped>
 .logo-canvas {
-  position: absolute;
   width: 100%;
+  height: 100%;
   filter: blur(5px);
 }
 
