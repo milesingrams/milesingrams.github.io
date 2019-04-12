@@ -1,5 +1,6 @@
 html, body {
   font-family: $font-stack;
+  min-height: 100vh;
   color: white;
   background-color: #222d38;
   -moz-osx-font-smoothing: grayscale;

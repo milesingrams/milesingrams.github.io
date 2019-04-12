@@ -26,7 +26,7 @@ export default {
       numLayers: 5,
       numInternalPoints: 5,
       minDepth: 0.05,
-      maxDepth: 0.15,
+      maxDepth: 0.2,
       maxDelay: 3,
       radius: 75
     }
