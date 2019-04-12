@@ -77,7 +77,7 @@ export default {
 }
 
 .logo-canvas-wrap {
-  animation: shrink 5s ease-in-out forwards;
+  animation: shrink 5s var(--ease-in-out-quad) forwards;
 }
 
 .logo-canvas {

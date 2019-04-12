@@ -11,7 +11,7 @@ function addStyleResource (rule) {
     .loader('style-resources-loader')
     .options({
       patterns: [
-      	path.resolve(__dirname, './src/assets/styles/_variables.sass')
+      	path.resolve(__dirname, './src/assets/styles/_variables.scss')
       ]
     })
 }
@@ -38,6 +38,9 @@ module.exports = {
     }
   ],
   chainWebpack: config => {
+    const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
+    types.forEach(type => addStyleResource(config.module.rule('scss').oneOf(type)))
+
     const svgRule = config.module.rule('svg')
     svgRule.uses.clear()
     svgRule

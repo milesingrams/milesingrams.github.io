@@ -109,7 +109,7 @@ export default {
 
 .logo-clip {
   transform-origin: center;
-  animation: shrink 5s ease-in-out forwards;
+  animation: shrink 5s var(--ease-in-out-quad) forwards;
 }
 
 .path {
@@ -117,7 +117,7 @@ export default {
   stroke-width: 1;
   stroke-dasharray: 5000;
   stroke-dashoffset: 5000;
-  animation: dash 3s ease-in forwards;
+  animation: dash 3s var(--ease-in-quad) forwards;
 }
 
 @keyframes shrink {
