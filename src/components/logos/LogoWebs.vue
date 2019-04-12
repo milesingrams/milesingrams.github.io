@@ -91,13 +91,15 @@ export default {
     }
   },
   mounted () {
-    new Parallax(this.$refs.parallaxScene, {
-      relativeInput: true,
-      limitX: 50,
-      limitY: 50,
-      frictionX: 0.05,
-      frictionY: 0.05
-    })
+    if (process.isClient) {
+      new Parallax(this.$refs.parallaxScene, {
+        relativeInput: true,
+        limitX: 50,
+        limitY: 50,
+        frictionX: 0.05,
+        frictionY: 0.05
+      })
+    }
   }
 }
 </script>

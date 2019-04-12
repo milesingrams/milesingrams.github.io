@@ -57,12 +57,16 @@ export default {
     }
   },
   mounted () {
-    this.noise = new SimplexNoise()
-    this.context = this.$refs.canvas.getContext('2d')
-    this.run()
+    if (process.isClient) {
+      this.noise = new SimplexNoise()
+      this.context = this.$refs.canvas.getContext('2d')
+      this.run()
+    }
   },
   beforeDestroy () {
-    cancelAnimationFrame(this.animationFrame)
+    if (this.animationFrame) {
+      cancelAnimationFrame(this.animationFrame)
+    }
   }
 }
 </script>

@@ -99,15 +99,17 @@ export default {
     }
   },
   mounted () {
-    new Parallax(this.$refs.parallaxScene, {
-      inputElement: this.$refs.parallaxInput,
-      relativeInput: true,
-      hoverOnly: true,
-      limitX: 50,
-      limitY: 25,
-      frictionX: 0.05,
-      frictionY: 0.05
-    })
+    if (process.isClient) {
+      new Parallax(this.$refs.parallaxScene, {
+        inputElement: this.$refs.parallaxInput,
+        relativeInput: true,
+        hoverOnly: true,
+        limitX: 50,
+        limitY: 25,
+        frictionX: 0.05,
+        frictionY: 0.05
+      })
+    }
   }
 }
 </script>
