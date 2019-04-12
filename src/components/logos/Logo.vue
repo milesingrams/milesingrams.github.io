@@ -45,7 +45,9 @@ export default {
     }
   },
   created () {
-    this.rotateLogo()
+    if (process.isClient) {
+      this.rotateLogo()
+    }
   }
 }
 </script>
