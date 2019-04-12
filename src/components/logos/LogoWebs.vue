@@ -86,7 +86,9 @@ export default {
     }
   },
   created () {
-    this.generatePaths()
+    if (process.isClient) {
+      this.generatePaths()
+    }
   },
   mounted () {
     new Parallax(this.$refs.parallaxScene, {

@@ -94,7 +94,9 @@ export default {
     }
   },
   created () {
-    this.generateSlices()
+    if (process.isClient) {
+      this.generateSlices()
+    }
   },
   mounted () {
     new Parallax(this.$refs.parallaxScene, {

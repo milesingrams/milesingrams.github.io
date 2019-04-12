@@ -94,12 +94,14 @@ export default {
     }
   },
   created () {
-    this.createDroplet(50, 50, 50, 0, {
-      cx: 50,
-      cy: 50,
-      radius: 50,
-      opacity: 1
-    })
+    if (process.isClient) {
+      this.createDroplet(50, 50, 50, 0, {
+        cx: 50,
+        cy: 50,
+        radius: 50,
+        opacity: 1
+      })
+    }
   }
 }
 </script>
