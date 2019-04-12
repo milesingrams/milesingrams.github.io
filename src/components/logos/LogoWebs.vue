@@ -86,20 +86,16 @@ export default {
     }
   },
   created () {
-    if (process.isClient) {
-      this.generatePaths()
-    }
+    this.generatePaths()
   },
   mounted () {
-    if (process.isClient) {
-      new Parallax(this.$refs.parallaxScene, {
-        relativeInput: true,
-        limitX: 50,
-        limitY: 50,
-        frictionX: 0.05,
-        frictionY: 0.05
-      })
-    }
+    new Parallax(this.$refs.parallaxScene, {
+      relativeInput: true,
+      limitX: 50,
+      limitY: 50,
+      frictionX: 0.05,
+      frictionY: 0.05
+    })
   }
 }
 </script>

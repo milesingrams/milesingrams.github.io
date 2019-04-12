@@ -57,11 +57,9 @@ export default {
     }
   },
   mounted () {
-    if (process.isClient) {
-      this.noise = new SimplexNoise()
-      this.context = this.$refs.canvas.getContext('2d')
-      this.run()
-    }
+    this.noise = new SimplexNoise()
+    this.context = this.$refs.canvas.getContext('2d')
+    this.run()
   },
   beforeDestroy () {
     if (this.animationFrame) {

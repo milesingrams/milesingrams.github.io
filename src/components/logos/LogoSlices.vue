@@ -94,22 +94,18 @@ export default {
     }
   },
   created () {
-    if (process.isClient) {
-      this.generateSlices()
-    }
+    this.generateSlices()
   },
   mounted () {
-    if (process.isClient) {
-      new Parallax(this.$refs.parallaxScene, {
-        inputElement: this.$refs.parallaxInput,
-        relativeInput: true,
-        hoverOnly: true,
-        limitX: 50,
-        limitY: 25,
-        frictionX: 0.05,
-        frictionY: 0.05
-      })
-    }
+    new Parallax(this.$refs.parallaxScene, {
+      inputElement: this.$refs.parallaxInput,
+      relativeInput: true,
+      hoverOnly: true,
+      limitX: 50,
+      limitY: 25,
+      frictionX: 0.05,
+      frictionY: 0.05
+    })
   }
 }
 </script>
