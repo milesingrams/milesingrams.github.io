@@ -7,6 +7,9 @@
       <h1 class="my-name">Miles Ingram</h1>
       <p class="my-pitch">Bits, Bio, Bots, Battlestar Galactica</p>
     </section>
+    <div class="timeline">
+
+    </div>
   </Layout>
 </template>
 
@@ -41,10 +44,13 @@ export default {
 
 <style lang="scss" scoped>
 .my-info {
-  margin-top: 50px;
+  height: 80vh;
   width: 100%;
+  min-height: 400px;
+  max-height: 800px;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -57,7 +63,7 @@ export default {
 
 .my-name {
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 6px;
 }
 

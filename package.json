@@ -4,7 +4,7 @@
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "test:build": "gridsome build && http-server dist",
+    "test:build": "gridsome build && http-server dist --silent",
     "explore": "gridsome explore"
   },
   "dependencies": {
