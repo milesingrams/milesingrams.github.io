@@ -4,23 +4,25 @@
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
+    "test:build": "gridsome build && http-server dist",
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "@gridsome/source-filesystem": "^0.3.0",
-    "@gridsome/transformer-remark": "^0.2.1",
     "animejs": "^3.0.1",
     "gridsome": "^0.5.7",
     "include-media": "^1.4.9",
     "parallax-js": "^3.1.0",
     "polygon-clipping": "^0.14.0",
     "simplex-noise": "^2.4.0",
-    "typeface-open-sans": "0.0.54",
-    "vue-svg-loader": "^0.12.0"
+    "typeface-open-sans": "0.0.54"
   },
   "devDependencies": {
+    "@gridsome/source-filesystem": "^0.3.0",
+    "@gridsome/transformer-remark": "^0.2.1",
+    "http-server": "^0.11.1",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
-    "style-resources-loader": "^1.2.1"
+    "style-resources-loader": "^1.2.1",
+    "vue-svg-loader": "^0.12.0"
   }
 }

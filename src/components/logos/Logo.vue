@@ -1,6 +1,8 @@
 <template>
   <div class="logo" @click="rotateLogo">
-    <component v-if="currentLogo" :is="currentLogo" :poly="poly"></component>
+    <client-only>
+      <component v-if="currentLogo" :is="currentLogo" :poly="poly"></component>
+    </client-only>
   </div>
 </template>
 
@@ -45,9 +47,7 @@ export default {
     }
   },
   created () {
-    if (process.isClient) {
-      this.rotateLogo()
-    }
+    this.rotateLogo()
   }
 }
 </script>
