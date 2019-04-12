@@ -14,10 +14,15 @@
           is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
       </section>
+
+      <section class="timeline-section">
+        <div class="timeline-section-content">
+          is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+      </section>
     </div>
 
-    <div class="page-footer">
-    </div>
+    <div class="scroll-down-footer"></div>
   </Layout>
 </template>
 
@@ -54,6 +59,7 @@ export default {
 .my-info {
   height: 65vh;
   width: 100%;
+  min-height: 475px;
   max-height: 800px;
   padding-bottom: 60px;
   display: flex;
@@ -78,6 +84,7 @@ export default {
 
   .my-pitch {
     text-align: center;
+    font-size: 18px;
     font-weight: 300;
     opacity: 0;
     animation: fadeIn .75s var(--ease-in-out-quad) forwards 0.75s;
@@ -87,7 +94,7 @@ export default {
 .timeline {
   position: relative;
   width: 100%;
-  min-height: 3000px;
+  padding: $spacing-m 0;
 
   &::before {
     content: '';
@@ -106,37 +113,75 @@ export default {
     position: absolute;
     top: 0;
     left: 8%;
-    margin-top: -12px;
-    margin-left: -12px;
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background-color: var(--page-bg-color);
     border: 3px solid white;
-    transform: scale(0);
+    transform: translate(-50%, -50%) scale(0);
     animation: timelineDotAppear .5s var(--ease-out-back) forwards 2s;
   }
 
   .timeline-section {
-    padding-left: 16%;
-    padding-right: 20px;
+    position: relative;
     width: 100%;
+    margin-bottom: $spacing-l;
+    padding-left: 16%;
+    padding-right: $spacing-s;
 
     &::before {
       content: '';
-    }
-
-    @include media(">desktop") {
-      padding-left: 40px;
-      padding-right: 60px;
-      width: 50%;
+      position: absolute;
+      top: 50%;
+      left: 8%;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: white;
+      transform: translate(-50%, -50%);
     }
   }
 
   .timeline-section-content {
+    font-size: 16px;
+  }
+
+  @include media(">tablet") {
+    &::after {
+      width: 24px;
+      height: 24px;
+    }
+
+    .timeline-section {
+      padding-right: $spacing-l;
+    }
+
+    .timeline-section-content {
+      font-size: 18px;
+    }
   }
 
   @include media(">desktop") {
+    .timeline-section {
+      padding-left: $spacing-xl;
+      padding-right: $spacing-xxl;
+      width: 50%;
+
+      &::before {
+        left: 100%;
+      }
+
+      &:nth-child(even) {
+        padding-left: $spacing-xxl;
+        padding-right: $spacing-xl;
+        left: 50%;
+
+        &::before {
+          left: 0;
+        }
+      }
+    }
+
     .timeline-section-content {
       font-size: 20px;
     }
@@ -147,16 +192,20 @@ export default {
   }
 }
 
-.bottom-fade {
-
+.scroll-down-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(transparent, rgba(var(--page-bg-color-rgb), .9) 75%, var(--page-bg-color));
 }
 
 @keyframes timelineDotAppear {
   from {
-    transform: scale(0);
+    transform: translate(-50%, -50%) scale(0);
   }
   to {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
