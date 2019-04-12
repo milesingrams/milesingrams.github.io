@@ -1,6 +1,6 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" :parent="droplet.parent" :key="index"></circle>
+    <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" @mouseenter="onDropletMouseEnter(droplet)" :key="index"></circle>
   </svg>
 </template>
 
@@ -37,8 +37,7 @@ export default {
         radius,
         depth,
         opacity,
-        color,
-        splittable: false
+        color
       }
 
       let animation = anime({
@@ -53,7 +52,6 @@ export default {
 
       animation.finished.then(() => {
         if (depth < this.maxDepth) {
-          droplet.splittable = true
           let delay = Math.random() * this.subdivideSeconds * droplet.cx * 2
           droplet.splitTimeout = setTimeout(() => {
             this.splitDroplet(droplet)
@@ -91,6 +89,20 @@ export default {
         easing: 'easeOutQuad',
         duration: 200
       })
+    },
+    onDropletMouseEnter (droplet) {
+      if (droplet.depth === this.maxDepth && !droplet.mouseLocked) {
+        droplet.mouseLocked = true
+        let animation = anime({
+          targets: droplet,
+          opacity: [0, droplet.opacity],
+          easing: 'easeOutQuad',
+          duration: 500
+        })
+        animation.finished.then(() => {
+          droplet.mouseLocked = false
+        })
+      }
     }
   },
   created () {
