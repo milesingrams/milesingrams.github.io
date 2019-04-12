@@ -1,6 +1,6 @@
 <template>
   <div class="logo-clip" :style="{'clip-path': `polygon(${polyPointString})`}">
-    <canvas class="logo-canvas" ref="canvas" width="20" height="20"></canvas>
+    <canvas class="logo-canvas" ref="canvas" width="30" height="30"></canvas>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     return {
       context: null,
       noise: null,
-      noiseScale: 20,
+      noiseScale: 30,
       noiseSpeed: 0.1,
       baseColorVal: 172,
       animationFrame: null
