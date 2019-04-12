@@ -1,6 +1,6 @@
 <template>
   <div class="logo-clip" :style="{'clip-path': `polygon(${polyPointString})`}">
-    <canvas class="logo-canvas" ref="canvas" width="20" height="20"></canvas>
+    <canvas class="logo-canvas" ref="canvas" width="100" height="100"></canvas>
   </div>
 </template>
 
@@ -13,11 +13,9 @@ export default {
   data () {
     return {
       context: null,
-      noiseR: null,
-      noiseG: null,
-      noiseB: null,
-      noiseScale: 15,
-      noiseSpeed: 0.5,
+      noiseH: null,
+      noiseScale: 30,
+      noiseSpeed: 0.2,
       baseColorVal: 172,
       animationFrame: null
     }
@@ -38,10 +36,8 @@ export default {
         for (let y = 0; y <= this.$refs.canvas.height; y++) {
           let yPos = y / this.noiseScale
 
-          let red = this.baseColorVal + this.noiseR.noise3D(xPos, yPos, timestampSeconds * this.noiseSpeed) * (256 - this.baseColorVal)
-          let green = this.baseColorVal + this.noiseG.noise3D(xPos, yPos, timestampSeconds * this.noiseSpeed) * (256 - this.baseColorVal)
-          let blue = this.baseColorVal + this.noiseB.noise3D(xPos, yPos, timestampSeconds * this.noiseSpeed) * (256 - this.baseColorVal)
-          this.context.fillStyle = `rgb(${red}, ${green}, ${blue})`
+          let hue = this.noiseH.noise3D(xPos + timestampSeconds / 5, yPos, timestampSeconds * this.noiseSpeed) * 360
+          this.context.fillStyle = `hsl(${hue}, 80%, 65%)`
           this.context.fillRect(x, y, 1, 1)
         }
       }
@@ -52,9 +48,7 @@ export default {
     }
   },
   mounted () {
-    this.noiseR = new SimplexNoise()
-    this.noiseG = new SimplexNoise()
-    this.noiseB = new SimplexNoise()
+    this.noiseH = new SimplexNoise()
     this.context = this.$refs.canvas.getContext('2d')
     this.run()
   },
