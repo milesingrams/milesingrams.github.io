@@ -15,7 +15,6 @@ export default {
   data () {
     return {
       poly: [
-        [0, 100],
         [0, 0],
         [50, 50],
         [100, 0],
@@ -25,7 +24,8 @@ export default {
         [50, 75],
         [20, 45],
         [20, 100],
-        [0, 100]
+        [0, 100],
+        [0, 0]
       ],
       logos: [LogoDroplets, LogoGradient, LogoSlices, LogoWebs],
       logosToView: [],

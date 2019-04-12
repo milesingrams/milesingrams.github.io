@@ -121,5 +121,6 @@ export default {
   mix-blend-mode: color-dodge;
   transform-origin: center;
   transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 </style>
