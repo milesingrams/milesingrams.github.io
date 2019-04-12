@@ -1,6 +1,15 @@
 <template>
-  <div class="logo-clip" :style="{'clip-path': `polygon(${polyPointString})`}">
-    <canvas class="logo-canvas" ref="canvas" width="30" height="30"></canvas>
+  <div>
+    <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="logo-clip" clipPathUnits="objectBoundingBox">
+          <polygon :points="polyPointString"></polygon>
+        </clipPath>
+      </defs>
+    </svg>
+    <div class="logo-canvas-wrap">
+      <canvas class="logo-canvas" ref="canvas" width="30" height="30"></canvas>
+    </div>
   </div>
 </template>
 
@@ -23,8 +32,8 @@ export default {
   computed: {
     polyPointString () {
       let polyPointString = this.poly.map((point) => {
-        return `${point[0]}% ${point[1]}%`
-      }).join(', ')
+        return `${point[0] / 100},${point[1] / 100}`
+      }).join(' ')
       return polyPointString
     }
   },
@@ -59,19 +68,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.logo-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.logo-canvas-wrap {
+  animation: shrink 5s ease-in-out forwards;
+}
+
 .logo-canvas {
+  clip-path: url(#logo-clip);
   width: 100%;
   height: 100%;
   filter: blur(5px);
 }
 
-.logo-clip {
-  width: 100%;
-  height: 100%;
-  animation: clipShrink 6s;
-}
-
-@keyframes clipShrink {
+@keyframes shrink {
   from {
     transform: scale(1.2);
     opacity: 0;
