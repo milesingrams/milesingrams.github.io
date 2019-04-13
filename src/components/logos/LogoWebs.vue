@@ -5,8 +5,8 @@
         <polygon :points="polyPointString"></polygon>
       </clipPath>
     </defs>
-    <g :clip-path="mergedOptions.poly ? 'url(#logo-clip)' : 'none'" ref="parallaxScene">
-      <g v-for="(layer, layerIndex) in layers" :data-depth="layer.depth" :key="layerIndex">
+    <g class="layers-wrap" :clip-path="mergedOptions.poly ? 'url(#logo-clip)' : 'none'" ref="layersWrap">
+      <g class="layer" v-for="(layer, layerIndex) in layers" :data-depth="layer.depth" :key="layerIndex">
         <path class="path" v-for="(path, pathIndex) in layer.paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :stroke-dasharray="path.dashArray" :stroke-dashoffset="path.dashOffset" vector-effect="non-scaling-stroke" :key="pathIndex"></path>
       </g>
     </g>
@@ -110,7 +110,7 @@ export default {
   },
   mounted () {
     if (this.mergedOptions.interactive) {
-      new Parallax(this.$refs.parallaxScene, {
+      new Parallax(this.$refs.layersWrap, {
         relativeInput: true,
         limitX: 10,
         limitY: 10,
@@ -129,14 +129,25 @@ export default {
   width: 100%;
   height: 100%;
   overflow: visible;
+  backface-visibility: hidden;
 }
 
 .logo-clip {
   transform-origin: center;
 }
 
+.layers-wrap {
+  isolation: isolate;
+  backface-visibility: hidden;
+}
+
+.layer {
+  backface-visibility: hidden;
+}
+
 .path {
   fill: none;
   stroke-width: 1;
+  backface-visibility: hidden;
 }
 </style>

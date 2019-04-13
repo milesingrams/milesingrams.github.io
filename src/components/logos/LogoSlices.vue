@@ -1,7 +1,7 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <g ref="parallaxScene">
-      <g v-for="(slice, index) in slices" :data-depth="slice.depth" :key="index">
+    <g class="layers-wrap" ref="layersWrap">
+      <g class="slice-wrap" v-for="(slice, index) in slices" :data-depth="slice.depth" :key="index">
         <path class="slice" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :style="{transform: `translate3d(${slice.translateX}px, ${slice.translateY}px, 0px) scale(${slice.scale})`}"></path>
       </g>
     </g>
@@ -24,10 +24,10 @@ export default {
         interactive: true,
         numSlices: 20,
         numPointsPerPolygon: 3,
-        minDepth: -2,
-        maxDepth: 2,
+        minDepth: -3,
+        maxDepth: 3,
         minOpacity: 0.1,
-        maxOpacity: 0.3,
+        maxOpacity: 0.5,
         maxDelay: 2
       }
     }
@@ -120,7 +120,7 @@ export default {
   },
   mounted () {
     if (this.mergedOptions.interactive) {
-      new Parallax(this.$refs.parallaxScene, {
+      new Parallax(this.$refs.layersWrap, {
         relativeInput: true,
         limitX: 10,
         limitY: 0,
@@ -137,10 +137,20 @@ export default {
   width: 100%;
   height: 100%;
   overflow: visible;
+  backface-visibility: hidden;
+}
+
+.layers-wrap {
+  isolation: isolate;
+  backface-visibility: hidden;
+}
+
+.slice-wrap {
+  backface-visibility: hidden;
 }
 
 .slice {
-  mix-blend-mode: color-dodge;
+  mix-blend-mode: overlay;
   transform-origin: center;
   transform-style: preserve-3d;
   backface-visibility: hidden;

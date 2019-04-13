@@ -8,7 +8,7 @@
         </clipPath>
       </defs>
     </svg>
-    <canvas class="logo-canvas" ref="canvas" width="30" height="30" style="clip-path: url(#logo-clip)"></canvas>
+    <canvas class="logo-canvas" ref="canvas" width="30" height="30"></canvas>
   </div>
 </template>
 
@@ -85,5 +85,6 @@ export default {
   width: 100%;
   height: 100%;
   filter: blur(5px);
+  clip-path: url(#logo-clip);
 }
 </style>

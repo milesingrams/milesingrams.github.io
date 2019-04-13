@@ -1,6 +1,8 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" @mouseenter="onDropletMouseEnter(droplet)" :key="index"></circle>
+    <g class="droplets-wrap">
+      <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" @mouseenter="onDropletMouseEnter(droplet)" :key="index"></circle>
+    </g>
   </svg>
 </template>
 
@@ -146,7 +148,11 @@ export default {
   height: 100%;
 }
 
+.droplets-wrap {
+  isolation: isolate;
+}
+
 .droplet {
-  mix-blend-mode: screen;
+  mix-blend-mode: overlay;
 }
 </style>
