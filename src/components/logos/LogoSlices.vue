@@ -22,12 +22,11 @@ export default {
       baseOptions: {
         poly: null,
         interactive: true,
-        numSlices: 20,
+        numSlices: 24,
         numPointsPerPolygon: 3,
         minDepth: -3,
         maxDepth: 3,
-        minOpacity: 0.1,
-        maxOpacity: 0.5,
+        opacity: 0.25,
         maxDelay: 2
       }
     }
@@ -44,15 +43,6 @@ export default {
         return point.join(',')
       }).join(' ')
       return polyPointString
-    }
-  },
-  watch: {
-    'options.interactive' () {
-      if (this.options.interactive) {
-        this.parallax.enable()
-      } else {
-        this.parallax.disable()
-      }
     }
   },
   methods: {
@@ -91,7 +81,7 @@ export default {
         let slice = {
           dString,
           color: `hsl(${Math.random() * 360}, 80%, 65%)`,
-          opacity: this.mergedOptions.minOpacity + Math.random() * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity),
+          opacity: this.mergedOptions.opacity,
           depth: this.mergedOptions.minDepth + Math.random() * (this.mergedOptions.maxDepth - this.mergedOptions.minDepth),
           translateX: 0,
           translateY: 0,

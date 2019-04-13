@@ -18,7 +18,7 @@ export default {
         poly: null,
         interactive: true,
         maxDepth: 5,
-        maxDelay: 1.5
+        maxDelay: 1
       }
     }
   },
