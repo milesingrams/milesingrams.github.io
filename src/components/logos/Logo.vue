@@ -1,7 +1,9 @@
 <template>
   <div class="logo" @click="rotateLogo">
     <client-only>
-      <component v-if="currentLogo" :is="currentLogo" :options="{ poly }"></component>
+      <transition appear name="fadeInOut" mode="out-in">
+        <component v-if="currentLogo" :is="currentLogo" :options="{ poly }"></component>
+      </transition>
     </client-only>
   </div>
 </template>

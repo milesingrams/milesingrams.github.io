@@ -144,7 +144,6 @@ export default {
 .logo-svg {
   width: 100%;
   height: 100%;
-  animation: fadeIn .5s;
 }
 
 .droplet {
