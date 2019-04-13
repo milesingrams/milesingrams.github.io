@@ -13,7 +13,7 @@ export default {
     return {
       droplets: [],
       maxDepth: 5,
-      subdivideSeconds: 6
+      maxDelay: 6
     }
   },
   methods: {
@@ -52,7 +52,7 @@ export default {
 
       animation.finished.then(() => {
         if (depth < this.maxDepth) {
-          let delay = Math.random() * this.subdivideSeconds * droplet.cx * 2
+          let delay = Math.random() * this.maxDelay * droplet.cx * 2
           droplet.splitTimeout = setTimeout(() => {
             this.splitDroplet(droplet)
           }, delay)
@@ -69,15 +69,22 @@ export default {
   			[droplet.cx + halfRad, droplet.cy + halfRad],
   			[droplet.cx - halfRad, droplet.cy + halfRad]
   		]
-      let cornersInPoly = corners.filter((corner) => {
-        return this.insidePoly(corner)
-      })
-      if (droplet.depth + 1 < this.maxDepth && cornersInPoly.length) {
+
+      let allowedCorners
+      if (this.poly) {
+        allowedCorners = corners.filter((corner) => {
+          return this.insidePoly(corner)
+        })
+      } else {
+        allowedCorners = corners
+      }
+
+      if (droplet.depth + 1 < this.maxDepth && allowedCorners.length) {
         corners.forEach((corner) => {
           this.createDroplet(corner[0], corner[1], halfRad, droplet.depth + 1, droplet)
         })
       } else {
-        cornersInPoly.forEach((corner) => {
+        allowedCorners.forEach((corner) => {
           this.createDroplet(corner[0], corner[1], halfRad, droplet.depth + 1, droplet)
         })
       }

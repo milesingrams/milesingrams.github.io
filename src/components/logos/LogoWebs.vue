@@ -1,11 +1,11 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <defs>
+    <defs v-if="poly">
       <clipPath class="logo-clip" id="logo-clip">
         <polygon :points="polyPointString"></polygon>
       </clipPath>
     </defs>
-    <g clip-path="url(#logo-clip)" ref="parallaxScene">
+    <g :clip-path="poly ? 'url(#logo-clip)' : 'none'" ref="parallaxScene">
       <g v-for="(layer, layerIndex) in layers" :data-depth="layer.depth" :key="layerIndex">
         <path class="path" v-for="(path, pathIndex) in layer.paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :style="{'animation-delay': path.delay}" vector-effect="non-scaling-stroke" :key="pathIndex"></path>
       </g>

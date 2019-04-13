@@ -1,6 +1,5 @@
 <template>
   <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <rect x="-200" y="-100" width="500" height="300" fill="none" ref="parallaxInput"></rect>
     <g ref="parallaxScene">
       <g v-for="(slice, index) in slices" :data-depth="slice.depth" :key="index">
         <path class="slice" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :style="{transform: `translate3d(${slice.translateX}px, ${slice.translateY}px, 0px) scale(${slice.scale})`}"></path>
@@ -21,7 +20,7 @@ export default {
     return {
       slices: [],
       numSlices: 20,
-      numPointsPerBool: 3,
+      numPointsPerPolygon: 3,
       radius: 75,
       minDepth: -0.75,
       maxDepth: 0.75,
@@ -49,20 +48,25 @@ export default {
       this.slices = []
 
       for (let i = 0; i < this.numSlices; i++) {
-        let sliceBool = []
-        for (let j = 0; j < this.numPointsPerBool; j++) {
-          sliceBool.push(this.randomPointPerimeter())
+        let polygon = []
+        for (let j = 0; j < this.numPointsPerPolygon; j++) {
+          polygon.push(this.randomPointPerimeter())
         }
-        sliceBool.push(sliceBool[0])
+        polygon.push(polygon[0])
 
-        let sliceIntersection = polygonClipping.intersection([this.poly], [sliceBool])
+        let slicePolyArray
+        if (this.poly) {
+          slicePolyArray = polygonClipping.intersection([this.poly], [polygon])
+        } else {
+          slicePolyArray = [polygon]
+        }
 
         let dString = ''
-        for (let j = 0; j < sliceIntersection.length; j++) {
-          let intersectionPoly = sliceIntersection[j]
-          dString += `M${intersectionPoly[0].join(',')}`
-          for (let k = 1; k < intersectionPoly.length; k++) {
-            dString += ` L${intersectionPoly[k].join(',')}`
+        for (let j = 0; j < slicePolyArray.length; j++) {
+          let slicePoly = slicePolyArray[j]
+          dString += `M${slicePoly[0].join(',')}`
+          for (let k = 1; k < slicePoly.length; k++) {
+            dString += ` L${slicePoly[k].join(',')}`
           }
         }
 
@@ -98,11 +102,9 @@ export default {
   },
   mounted () {
     new Parallax(this.$refs.parallaxScene, {
-      inputElement: this.$refs.parallaxInput,
       relativeInput: true,
-      hoverOnly: true,
-      limitX: 50,
-      limitY: 25,
+      limitX: 30,
+      limitY: 30,
       frictionX: 0.05,
       frictionY: 0.05
     })

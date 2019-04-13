@@ -1,6 +1,6 @@
 <template>
   <div>
-    <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg">
+    <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" v-if="poly">
       <defs>
         <clipPath id="logo-clip" clipPathUnits="objectBoundingBox">
           <polygon :points="polyPointString"></polygon>
@@ -8,7 +8,7 @@
       </defs>
     </svg>
     <div class="logo-canvas-wrap">
-      <canvas class="logo-canvas" ref="canvas" width="30" height="30"></canvas>
+      <canvas class="logo-canvas" ref="canvas" width="30" height="30" :style="{'clip-path': poly ? 'url(#logo-clip)' : 'none'}"></canvas>
     </div>
   </div>
 </template>
@@ -81,7 +81,6 @@ export default {
 }
 
 .logo-canvas {
-  clip-path: url(#logo-clip);
   width: 100%;
   height: 100%;
   filter: blur(5px);
