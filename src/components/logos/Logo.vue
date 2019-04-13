@@ -1,7 +1,7 @@
 <template>
   <div class="logo" @click="rotateLogo">
     <client-only>
-      <component v-if="currentLogo" :is="currentLogo" :poly="poly"></component>
+      <component v-if="currentLogo" :is="currentLogo" :options="{ poly }"></component>
     </client-only>
   </div>
 </template>

@@ -3,8 +3,8 @@
     <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <clipPath id="logo-clip" clipPathUnits="objectBoundingBox">
-          <polygon v-if="poly" :points="polyPointString"></polygon>
-          <circle v-if="!poly" cx="0.5" cy="0.5" r="0.5"></circle>
+          <polygon v-if="mergedOptions.poly" :points="polyPointString"></polygon>
+          <circle v-if="!mergedOptions.poly" cx="0.5" cy="0.5" r="0.5"></circle>
         </clipPath>
       </defs>
     </svg>
@@ -19,20 +19,26 @@ import SimplexNoise from 'simplex-noise'
 
 export default {
   name: 'LogoGradient',
-  props: ['poly'],
+  props: ['options'],
   data () {
     return {
       context: null,
       noise: null,
-      noiseScale: 30,
-      noiseSpeed: 0.2,
-      baseColorVal: 172,
-      animationFrame: null
+      animationFrame: null,
+      baseOptions: {
+        poly: null,
+        interactive: true,
+        noiseScale: 30,
+        noiseSpeed: 0.2
+      }
     }
   },
   computed: {
+    mergedOptions () {
+      return Object.assign({}, this.baseOptions, this.options)
+    },
     polyPointString () {
-      let polyPointString = this.poly.map((point) => {
+      let polyPointString = this.mergedOptions.poly.map((point) => {
         return `${point[0] / 100},${point[1] / 100}`
       }).join(' ')
       return polyPointString
@@ -42,11 +48,11 @@ export default {
     draw (timestamp) {
       let timestampSeconds = timestamp / 1000
       for (let x = 0; x <= this.$refs.canvas.width; x++) {
-        let xPos = x / this.noiseScale
+        let xPos = x / this.mergedOptions.noiseScale
         for (let y = 0; y <= this.$refs.canvas.height; y++) {
-          let yPos = y / this.noiseScale
+          let yPos = y / this.mergedOptions.noiseScale
 
-          let noise = this.noise.noise3D(xPos + timestampSeconds / 10, yPos, timestampSeconds * this.noiseSpeed)
+          let noise = this.noise.noise3D(xPos + timestampSeconds / 10, yPos, timestampSeconds * this.mergedOptions.noiseSpeed)
           this.context.fillStyle = `hsl(${noise * 360}, 80%, 75%)`
           this.context.fillRect(x, y, 1, 1)
         }

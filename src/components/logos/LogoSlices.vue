@@ -15,28 +15,44 @@ import polygonClipping from 'polygon-clipping'
 
 export default {
   name: 'LogoSlices',
-  props: ['poly'],
+  props: ['options'],
   data () {
     return {
       slices: [],
-      numSlices: 20,
-      numPointsPerPolygon: 3,
-      minDepth: -0.75,
-      maxDepth: 0.75,
-      minOpacity: 0.1,
-      maxOpacity: 0.3,
-      maxDelay: 2
+      baseOptions: {
+        poly: null,
+        interactive: true,
+        numSlices: 20,
+        numPointsPerPolygon: 3,
+        minDepth: -2,
+        maxDepth: 2,
+        minOpacity: 0.1,
+        maxOpacity: 0.3,
+        maxDelay: 2
+      }
     }
   },
   computed: {
+    mergedOptions () {
+      return Object.assign({}, this.baseOptions, this.options)
+    },
     radius () {
-      return this.poly ? 75 : 50
+      return this.mergedOptions.poly ? 75 : 50
     },
     polyPointString () {
-      let polyPointString = this.poly.map((point) => {
+      let polyPointString = this.mergedOptions.poly.map((point) => {
         return point.join(',')
       }).join(' ')
       return polyPointString
+    }
+  },
+  watch: {
+    'options.interactive' () {
+      if (this.options.interactive) {
+        this.parallax.enable()
+      } else {
+        this.parallax.disable()
+      }
     }
   },
   methods: {
@@ -49,16 +65,16 @@ export default {
     generateSlices () {
       this.slices = []
 
-      for (let i = 0; i < this.numSlices; i++) {
+      for (let i = 0; i < this.mergedOptions.numSlices; i++) {
         let polygon = []
-        for (let j = 0; j < this.numPointsPerPolygon; j++) {
+        for (let j = 0; j < this.mergedOptions.numPointsPerPolygon; j++) {
           polygon.push(this.randomPointPerimeter())
         }
         polygon.push(polygon[0])
 
         let slicePolyArray
-        if (this.poly) {
-          slicePolyArray = polygonClipping.intersection([this.poly], [polygon])
+        if (this.mergedOptions.poly) {
+          slicePolyArray = polygonClipping.intersection([this.mergedOptions.poly], [polygon])
         } else {
           slicePolyArray = [polygon]
         }
@@ -75,8 +91,8 @@ export default {
         let slice = {
           dString,
           color: `hsl(${Math.random() * 360}, 80%, 65%)`,
-          opacity: this.minOpacity + Math.random() * (this.maxOpacity - this.minOpacity),
-          depth: this.minDepth + Math.random() * (this.maxDepth - this.minDepth),
+          opacity: this.mergedOptions.minOpacity + Math.random() * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity),
+          depth: this.mergedOptions.minDepth + Math.random() * (this.mergedOptions.maxDepth - this.mergedOptions.minDepth),
           translateX: 0,
           translateY: 0,
           scale: 1
@@ -92,7 +108,7 @@ export default {
           scale: [1.5, slice.scale],
           easing: 'easeOutQuad',
           duration: 1000,
-          delay: Math.random() * this.maxDelay * 1000
+          delay: Math.random() * this.mergedOptions.maxDelay * 1000
         })
 
         this.slices.push(slice)
@@ -103,13 +119,15 @@ export default {
     this.generateSlices()
   },
   mounted () {
-    new Parallax(this.$refs.parallaxScene, {
-      relativeInput: true,
-      limitX: 30,
-      limitY: 30,
-      frictionX: 0.05,
-      frictionY: 0.05
-    })
+    if (this.mergedOptions.interactive) {
+      new Parallax(this.$refs.parallaxScene, {
+        relativeInput: true,
+        limitX: 10,
+        limitY: 0,
+        scalarX: 1,
+        frictionX: 0.05
+      })
+    }
   }
 }
 </script>

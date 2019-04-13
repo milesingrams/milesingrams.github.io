@@ -8,20 +8,29 @@
 import anime from 'animejs'
 
 export default {
-  props: ['poly'],
+  props: ['options'],
   data () {
     return {
       droplets: [],
-      maxDepth: 5,
-      maxDelay: 1.5
+      baseOptions: {
+        poly: null,
+        interactive: true,
+        maxDepth: 5,
+        maxDelay: 1.5
+      }
+    }
+  },
+  computed: {
+    mergedOptions () {
+      return Object.assign({}, this.baseOptions, this.options)
     }
   },
   methods: {
     insidePoly (point) {
   		let insidePoly = false
-  		for (let i = 0, j = this.poly.length - 1; i < this.poly.length; j = i++) {
-  			let xi = this.poly[i][0], yi = this.poly[i][1]
-  			let xj = this.poly[j][0], yj = this.poly[j][1]
+  		for (let i = 0, j = this.mergedOptions.poly.length - 1; i < this.mergedOptions.poly.length; j = i++) {
+  			let xi = this.mergedOptions.poly[i][0], yi = this.mergedOptions.poly[i][1]
+  			let xj = this.mergedOptions.poly[j][0], yj = this.mergedOptions.poly[j][1]
   			let intersect = ((yi > point[1]) != (yj > point[1])) && (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi)
   			if (intersect) insidePoly = !insidePoly
   		}
@@ -55,8 +64,8 @@ export default {
       })
 
       animation.finished.then(() => {
-        if (depth < this.maxDepth) {
-          let delay = Math.random() * (this.maxDelay * 1000) * (droplet.cx / 100)
+        if (depth < this.mergedOptions.maxDepth) {
+          let delay = Math.random() * (this.mergedOptions.maxDelay * 1000) * (droplet.cx / 100)
           droplet.splitTimeout = setTimeout(() => {
             this.splitDroplet(droplet)
           }, delay)
@@ -75,7 +84,7 @@ export default {
   		]
 
       let allowedCorners
-      if (this.poly) {
+      if (this.mergedOptions.poly) {
         allowedCorners = corners.filter((corner) => {
           return this.insidePoly(corner)
         })
@@ -85,7 +94,7 @@ export default {
         })
       }
 
-      if (droplet.depth + 1 < this.maxDepth && allowedCorners.length) {
+      if (droplet.depth + 1 < this.mergedOptions.maxDepth && allowedCorners.length) {
         corners.forEach((corner) => {
           this.createDroplet(corner[0], corner[1], halfRad, droplet.depth + 1, droplet)
         })
@@ -104,17 +113,19 @@ export default {
       })
     },
     onDropletMouseEnter (droplet) {
-      if (droplet.depth === this.maxDepth && !droplet.mouseLocked) {
-        droplet.mouseLocked = true
-        let animation = anime({
-          targets: droplet,
-          opacity: [0, droplet.opacity],
-          easing: 'easeOutQuad',
-          duration: 500
-        })
-        animation.finished.then(() => {
-          droplet.mouseLocked = false
-        })
+      if (this.mergedOptions.interactive) {
+        if (droplet.depth === this.mergedOptions.maxDepth && !droplet.mouseLocked) {
+          droplet.mouseLocked = true
+          let animation = anime({
+            targets: droplet,
+            opacity: [0, droplet.opacity],
+            easing: 'easeOutQuad',
+            duration: 500
+          })
+          animation.finished.then(() => {
+            droplet.mouseLocked = false
+          })
+        }
       }
     }
   },
