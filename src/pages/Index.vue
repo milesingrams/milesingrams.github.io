@@ -1,8 +1,8 @@
 <template>
   <Layout>
     <section class="my-info">
-      <div class="logo-wrap">
-        <logo></logo>
+      <div class="logo-wrap" @click="rotateEffect">
+        <logo :effect="effect"></logo>
       </div>
       <h1 class="my-name">Miles Ingram</h1>
       <p class="my-pitch">Bits, Bio, Bots, Battlestar Galactica</p>
@@ -10,24 +10,28 @@
 
     <div class="timeline">
       <section class="timeline-section">
+        <effect-dot class="timeline-dot" :effect="effect"></effect-dot>
         <div class="timeline-section-content">
           is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
       </section>
 
       <section class="timeline-section">
+        <effect-dot class="timeline-dot" :effect="effect"></effect-dot>
         <div class="timeline-section-content">
           is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
       </section>
 
       <section class="timeline-section">
+        <effect-dot class="timeline-dot" :effect="effect"></effect-dot>
         <div class="timeline-section-content">
           is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
       </section>
 
       <section class="timeline-section">
+        <effect-dot class="timeline-dot" :effect="effect"></effect-dot>
         <div class="timeline-section-content">
           Heat death of the universe
         </div>
@@ -56,10 +60,34 @@
 
 <script>
 import Logo from '~/components/Logo'
+import EffectDot from '~/components/EffectDot'
 
 export default {
   components: {
-    Logo
+    Logo,
+    EffectDot
+  },
+  data () {
+    return {
+      effects: ['EffectDroplets', 'EffectSlices', 'EffectWebs'],
+      effectsToView: [],
+      effect: null
+    }
+  },
+  methods: {
+    rotateEffect () {
+      if (!this.effectsToView.length) {
+        this.effectsToView = this.effects.filter((effect) => {
+          return effect !== this.effect
+        })
+      }
+      let randomIndex = Math.floor(Math.random() * this.effectsToView.length)
+      this.effect = this.effectsToView[randomIndex]
+      this.effectsToView.splice(randomIndex, 1)
+    }
+  },
+  created () {
+    this.rotateEffect()
   },
   metaInfo: {
     title: 'Miles Ingram'
@@ -111,7 +139,7 @@ export default {
     content: '';
     position: absolute;
     width: 2px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     top: 0;
     height: 0%;
     left: 8%;
@@ -140,15 +168,14 @@ export default {
     padding-left: 16%;
     padding-right: $spacing-s;
 
-    &::before {
-      content: '';
+    .timeline-dot {
       position: absolute;
       top: 50%;
       left: 8%;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background-color: white;
+      width: 50px;
+      height: 50px;
+      padding: 14px;
+      background-color: var(--page-bg-color);
       transform: translate(-50%, -50%);
     }
   }
@@ -178,7 +205,7 @@ export default {
       padding-right: $spacing-xxl;
       width: 50%;
 
-      &::before {
+      .timeline-dot {
         left: 100%;
       }
 
@@ -187,7 +214,7 @@ export default {
         padding-right: $spacing-xl;
         left: 50%;
 
-        &::before {
+        .timeline-dot {
           left: 0;
         }
       }
@@ -208,7 +235,7 @@ export default {
   bottom: 0;
   width: 100%;
   height: 100px;
-  background: linear-gradient(transparent, rgba(var(--page-bg-color-rgb), .9) 75%, var(--page-bg-color));
+  background: linear-gradient(rgba(var(--page-bg-color-rgb), 0), rgba(var(--page-bg-color-rgb), .9) 75%, rgba(var(--page-bg-color-rgb), 1));
 }
 
 @keyframes timelineDotAppear {

@@ -19,7 +19,8 @@ export default {
         poly: null,
         interactive: true,
         maxDepth: 5,
-        maxDelay: 1
+        maxDelay: 1,
+        radius: 50
       }
     }
   },
@@ -41,7 +42,7 @@ export default {
   	},
     insideCircle (point) {
       let centerDistance = Math.sqrt(Math.pow(point[0] - 50, 2) + Math.pow(point[1] - 50, 2))
-      let insideCircle = centerDistance < 50
+      let insideCircle = centerDistance < this.mergedOptions.radius
       return insideCircle
     },
     createDroplet (cx, cy, radius, depth, parent) {
@@ -133,10 +134,10 @@ export default {
     }
   },
   created () {
-    this.createDroplet(50, 50, 50, 0, {
+    this.createDroplet(50, 50, this.mergedOptions.radius, 0, {
       cx: 50,
       cy: 50,
-      radius: 50,
+      radius: this.mergedOptions.radius,
       opacity: 1
     })
   }
@@ -147,6 +148,7 @@ export default {
 .effect-svg {
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 
 .droplets-wrap {

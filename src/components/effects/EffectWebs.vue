@@ -32,16 +32,14 @@ export default {
         minDepth: 0.25,
         maxDepth: 1,
         maxDelay: 3,
-        duration: 3
+        duration: 3,
+        radius: 75
       }
     }
   },
   computed: {
     mergedOptions () {
       return Object.assign({}, this.baseOptions, this.options)
-    },
-    radius () {
-      return this.mergedOptions.poly ? 75 : 50
     },
     polyPointString () {
       let polyPointString = this.mergedOptions.poly.map((point) => {
@@ -53,8 +51,8 @@ export default {
   methods: {
     randomPointPerimeter () {
       let rand = -Math.PI + Math.random() * Math.PI * 2
-      let x = Math.floor(50 + this.radius * Math.cos(rand))
-      let y = Math.floor(50 + this.radius * Math.sin(rand))
+      let x = Math.floor(50 + this.mergedOptions.radius * Math.cos(rand))
+      let y = Math.floor(50 + this.mergedOptions.radius * Math.sin(rand))
       return [x, y]
     },
     randomPointInternal () {

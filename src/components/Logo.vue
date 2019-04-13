@@ -1,8 +1,8 @@
 <template>
-  <div class="logo" @click="rotateEffect">
+  <div class="logo">
     <client-only>
       <transition appear name="fadeInOut" mode="out-in">
-        <component v-if="currentEffect" :is="currentEffect" :options="{ poly }"></component>
+        <component :is="effect" :options="{ poly }"></component>
       </transition>
     </client-only>
   </div>
@@ -15,6 +15,12 @@ import EffectWebs from '~/components/effects/EffectWebs'
 
 export default {
   name: 'Logo',
+  props: ['effect'],
+  components: {
+    EffectDroplets,
+    EffectSlices,
+    EffectWebs
+  },
   data () {
     return {
       poly: [
@@ -29,35 +35,15 @@ export default {
         [20, 100],
         [0, 100],
         [0, 0]
-      ],
-      effects: [EffectDroplets, EffectSlices, EffectWebs],
-      effectsToView: [],
-      currentEffect: null
+      ]
     }
-  },
-  methods: {
-    rotateEffect () {
-      if (!this.effectsToView.length) {
-        this.effectsToView = this.effects.filter((logo) => {
-          return logo !== this.currentEffect
-        })
-      }
-      let randomIndex = Math.floor(Math.random() * this.effectsToView.length)
-      this.currentEffect = this.effectsToView[randomIndex]
-      this.effectsToView.splice(randomIndex, 1)
-    }
-  },
-  created () {
-    this.rotateEffect()
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .logo {
-  position: relative;
   width: 100%;
   height: 100%;
-  cursor: pointer;
 }
 </style>
