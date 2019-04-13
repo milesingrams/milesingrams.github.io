@@ -7,13 +7,14 @@
     </defs>
     <g :clip-path="poly ? 'url(#logo-clip)' : 'none'" ref="parallaxScene">
       <g v-for="(layer, layerIndex) in layers" :data-depth="layer.depth" :key="layerIndex">
-        <path class="path" v-for="(path, pathIndex) in layer.paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :style="{'animation-delay': path.delay}" vector-effect="non-scaling-stroke" :key="pathIndex"></path>
+        <path class="path" v-for="(path, pathIndex) in layer.paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :stroke-dasharray="path.dashArray" :stroke-dashoffset="path.dashOffset" vector-effect="non-scaling-stroke" :key="pathIndex"></path>
       </g>
     </g>
   </svg>
 </template>
 
 <script>
+import anime from 'animejs'
 import Parallax from 'parallax-js'
 
 export default {
@@ -74,9 +75,18 @@ export default {
           let path = {
             dString,
             color: `hsl(${Math.random() * 360}, 80%, 65%)`,
-            delay: `${Math.random() * this.maxDelay}s`,
-            opacity: (i + Math.random()) / this.numLayers
+            opacity: (i + Math.random()) / this.numLayers,
+            dashArray: this.numInternalPoints * 1000,
+            dashOffset: this.numInternalPoints * 1000
           }
+
+          anime({
+            targets: path,
+            dashOffset: [path.dashOffset, 0],
+            easing: 'easeInOutQuad',
+            duration: 3000,
+            delay: Math.random() * this.maxDelay * 1000
+          })
 
           layer.paths.push(path)
         }
@@ -115,9 +125,6 @@ export default {
 .path {
   fill: none;
   stroke-width: 1;
-  stroke-dasharray: 5000;
-  stroke-dashoffset: 5000;
-  animation: dash 3s var(--ease-in-quad) forwards;
 }
 
 @keyframes shrink {
@@ -126,12 +133,6 @@ export default {
   }
   to {
     transform: scale(1);
-  }
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
   }
 }
 </style>

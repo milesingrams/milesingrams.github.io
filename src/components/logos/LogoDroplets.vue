@@ -13,7 +13,7 @@ export default {
     return {
       droplets: [],
       maxDepth: 5,
-      maxDelay: 6
+      maxDelay: 1.5
     }
   },
   methods: {
@@ -28,7 +28,7 @@ export default {
   		return insidePoly
   	},
     createDroplet (cx, cy, radius, depth, parent) {
-      let opacity = 1 - depth * Math.random() * 0.1
+      let opacity = 0.5 + Math.random() * 0.3
       let color = `hsl(${Math.random() * 360}, 80%, ${90 - depth * 5}%)`
 
       let droplet = {
@@ -45,14 +45,13 @@ export default {
         cx: [parent.cx, droplet.cx],
         cy: [parent.cy, droplet.cy],
         radius: [parent.radius, droplet.radius],
-        opacity: [parent.opacity, droplet.opacity],
         easing: 'easeInQuad',
         duration: 200
       })
 
       animation.finished.then(() => {
         if (depth < this.maxDepth) {
-          let delay = Math.random() * this.maxDelay * droplet.cx * 2
+          let delay = Math.random() * (this.maxDelay * 1000) * (droplet.cx / 100)
           droplet.splitTimeout = setTimeout(() => {
             this.splitDroplet(droplet)
           }, delay)
@@ -89,7 +88,7 @@ export default {
         })
       }
 
-      let animation = anime({
+      anime({
         targets: droplet,
         radius: 0,
         opacity: 0,
@@ -131,7 +130,6 @@ export default {
 }
 
 .droplet {
-  animation: fadeIn .3s;
   mix-blend-mode: screen;
 }
 </style>
