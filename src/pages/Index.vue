@@ -138,12 +138,12 @@ export default {
   &::before {
     content: '';
     position: absolute;
-    width: 2px;
+    width: 1px;
     background-color: rgba(255, 255, 255, 0.8);
     top: 0;
     height: 0%;
     left: 8%;
-    margin-left: -1px;
+    margin-left: -0.5px;
     animation: timelineGrow 1s var(--ease-in-quad) forwards 3s;
   }
 
@@ -156,7 +156,7 @@ export default {
     height: 18px;
     border-radius: 50%;
     background-color: var(--page-bg-color);
-    border: 2px solid white;
+    border: 1px solid white;
     transform: translate(-50%, -50%) scale(0);
     animation: timelineDotAppear .5s var(--ease-out-back) forwards 2s;
   }
@@ -172,10 +172,10 @@ export default {
       position: absolute;
       top: 50%;
       left: 8%;
-      width: 50px;
-      height: 50px;
-      padding: 14px;
-      background-color: var(--page-bg-color);
+      width: 80px;
+      height: 80px;
+      padding: 30px;
+      background: radial-gradient(closest-side, rgba(var(--page-bg-color-rgb), 1), rgba(var(--page-bg-color-rgb), 0));
       transform: translate(-50%, -50%);
     }
   }

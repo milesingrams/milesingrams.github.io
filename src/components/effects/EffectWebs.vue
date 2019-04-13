@@ -31,8 +31,8 @@ export default {
         numInternalPoints: 5,
         minDepth: 0.25,
         maxDepth: 1,
-        maxDelay: 3,
-        duration: 3,
+        maxDelay: 2.5,
+        duration: 2.5,
         radius: 75
       }
     }
