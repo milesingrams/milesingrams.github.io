@@ -139,7 +139,7 @@ export default {
     content: '';
     position: absolute;
     width: 1px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--timeline-color);
     top: 0;
     height: 0%;
     left: 8%;
@@ -156,7 +156,7 @@ export default {
     height: 18px;
     border-radius: 50%;
     background-color: var(--page-bg-color);
-    border: 1px solid white;
+    border: 1px solid var(--timeline-color);
     transform: translate(-50%, -50%) scale(0);
     animation: timelineDotAppear .5s var(--ease-out-back) forwards 2s;
   }
