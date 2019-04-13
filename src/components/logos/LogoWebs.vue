@@ -133,20 +133,10 @@ export default {
 
 .logo-clip {
   transform-origin: center;
-  animation: shrink 5s var(--ease-in-out-quad) forwards;
 }
 
 .path {
   fill: none;
   stroke-width: 1;
-}
-
-@keyframes shrink {
-  from {
-    transform: scale(1.2);
-  }
-  to {
-    transform: scale(1);
-  }
 }
 </style>

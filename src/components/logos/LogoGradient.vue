@@ -8,9 +8,7 @@
         </clipPath>
       </defs>
     </svg>
-    <div class="logo-canvas-wrap">
-      <canvas class="logo-canvas" ref="canvas" width="30" height="30" style="clip-path: url(#logo-clip)"></canvas>
-    </div>
+    <canvas class="logo-canvas" ref="canvas" width="30" height="30" style="clip-path: url(#logo-clip)"></canvas>
   </div>
 </template>
 
@@ -83,22 +81,9 @@ export default {
   height: 0;
 }
 
-.logo-canvas-wrap {
-  animation: shrink 5s var(--ease-in-out-quad) forwards;
-}
-
 .logo-canvas {
   width: 100%;
   height: 100%;
   filter: blur(5px);
-}
-
-@keyframes shrink {
-  from {
-    transform: scale(1.2);
-  }
-  to {
-    transform: scale(1);
-  }
 }
 </style>
