@@ -97,7 +97,6 @@ export default {
   .my-pitch {
     text-align: center;
     font-size: 18px;
-    font-weight: 300;
     opacity: 0;
     animation: fadeIn .75s var(--ease-in-out-quad) forwards 0.75s;
   }
@@ -111,12 +110,12 @@ export default {
   &::before {
     content: '';
     position: absolute;
-    width: 3px;
+    width: 2px;
     background-color: white;
     top: 0;
     height: 0%;
     left: 8%;
-    margin-left: -1.5px;
+    margin-left: -1px;
     animation: timelineGrow 1s var(--ease-in-quad) forwards 3s;
   }
 
@@ -129,7 +128,7 @@ export default {
     height: 18px;
     border-radius: 50%;
     background-color: var(--page-bg-color);
-    border: 3px solid white;
+    border: 2px solid white;
     transform: translate(-50%, -50%) scale(0);
     animation: timelineDotAppear .5s var(--ease-out-back) forwards 2s;
   }
