@@ -55,7 +55,7 @@
 </page-query>
 
 <script>
-import Logo from '~/components/logos/Logo'
+import Logo from '~/components/Logo'
 
 export default {
   components: {

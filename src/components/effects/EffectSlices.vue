@@ -1,5 +1,5 @@
 <template>
-  <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <svg class="effect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <g class="layers-wrap" ref="layersWrap">
       <g class="slice-wrap" v-for="(slice, index) in slices" :data-depth="slice.depth" :key="index">
         <path class="slice" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :style="{transform: `translate3d(${slice.translateX}px, ${slice.translateY}px, 0px) scale(${slice.scale})`}"></path>
@@ -14,7 +14,7 @@ import Parallax from 'parallax-js'
 import polygonClipping from 'polygon-clipping'
 
 export default {
-  name: 'LogoSlices',
+  name: 'EffectSlices',
   props: ['options'],
   data () {
     return {
@@ -123,7 +123,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo-svg {
+.effect-svg {
   width: 100%;
   height: 100%;
   overflow: visible;

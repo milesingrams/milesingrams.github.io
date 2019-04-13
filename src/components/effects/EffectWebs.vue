@@ -1,11 +1,11 @@
 <template>
-  <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <svg class="effect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <defs v-if="mergedOptions.poly">
-      <clipPath class="logo-clip" id="logo-clip">
+      <clipPath class="effect-clip" id="effect-clip">
         <polygon :points="polyPointString"></polygon>
       </clipPath>
     </defs>
-    <g class="layers-wrap" :clip-path="mergedOptions.poly ? 'url(#logo-clip)' : 'none'" ref="layersWrap">
+    <g class="layers-wrap" :clip-path="mergedOptions.poly ? 'url(#effect-clip)' : 'none'" ref="layersWrap">
       <g class="layer" v-for="(layer, layerIndex) in layers" :data-depth="layer.depth" :key="layerIndex">
         <path class="path" v-for="(path, pathIndex) in layer.paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :stroke-dasharray="path.dashArray" :stroke-dashoffset="path.dashOffset" vector-effect="non-scaling-stroke" :key="pathIndex"></path>
       </g>
@@ -18,7 +18,7 @@ import anime from 'animejs'
 import Parallax from 'parallax-js'
 
 export default {
-  name: 'LogoWebs',
+  name: 'EffectWebs',
   props: ['options'],
   data () {
     return {
@@ -125,14 +125,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo-svg {
+.effect-svg {
   width: 100%;
   height: 100%;
   overflow: visible;
   backface-visibility: hidden;
 }
 
-.logo-clip {
+.effect-clip {
   transform-origin: center;
 }
 

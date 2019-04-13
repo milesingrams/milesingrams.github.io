@@ -1,5 +1,5 @@
 <template>
-  <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <svg class="effect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <g class="droplets-wrap">
       <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" @mouseenter="onDropletMouseEnter(droplet)" :key="index"></circle>
     </g>
@@ -10,6 +10,7 @@
 import anime from 'animejs'
 
 export default {
+  name: 'EffectDroplets',
   props: ['options'],
   data () {
     return {
@@ -143,7 +144,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo-svg {
+.effect-svg {
   width: 100%;
   height: 100%;
 }
