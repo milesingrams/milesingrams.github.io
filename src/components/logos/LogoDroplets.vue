@@ -27,6 +27,11 @@ export default {
   		}
   		return insidePoly
   	},
+    insideCircle (point) {
+      let centerDistance = Math.sqrt(Math.pow(point[0] - 50, 2) + Math.pow(point[1] - 50, 2))
+      let insideCircle = centerDistance < 50
+      return insideCircle
+    },
     createDroplet (cx, cy, radius, depth, parent) {
       let opacity = 0.5 + Math.random() * 0.3
       let color = `hsl(${Math.random() * 360}, 80%, ${90 - depth * 5}%)`
@@ -75,7 +80,9 @@ export default {
           return this.insidePoly(corner)
         })
       } else {
-        allowedCorners = corners
+        allowedCorners = corners.filter((corner) => {
+          return this.insideCircle(corner)
+        })
       }
 
       if (droplet.depth + 1 < this.maxDepth && allowedCorners.length) {

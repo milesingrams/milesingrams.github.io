@@ -1,14 +1,15 @@
 <template>
   <div>
-    <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" v-if="poly">
+    <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <clipPath id="logo-clip" clipPathUnits="objectBoundingBox">
-          <polygon :points="polyPointString"></polygon>
+          <polygon v-if="poly" :points="polyPointString"></polygon>
+          <circle v-if="!poly" cx="0.5" cy="0.5" r="0.5"></circle>
         </clipPath>
       </defs>
     </svg>
     <div class="logo-canvas-wrap">
-      <canvas class="logo-canvas" ref="canvas" width="30" height="30" :style="{'clip-path': poly ? 'url(#logo-clip)' : 'none'}"></canvas>
+      <canvas class="logo-canvas" ref="canvas" width="30" height="30" style="clip-path: url(#logo-clip)"></canvas>
     </div>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
       context: null,
       noise: null,
       noiseScale: 30,
-      noiseSpeed: 0.1,
+      noiseSpeed: 0.2,
       baseColorVal: 172,
       animationFrame: null
     }
@@ -45,8 +46,8 @@ export default {
         for (let y = 0; y <= this.$refs.canvas.height; y++) {
           let yPos = y / this.noiseScale
 
-          let hue = this.noise.noise3D(xPos + timestampSeconds / 10, yPos, timestampSeconds * this.noiseSpeed) * 360
-          this.context.fillStyle = `hsl(${hue}, 80%, 75%)`
+          let noise = this.noise.noise3D(xPos + timestampSeconds / 10, yPos, timestampSeconds * this.noiseSpeed)
+          this.context.fillStyle = `hsl(${noise * 360}, 80%, 75%)`
           this.context.fillRect(x, y, 1, 1)
         }
       }

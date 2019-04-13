@@ -21,7 +21,6 @@ export default {
       slices: [],
       numSlices: 20,
       numPointsPerPolygon: 3,
-      radius: 75,
       minDepth: -0.75,
       maxDepth: 0.75,
       minOpacity: 0.1,
@@ -30,6 +29,9 @@ export default {
     }
   },
   computed: {
+    radius () {
+      return this.poly ? 75 : 50
+    },
     polyPointString () {
       let polyPointString = this.poly.map((point) => {
         return point.join(',')

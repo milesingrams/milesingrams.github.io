@@ -29,10 +29,13 @@ export default {
       minDepth: 0.05,
       maxDepth: 0.2,
       maxDelay: 3,
-      radius: 75
+      duration: 3,
     }
   },
   computed: {
+    radius () {
+      return this.poly ? 75 : 50
+    },
     polyPointString () {
       let polyPointString = this.poly.map((point) => {
         return point.join(',')
@@ -84,7 +87,7 @@ export default {
             targets: path,
             dashOffset: [path.dashOffset, 0],
             easing: 'easeInOutQuad',
-            duration: 3000,
+            duration: this.duration * 1000,
             delay: Math.random() * this.maxDelay * 1000
           })
 
