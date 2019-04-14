@@ -9,31 +9,18 @@
     </section>
 
     <div class="timeline">
-      <section class="timeline-section">
-        <effect-dot class="timeline-dot" :effect="effect"></effect-dot>
-        <div class="timeline-section-content">
-          is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      <section class="t-section" v-for="experience in $page.experiences.edges">
+        <div class="t-section-dot">
+          <effect-dot :effect="effect"></effect-dot>
         </div>
-      </section>
-
-      <section class="timeline-section">
-        <effect-dot class="timeline-dot" :effect="effect"></effect-dot>
-        <div class="timeline-section-content">
-          is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </div>
-      </section>
-
-      <section class="timeline-section">
-        <effect-dot class="timeline-dot" :effect="effect"></effect-dot>
-        <div class="timeline-section-content">
-          is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </div>
-      </section>
-
-      <section class="timeline-section">
-        <effect-dot class="timeline-dot" :effect="effect"></effect-dot>
-        <div class="timeline-section-content">
-          Heat death of the universe
+        <div class="t-section-date">{{experience.node.date}}</div>
+        <div class="t-section-content">
+          <h2 class="t-section-title">
+            {{experience.node.title}}
+          </h2>
+          <p class="t-section-description">
+            {{experience.node.description}}
+          </p>
         </div>
       </section>
     </div>
@@ -48,9 +35,9 @@
     edges {
       node {
         title
-        date
-        dateText
+        date (format: "YYYY")
         tags
+        position
         description
       }
     }
@@ -124,7 +111,7 @@ export default {
 
   .my-pitch {
     text-align: center;
-    font-size: 18px;
+    font-size: 1.1rem;
     opacity: 0;
     animation: fadeIn .75s var(--ease-in-out-quad) forwards 0.75s;
   }
@@ -161,27 +148,31 @@ export default {
     animation: timelineDotAppear .5s var(--ease-out-back) forwards 2s;
   }
 
-  .timeline-section {
+  .t-section {
     position: relative;
     width: 100%;
     margin-bottom: $spacing-l;
     padding-left: 16%;
     padding-right: $spacing-s;
-
-    .timeline-dot {
-      position: absolute;
-      top: 50%;
-      left: 8%;
-      width: 80px;
-      height: 80px;
-      padding: 30px;
-      background: radial-gradient(closest-side, rgba(var(--page-bg-color-rgb), 1), rgba(var(--page-bg-color-rgb), 0));
-      transform: translate(-50%, -50%);
-    }
   }
 
-  .timeline-section-content {
-    font-size: 16px;
+  .t-section-dot {
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    width: 80px;
+    height: 80px;
+    padding: 30px;
+    background: radial-gradient(closest-side, rgba(var(--page-bg-color-rgb), 1), rgba(var(--page-bg-color-rgb), 0));
+    transform: translate(-50%, -50%);
+  }
+
+  .t-section-date {
+    font-size: 1.25rem;
+  }
+
+  .t-section-content {
+    font-size: 1rem;
   }
 
   @include media(">tablet") {
@@ -190,38 +181,57 @@ export default {
       height: 24px;
     }
 
-    .timeline-section {
+    .t-section {
       padding-right: $spacing-l;
     }
 
-    .timeline-section-content {
-      font-size: 18px;
+    .t-section-content {
+      font-size: 1.1rem;
+    }
+
+    .t-section-date {
+      font-size: 1.5rem;
     }
   }
 
   @include media(">desktop") {
-    .timeline-section {
+    .t-section {
       padding-left: $spacing-xl;
       padding-right: $spacing-xxl;
       width: 50%;
-
-      .timeline-dot {
-        left: 100%;
-      }
 
       &:nth-child(even) {
         padding-left: $spacing-xxl;
         padding-right: $spacing-xl;
         left: 50%;
 
-        .timeline-dot {
+        .t-section-dot {
           left: 0;
+        }
+
+        .t-section-date {
+          right: 100%;
+          left: initial;
+          margin-right: $spacing-l;
+          margin-left: 0;
         }
       }
     }
 
-    .timeline-section-content {
-      font-size: 20px;
+    .t-section-dot {
+      left: 100%;
+    }
+
+    .t-section-date {
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      margin-left: $spacing-l;
+      transform: translateY(-50%);
+    }
+
+    .t-section-content {
+      font-size: 1.2rem;
     }
 
     &::before, &::after {
@@ -236,6 +246,7 @@ export default {
   width: 100%;
   height: 100px;
   background: linear-gradient(rgba(var(--page-bg-color-rgb), 0), rgba(var(--page-bg-color-rgb), .9) 75%, rgba(var(--page-bg-color-rgb), 1));
+  pointer-events: none;
 }
 
 @keyframes timelineDotAppear {

@@ -35,17 +35,13 @@ export default {
           return {
             numSlices: 8,
             maxDelay: 1,
-            opacity: 0.5,
-            radius: 75
+            opacity: 0.5
           }
           break
         case 'EffectWebs':
           return {
             numPathsPerLayer: 3,
             numLayers: 3,
-            numInternalPoints: 3,
-            minDepth: 0.25,
-            maxDepth: 1,
             maxDelay: 1.5,
             duration: 1.5
           }
