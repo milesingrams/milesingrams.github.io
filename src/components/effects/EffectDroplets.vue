@@ -47,7 +47,7 @@ export default {
     },
     createDroplet (cx, cy, radius, depth, parent) {
       let opacity = 0.5 + Math.random() * 0.3
-      let color = `hsl(${Math.random() * 360}, 80%, ${90 - depth * 5}%)`
+      let color = `hsl(${Math.random() * 360}, 80%, ${100 - (depth / this.mergedOptions.maxDepth) * 30}%)`
 
       let droplet = {
         cx,

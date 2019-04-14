@@ -82,7 +82,7 @@ export default {
 
           let path = {
             dString,
-            color: `hsl(${Math.random() * 360}, 80%, 65%)`,
+            color: `hsl(${Math.random() * 360}, 80%, 70%)`,
             opacity: (i + Math.random()) / this.mergedOptions.numLayers,
             dashArray: this.mergedOptions.numInternalPoints * 1000,
             dashOffset: this.mergedOptions.numInternalPoints * 1000

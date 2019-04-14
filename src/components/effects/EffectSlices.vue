@@ -22,7 +22,7 @@ export default {
       baseOptions: {
         poly: null,
         interactive: true,
-        numSlices: 24,
+        numSlices: 20,
         numPointsPerPolygon: 3,
         minDepth: -3,
         maxDepth: 3,
