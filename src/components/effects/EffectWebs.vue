@@ -26,13 +26,13 @@ export default {
       baseOptions: {
         poly: null,
         interactive: true,
-        numPathsPerLayer: 8,
+        numPathsPerLayer: 6,
         numLayers: 5,
         numInternalPoints: 5,
         minDepth: 0.25,
         maxDepth: 1,
-        maxDelay: 2.5,
-        duration: 2.5,
+        maxDelay: 1,
+        duration: 4,
         radius: 75
       }
     }

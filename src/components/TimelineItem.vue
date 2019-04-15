@@ -48,9 +48,8 @@ export default {
 .t-item {
   position: relative;
   width: 100%;
-  margin-bottom: $spacing-l;
+  padding: $spacing-s $spacing-m;
   padding-left: 16%;
-  padding-right: $spacing-s;
   opacity: 0;
   transition: opacity 1s var(--ease-in-quad);
 

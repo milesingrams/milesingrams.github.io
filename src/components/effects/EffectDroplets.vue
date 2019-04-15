@@ -46,16 +46,13 @@ export default {
       return insideCircle
     },
     createDroplet (cx, cy, radius, depth, parent) {
-      let opacity = 0.5 + Math.random() * 0.3
-      let color = `hsl(${Math.random() * 360}, 80%, ${100 - (depth / this.mergedOptions.maxDepth) * 30}%)`
-
       let droplet = {
         cx,
         cy,
         radius,
         depth,
-        opacity,
-        color
+        opacity: 0.5 + Math.random() * 0.3,
+        color: `hsl(${Math.random() * 360}, 80%, ${100 - (depth / this.mergedOptions.maxDepth) * 30}%)`
       }
 
       let animation = anime({
