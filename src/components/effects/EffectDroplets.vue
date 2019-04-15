@@ -22,7 +22,9 @@ export default {
         maxDepth: 4,
         duration: 300,
         maxDelay: 1,
-        radius: 50
+        radius: 50,
+        minOpacity: 0.4,
+        maxOpacity: 0.8
       }
     }
   },
@@ -33,10 +35,13 @@ export default {
   },
   watch: {
     'progress' () {
-      this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
+      this.updateSeek()
     }
   },
   methods: {
+    updateSeek () {
+      this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
+    },
     insidePoly (point) {
   		let insidePoly = false
   		for (let i = 0, j = this.mergedOptions.poly.length - 1; i < this.mergedOptions.poly.length; j = i++) {
@@ -66,7 +71,7 @@ export default {
 
       if (depth === this.mergedOptions.maxDepth) {
         if (this.insidePoly([cx, cy])) {
-          droplet.opacity = 1
+          droplet.opacity = this.mergedOptions.minOpacity + Math.random() * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity)
           this.droplets.push(droplet)
 
           this.animationTimeline.add({
@@ -108,7 +113,8 @@ export default {
         if (cornersInM) {
           for (let i = 0; i < corners.length; i++) {
             let corner = corners[i]
-            this.createDroplet(corner[0], corner[1], halfRad, cornersInM / 4, depth + 1, delay)
+            let opacity = this.mergedOptions.minOpacity + (cornersInM / 4) * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity)
+            this.createDroplet(corner[0], corner[1], halfRad, opacity, depth + 1, delay)
           }
         }
       }
@@ -120,6 +126,7 @@ export default {
     })
 
     this.createDroplet(50, 50, this.mergedOptions.radius, 1, 0, 0)
+    this.updateSeek()
   }
 }
 </script>

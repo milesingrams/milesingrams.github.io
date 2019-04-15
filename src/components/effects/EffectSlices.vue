@@ -22,7 +22,7 @@ export default {
         color: 'white',
         numSlices: 15,
         numPointsPerPolygon: 3,
-        opacity: 0.25,
+        opacity: 0.3,
         duration: 1,
         maxDelay: 2,
         radius: 75
@@ -42,10 +42,13 @@ export default {
   },
   watch: {
     'progress' () {
-      this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
+      this.updateSeek()
     }
   },
   methods: {
+    updateSeek () {
+      this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
+    },
     randomPointPerimeter () {
       let rand = -Math.PI + Math.random() * Math.PI * 2
       let x = Math.floor(50 + this.mergedOptions.radius * Math.cos(rand))
@@ -108,6 +111,7 @@ export default {
       easing: 'easeOutQuad'
     })
     this.generateSlices()
+    this.updateSeek()
   }
 }
 </script>

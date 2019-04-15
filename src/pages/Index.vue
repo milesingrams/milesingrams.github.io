@@ -56,6 +56,7 @@ export default {
     this.rotateEffect()
     window.addEventListener('scroll', this.updateScrollProgress)
     window.addEventListener('resize', this.updateScrollProgress)
+    this.updateScrollProgress()
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.updateScrollProgress)

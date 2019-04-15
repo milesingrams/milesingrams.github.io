@@ -6,7 +6,7 @@
       </clipPath>
     </defs>
     <g class="paths-wrap" :clip-path="mergedOptions.poly ? 'url(#effect-clip)' : 'none'">
-      <path class="path" v-for="(path, index) in paths" :d="path.dString" :stroke="path.color" :stroke-dasharray="path.dashArray" :stroke-dashoffset="path.dashOffset" vector-effect="non-scaling-stroke" :key="index"></path>
+      <path class="path" v-for="(path, index) in paths" :d="path.dString" :stroke="path.color" :opacity="path.opacity" :stroke-width="path.strokeWidth" :stroke-dasharray="path.dashArray" :stroke-dashoffset="path.dashOffset" vector-effect="non-scaling-stroke" :key="index"></path>
     </g>
   </svg>
 </template>
@@ -45,10 +45,13 @@ export default {
   },
   watch: {
     'progress' () {
-      this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
+      this.updateSeek()
     }
   },
   methods: {
+    updateSeek () {
+      this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
+    },
     randomPointPerimeter () {
       let rand = -Math.PI + Math.random() * Math.PI * 2
       let x = Math.floor(50 + this.mergedOptions.radius * Math.cos(rand))
@@ -69,9 +72,13 @@ export default {
           dString += ` L${this.randomPointPerimeter().join(',')}`
         }
 
+        let depth = Math.random()
+
         let path = {
           dString,
           color: this.mergedOptions.color,
+          opacity: 0.2 + depth * 0.6,
+          strokeWidth: 1 + depth,
           dashArray: 400 * this.mergedOptions.numPointsPerPath,
           dashOffset: 400 * this.mergedOptions.numPointsPerPath
         }
@@ -92,6 +99,7 @@ export default {
       easing: 'easeInQuad'
     })
     this.generatePaths()
+    this.updateSeek()
   }
 }
 </script>
@@ -112,6 +120,5 @@ export default {
 
 .path {
   fill: none;
-  stroke-width: 1;
 }
 </style>
