@@ -3,7 +3,6 @@
     <div class="logo-wrap">
       <logo :effect="effect" :color="color"></logo>
     </div>
-    {{logoColor}}
   </div>
 </template>
 
@@ -24,7 +23,7 @@ export default {
   min-height: 50vh;
   clip-path: inset(0 0 0 0);
 
-  &:nth-child(odd) {
+  &:nth-child(even) {
     background-color: #eee;
   }
 }

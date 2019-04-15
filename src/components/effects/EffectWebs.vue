@@ -106,7 +106,7 @@ export default {
 
 .path {
   fill: none;
-  stroke-width: 1.5;
+  stroke-width: 1;
   backface-visibility: hidden;
 }
 </style>

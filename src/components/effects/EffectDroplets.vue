@@ -18,7 +18,7 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        maxDepth: 5,
+        maxDepth: 4,
         maxDelay: 1,
         radius: 50
       }
@@ -111,7 +111,10 @@ export default {
     }
   },
   created () {
-    this.createDroplet(50, 50, this.mergedOptions.radius, 0)
+    this.createDroplet(25, 25, this.mergedOptions.radius / 2, 0)
+    this.createDroplet(75, 25, this.mergedOptions.radius / 2, 0)
+    this.createDroplet(75, 75, this.mergedOptions.radius / 2, 0)
+    this.createDroplet(25, 75, this.mergedOptions.radius / 2, 0)
   }
 }
 </script>

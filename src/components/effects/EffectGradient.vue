@@ -29,7 +29,7 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        noiseScale: 30,
+        noiseScale: 20,
         noiseSpeed: 0.2
       }
     }
@@ -43,6 +43,15 @@ export default {
         return `${point[0] / 100},${point[1] / 100}`
       }).join(' ')
       return polyPointString
+    },
+    colorRGB () {
+      let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(this.mergedOptions.color)
+      let rgb = [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16)
+      ].join(', ')
+      return rgb
     }
   },
   methods: {
@@ -52,8 +61,9 @@ export default {
         let xPos = x / this.mergedOptions.noiseScale
         for (let y = 0; y <= this.$refs.canvas.height; y++) {
           let yPos = y / this.mergedOptions.noiseScale
-          let noise = this.noise.noise3D(xPos + timestampSeconds / 10, yPos, timestampSeconds * this.mergedOptions.noiseSpeed)
-          this.context.fillStyle = this.mergedOptions.color
+          let noise = this.noise.noise3D(xPos, yPos, timestampSeconds * this.mergedOptions.noiseSpeed)
+          this.context.fillStyle = `rgba(${this.colorRGB}, ${noise})`
+          this.context.clearRect(x, y, 1, 1)
           this.context.fillRect(x, y, 1, 1)
         }
       }

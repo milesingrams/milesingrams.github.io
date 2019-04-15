@@ -19,9 +19,9 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        numSlices: 18,
+        numSlices: 15,
         numPointsPerPolygon: 3,
-        opacity: 0.5,
+        opacity: 0.25,
         maxDelay: 2,
         radius: 75
       }
