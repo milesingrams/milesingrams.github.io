@@ -2,7 +2,7 @@
   <div class="logo">
     <client-only>
       <transition appear name="fadeInOut" mode="out-in">
-        <component :is="effect" :options="{ poly, color }"></component>
+        <component :is="effect" :progress="progress" :options="{ poly, color }"></component>
       </transition>
     </client-only>
   </div>
@@ -16,7 +16,7 @@ import EffectWebs from '~/components/effects/EffectWebs'
 
 export default {
   name: 'Logo',
-  props: ['effect', 'color'],
+  props: ['effect', 'color', 'progress'],
   components: {
     EffectDroplets,
     EffectGradient,

@@ -1,8 +1,7 @@
 <template>
   <Layout>
-    <logo-section class="section" :effect="effect" :color="colors[index]" v-for="(experience, index) in $page.experiences.edges" :key="index">
+    <logo-section class="section" :effect="effect" :color="colors[index]" :progress="scrollProgress" v-for="(experience, index) in $page.experiences.edges" :key="index">
     </logo-section>
-
   </Layout>
 </template>
 
@@ -34,7 +33,8 @@ export default {
       effects: ['EffectDroplets', 'EffectGradient', 'EffectSlices', 'EffectWebs'],
       effectsToView: [],
       effect: null,
-      colors: ['#4abdac', '#fc4a1a', '#f7b733', '#4abdac', '#fc4a1a', '#f7b733']
+      colors: ['#4abdac', '#fc4a1a', '#f7b733', '#4abdac', '#fc4a1a', '#f7b733'],
+      scrollProgress: 0
     }
   },
   methods: {
@@ -47,10 +47,19 @@ export default {
       let randomIndex = Math.floor(Math.random() * this.effectsToView.length)
       this.effect = this.effectsToView[randomIndex]
       this.effectsToView.splice(randomIndex, 1)
+    },
+    updateScrollProgress () {
+      this.scrollProgress = 1 - window.pageYOffset / window.innerHeight
     }
   },
   created () {
     this.rotateEffect()
+    window.addEventListener('scroll', this.updateScrollProgress)
+    window.addEventListener('resize', this.updateScrollProgress)
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.updateScrollProgress)
+    window.removeEventListener('resize', this.updateScrollProgress)
   },
   metaInfo: {
     title: 'Miles Ingram'

@@ -1,7 +1,7 @@
 <template>
   <div class="logo-section">
     <div class="logo-wrap">
-      <logo :effect="effect" :color="color"></logo>
+      <logo :effect="effect" :color="color" :progress="progress"></logo>
     </div>
   </div>
 </template>
@@ -11,7 +11,7 @@ import Logo from '~/components/Logo'
 
 export default {
   name: 'LogoSection',
-  props: ['effect', 'color'],
+  props: ['effect', 'color', 'progress'],
   components: {
     Logo
   }

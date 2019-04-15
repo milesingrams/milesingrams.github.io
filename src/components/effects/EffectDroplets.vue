@@ -1,7 +1,7 @@
 <template>
   <svg class="effect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <g class="droplets-wrap">
-      <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :key="index"></circle>
+      <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :opacity="droplet.opacity" :key="index"></circle>
     </g>
   </svg>
 </template>
@@ -11,14 +11,16 @@ import anime from 'animejs'
 
 export default {
   name: 'EffectDroplets',
-  props: ['options'],
+  props: ['progress', 'options'],
   data () {
     return {
       droplets: [],
+      animationTimeline: null,
       baseOptions: {
         poly: null,
         color: 'white',
         maxDepth: 4,
+        duration: 300,
         maxDelay: 1,
         radius: 50
       }
@@ -27,6 +29,11 @@ export default {
   computed: {
     mergedOptions () {
       return Object.assign({}, this.baseOptions, this.options)
+    }
+  },
+  watch: {
+    'progress' () {
+      this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
     }
   },
   methods: {
@@ -40,81 +47,79 @@ export default {
   		}
   		return insidePoly
   	},
-    insideCircle (point) {
-      let centerDistance = Math.sqrt(Math.pow(point[0] - 50, 2) + Math.pow(point[1] - 50, 2))
-      let insideCircle = centerDistance < this.mergedOptions.radius
-      return insideCircle
+    getCorners (droplet, radius) {
+      return [
+        [droplet.cx - radius, droplet.cy - radius],
+        [droplet.cx + radius, droplet.cy - radius],
+        [droplet.cx + radius, droplet.cy + radius],
+        [droplet.cx - radius, droplet.cy + radius]
+      ]
     },
-    createDroplet (cx, cy, radius, depth) {
+    createDroplet (cx, cy, radius, opacity, depth, startOffset) {
       let droplet = {
         cx,
         cy,
-        radius,
-        depth,
-        color: Math.round(Math.random()) ? this.mergedOptions.color : 'transparent'
-      }
-
-      let animation = anime({
-        targets: droplet,
-        radius: [0, radius],
-        easing: 'easeInQuad',
-        duration: 300
-      })
-
-      animation.finished.then(() => {
-        if (depth < this.mergedOptions.maxDepth) {
-          let delay = Math.random() * (this.mergedOptions.maxDelay * 1000) * (droplet.cx / 100)
-          droplet.splitTimeout = setTimeout(() => {
-            this.splitDroplet(droplet)
-          }, delay)
-        }
-      })
-
-      this.droplets.push(droplet)
-    },
-    splitDroplet (droplet) {
-      let halfRad = droplet.radius / 2
-  		let corners = [
-  			[droplet.cx - halfRad, droplet.cy - halfRad],
-  			[droplet.cx + halfRad, droplet.cy - halfRad],
-  			[droplet.cx + halfRad, droplet.cy + halfRad],
-  			[droplet.cx - halfRad, droplet.cy + halfRad]
-  		]
-
-      let allowedCorners
-      if (this.mergedOptions.poly) {
-        allowedCorners = corners.filter((corner) => {
-          return this.insidePoly(corner)
-        })
-      } else {
-        allowedCorners = corners.filter((corner) => {
-          return this.insideCircle(corner)
-        })
-      }
-
-      if (droplet.depth + 1 < this.mergedOptions.maxDepth && allowedCorners.length) {
-        corners.forEach((corner) => {
-          this.createDroplet(corner[0], corner[1], halfRad, droplet.depth + 1, droplet)
-        })
-      } else {
-        allowedCorners.forEach((corner) => {
-          this.createDroplet(corner[0], corner[1], halfRad, droplet.depth + 1, droplet)
-        })
-      }
-
-      anime({
-        targets: droplet,
         radius: 0,
-        easing: 'easeOutQuad',
-        duration: 300
-      })
+        depth,
+        color: this.mergedOptions.color
+      }
+
+      if (depth === this.mergedOptions.maxDepth) {
+        if (this.insidePoly([cx, cy])) {
+          droplet.opacity = 1
+          this.droplets.push(droplet)
+
+          this.animationTimeline.add({
+            targets: droplet,
+            radius: radius,
+            easing: 'easeInQuad',
+            duration: this.mergedOptions.duration
+          }, startOffset)
+        }
+      } else {
+        droplet.opacity = opacity
+        this.droplets.push(droplet)
+
+        this.animationTimeline.add({
+          targets: droplet,
+          radius: radius,
+          easing: 'easeInQuad',
+          duration: this.mergedOptions.duration
+        }, startOffset)
+
+        let delay = startOffset + this.mergedOptions.duration + Math.random() * (this.mergedOptions.maxDelay * 1000)
+
+        this.animationTimeline.add({
+          targets: droplet,
+          radius: 0,
+          easing: 'easeOutQuad',
+          duration: this.mergedOptions.duration
+        }, delay)
+
+        let halfRad = radius / 2
+    		let corners = this.getCorners(droplet, halfRad)
+
+        let cornersInM = 0
+        for (let i = 0; i < corners.length; i++) {
+          if (this.insidePoly(corners[i])) {
+            cornersInM++
+          }
+        }
+        if (cornersInM) {
+          for (let i = 0; i < corners.length; i++) {
+            let corner = corners[i]
+            this.createDroplet(corner[0], corner[1], halfRad, cornersInM / 4, depth + 1, delay)
+          }
+        }
+      }
     }
   },
   created () {
-    this.createDroplet(25, 25, this.mergedOptions.radius / 2, 0)
-    this.createDroplet(75, 25, this.mergedOptions.radius / 2, 0)
-    this.createDroplet(75, 75, this.mergedOptions.radius / 2, 0)
-    this.createDroplet(25, 75, this.mergedOptions.radius / 2, 0)
+    this.animationTimeline = anime.timeline({
+      autoplay: false
+    })
+
+    this.createDroplet(50, 50, this.mergedOptions.radius, 1, 0, 0)
   }
 }
 </script>
@@ -124,14 +129,11 @@ export default {
   width: 100%;
   height: 100%;
   overflow: visible;
-  backface-visibility: hidden;
 }
 
 .droplets-wrap {
-  backface-visibility: hidden;
 }
 
 .droplet {
-  backface-visibility: hidden;
 }
 </style>

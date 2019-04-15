@@ -16,10 +16,11 @@ import anime from 'animejs'
 
 export default {
   name: 'EffectWebs',
-  props: ['options'],
+  props: ['progress', 'options'],
   data () {
     return {
       paths: [],
+      animationTimeline: null,
       baseOptions: {
         poly: null,
         color: 'white',
@@ -40,6 +41,11 @@ export default {
         return point.join(',')
       }).join(' ')
       return polyPointString
+    }
+  },
+  watch: {
+    'progress' () {
+      this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
     }
   },
   methods: {
@@ -70,19 +76,21 @@ export default {
           dashOffset: 400 * this.mergedOptions.numPointsPerPath
         }
 
-        anime({
+        this.animationTimeline.add({
           targets: path,
           dashOffset: [path.dashOffset, 0],
-          easing: 'easeInQuad',
-          duration: this.mergedOptions.duration * 1000,
-          delay: Math.random() * this.mergedOptions.maxDelay * 1000
-        })
+          duration: this.mergedOptions.duration * 1000
+        }, Math.random() * this.mergedOptions.maxDelay * 1000)
 
         this.paths.push(path)
       }
     }
   },
   created () {
+    this.animationTimeline = anime.timeline({
+      autoplay: false,
+      easing: 'easeInQuad'
+    })
     this.generatePaths()
   }
 }
@@ -93,7 +101,6 @@ export default {
   width: 100%;
   height: 100%;
   overflow: visible;
-  backface-visibility: hidden;
 }
 
 .effect-clip {
@@ -101,12 +108,10 @@ export default {
 }
 
 .paths-wrap {
-  backface-visibility: hidden;
 }
 
 .path {
   fill: none;
   stroke-width: 1;
-  backface-visibility: hidden;
 }
 </style>

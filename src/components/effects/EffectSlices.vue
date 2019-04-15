@@ -12,16 +12,18 @@ import polygonClipping from 'polygon-clipping'
 
 export default {
   name: 'EffectSlices',
-  props: ['options'],
+  props: ['progress', 'options'],
   data () {
     return {
       slices: [],
+      animationTimeline: null,
       baseOptions: {
         poly: null,
         color: 'white',
         numSlices: 15,
         numPointsPerPolygon: 3,
         opacity: 0.25,
+        duration: 1,
         maxDelay: 2,
         radius: 75
       }
@@ -36,6 +38,11 @@ export default {
         return point.join(',')
       }).join(' ')
       return polyPointString
+    }
+  },
+  watch: {
+    'progress' () {
+      this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
     }
   },
   methods: {
@@ -82,22 +89,24 @@ export default {
 
         let startingPoint = this.randomPointPerimeter()
 
-        anime({
+        this.animationTimeline.add({
           targets: slice,
           opacity: [0, slice.opacity],
           translateX: [(startingPoint[0] - 50) / 3, slice.translateX],
           translateY: [(startingPoint[1] - 50) / 3, slice.translateY],
           scale: [1.5, slice.scale],
-          easing: 'easeOutQuad',
-          duration: 1000,
-          delay: Math.random() * this.mergedOptions.maxDelay * 1000
-        })
+          duration: this.mergedOptions.duration * 1000,
+        }, Math.random() * this.mergedOptions.maxDelay * 1000)
 
         this.slices.push(slice)
       }
     }
   },
   created () {
+    this.animationTimeline = anime.timeline({
+      autoplay: false,
+      easing: 'easeOutQuad'
+    })
     this.generateSlices()
   }
 }

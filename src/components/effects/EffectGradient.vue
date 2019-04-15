@@ -16,9 +16,10 @@
 
 <script>
 import SimplexNoise from 'simplex-noise'
+
 export default {
   name: 'EffectGradient',
-  props: ['options'],
+  props: ['progress', 'options'],
   data () {
     return {
       context: null,
@@ -30,7 +31,7 @@ export default {
         poly: null,
         color: 'white',
         noiseScale: 20,
-        noiseSpeed: 0.2
+        noiseSpeed: 1
       }
     }
   },
@@ -55,13 +56,12 @@ export default {
     }
   },
   methods: {
-    draw (timestamp) {
-      let timestampSeconds = timestamp / 1000
+    draw () {
       for (let x = 0; x <= this.$refs.canvas.width; x++) {
         let xPos = x / this.mergedOptions.noiseScale
         for (let y = 0; y <= this.$refs.canvas.height; y++) {
           let yPos = y / this.mergedOptions.noiseScale
-          let noise = this.noise.noise3D(xPos, yPos, timestampSeconds * this.mergedOptions.noiseSpeed)
+          let noise = this.noise.noise3D(xPos, yPos, this.progress * this.mergedOptions.noiseSpeed)
           this.context.fillStyle = `rgba(${this.colorRGB}, ${noise})`
           this.context.clearRect(x, y, 1, 1)
           this.context.fillRect(x, y, 1, 1)
