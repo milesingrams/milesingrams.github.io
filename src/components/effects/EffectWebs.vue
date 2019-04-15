@@ -5,34 +5,28 @@
         <polygon :points="polyPointString"></polygon>
       </clipPath>
     </defs>
-    <g class="layers-wrap" :clip-path="mergedOptions.poly ? 'url(#effect-clip)' : 'none'" ref="layersWrap">
-      <g class="layer" v-for="(layer, layerIndex) in layers" :data-depth="layer.depth" :key="layerIndex">
-        <path class="path" v-for="(path, pathIndex) in layer.paths" :d="path.dString" :opacity="path.opacity" :stroke="path.color" :stroke-dasharray="path.dashArray" :stroke-dashoffset="path.dashOffset" vector-effect="non-scaling-stroke" :key="pathIndex"></path>
-      </g>
+    <g class="paths-wrap" :clip-path="mergedOptions.poly ? 'url(#effect-clip)' : 'none'">
+      <path class="path" v-for="(path, index) in paths" :d="path.dString" :stroke="path.color" :stroke-dasharray="path.dashArray" :stroke-dashoffset="path.dashOffset" vector-effect="non-scaling-stroke" :key="index"></path>
     </g>
   </svg>
 </template>
 
 <script>
 import anime from 'animejs'
-import Parallax from 'parallax-js'
 
 export default {
   name: 'EffectWebs',
   props: ['options'],
   data () {
     return {
-      layers: [],
+      paths: [],
       baseOptions: {
         poly: null,
-        interactive: true,
-        numPathsPerLayer: 6,
-        numLayers: 5,
-        numInternalPoints: 5,
-        minDepth: 0.25,
-        maxDepth: 1,
-        maxDelay: 1,
-        duration: 4,
+        color: 'white',
+        numPaths: 75,
+        numPointsPerPath: 3,
+        maxDelay: 2,
+        duration: 1,
         radius: 75
       }
     }
@@ -61,63 +55,35 @@ export default {
       return [x, y]
     },
     generatePaths () {
-      this.layers = []
+      this.paths = []
 
-      for (let i = 0; i < this.mergedOptions.numLayers; i++) {
-        let layer = {
-          depth: this.mergedOptions.minDepth + (i / this.mergedOptions.numLayers) * (this.mergedOptions.maxDepth - this.mergedOptions.minDepth),
-          paths: []
+      for (let i = 0; i < this.mergedOptions.numPaths; i++) {
+        let dString = `M${this.randomPointPerimeter().join(',')}`
+        for (let j = 0; j < this.mergedOptions.numPointsPerPath; j++) {
+          dString += ` L${this.randomPointPerimeter().join(',')}`
         }
 
-        for (let j = 0; j < this.mergedOptions.numPathsPerLayer; j++) {
-          let startingPoint = this.randomPointPerimeter()
-          let endingPoint = this.randomPointPerimeter()
-
-          let dString = `M${startingPoint.join(',')}`
-          for (let k = 0; k < this.mergedOptions.numInternalPoints; k++) {
-            let point = this.randomPointInternal()
-            dString += ` T${point.join(',')}`
-          }
-          dString += ` T${endingPoint.join(',')}`
-
-          let path = {
-            dString,
-            color: `hsl(${Math.random() * 360}, 80%, 70%)`,
-            opacity: (i + Math.random()) / this.mergedOptions.numLayers,
-            dashArray: this.mergedOptions.numInternalPoints * 1000,
-            dashOffset: this.mergedOptions.numInternalPoints * 1000
-          }
-
-          anime({
-            targets: path,
-            dashOffset: [path.dashOffset, 0],
-            easing: 'easeInOutQuad',
-            duration: this.mergedOptions.duration * 1000,
-            delay: Math.random() * this.mergedOptions.maxDelay * 1000
-          })
-
-          layer.paths.push(path)
+        let path = {
+          dString,
+          color: this.mergedOptions.color,
+          dashArray: 400 * this.mergedOptions.numPointsPerPath,
+          dashOffset: 400 * this.mergedOptions.numPointsPerPath
         }
 
-        this.layers.push(layer)
+        anime({
+          targets: path,
+          dashOffset: [path.dashOffset, 0],
+          easing: 'easeInQuad',
+          duration: this.mergedOptions.duration * 1000,
+          delay: Math.random() * this.mergedOptions.maxDelay * 1000
+        })
+
+        this.paths.push(path)
       }
     }
   },
   created () {
     this.generatePaths()
-  },
-  mounted () {
-    if (this.mergedOptions.interactive) {
-      new Parallax(this.$refs.layersWrap, {
-        relativeInput: true,
-        limitX: 10,
-        limitY: 10,
-        scalarX: 1,
-        scalarY: 1,
-        frictionX: 0.05,
-        frictionY: 0.05
-      })
-    }
   }
 }
 </script>
@@ -134,18 +100,13 @@ export default {
   transform-origin: center;
 }
 
-.layers-wrap {
-  isolation: isolate;
-  backface-visibility: hidden;
-}
-
-.layer {
+.paths-wrap {
   backface-visibility: hidden;
 }
 
 .path {
   fill: none;
-  stroke-width: 1;
+  stroke-width: 1.5;
   backface-visibility: hidden;
 }
 </style>

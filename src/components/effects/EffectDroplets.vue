@@ -1,7 +1,7 @@
 <template>
   <svg class="effect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <g class="droplets-wrap">
-      <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :fill-opacity="droplet.opacity" @mouseenter="onDropletMouseEnter(droplet)" :key="index"></circle>
+      <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :key="index"></circle>
     </g>
   </svg>
 </template>
@@ -17,7 +17,7 @@ export default {
       droplets: [],
       baseOptions: {
         poly: null,
-        interactive: true,
+        color: 'white',
         maxDepth: 5,
         maxDelay: 1,
         radius: 50
@@ -45,23 +45,20 @@ export default {
       let insideCircle = centerDistance < this.mergedOptions.radius
       return insideCircle
     },
-    createDroplet (cx, cy, radius, depth, parent) {
+    createDroplet (cx, cy, radius, depth) {
       let droplet = {
         cx,
         cy,
         radius,
         depth,
-        opacity: 0.5 + Math.random() * 0.3,
-        color: `hsl(${Math.random() * 360}, 80%, ${100 - (depth / this.mergedOptions.maxDepth) * 30}%)`
+        color: Math.round(Math.random()) ? this.mergedOptions.color : 'transparent'
       }
 
       let animation = anime({
         targets: droplet,
-        cx: [parent.cx, droplet.cx],
-        cy: [parent.cy, droplet.cy],
-        radius: [parent.radius, droplet.radius],
+        radius: [0, radius],
         easing: 'easeInQuad',
-        duration: 200
+        duration: 300
       })
 
       animation.finished.then(() => {
@@ -108,35 +105,13 @@ export default {
       anime({
         targets: droplet,
         radius: 0,
-        opacity: 0,
         easing: 'easeOutQuad',
-        duration: 200
+        duration: 300
       })
-    },
-    onDropletMouseEnter (droplet) {
-      if (this.mergedOptions.interactive) {
-        if (droplet.depth === this.mergedOptions.maxDepth && !droplet.mouseLocked) {
-          droplet.mouseLocked = true
-          let animation = anime({
-            targets: droplet,
-            opacity: [0, droplet.opacity],
-            easing: 'easeOutQuad',
-            duration: 500
-          })
-          animation.finished.then(() => {
-            droplet.mouseLocked = false
-          })
-        }
-      }
     }
   },
   created () {
-    this.createDroplet(50, 50, this.mergedOptions.radius, 0, {
-      cx: 50,
-      cy: 50,
-      radius: this.mergedOptions.radius,
-      opacity: 1
-    })
+    this.createDroplet(50, 50, this.mergedOptions.radius, 0)
   }
 }
 </script>
@@ -146,13 +121,14 @@ export default {
   width: 100%;
   height: 100%;
   overflow: visible;
+  backface-visibility: hidden;
 }
 
 .droplets-wrap {
-  isolation: isolate;
+  backface-visibility: hidden;
 }
 
 .droplet {
-  mix-blend-mode: overlay;
+  backface-visibility: hidden;
 }
 </style>

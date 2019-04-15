@@ -1,16 +1,13 @@
 <template>
   <svg class="effect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <g class="layers-wrap" ref="layersWrap">
-      <g class="slice-wrap" v-for="(slice, index) in slices" :data-depth="slice.depth" :key="index">
-        <path class="slice" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :style="{transform: `translate3d(${slice.translateX}px, ${slice.translateY}px, 0px) scale(${slice.scale})`}"></path>
-      </g>
+    <g class="slice-wrap">
+      <path class="slice" v-for="(slice, index) in slices" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :style="{transform: `translate3d(${slice.translateX}px, ${slice.translateY}px, 0px) scale(${slice.scale})`}" :key="index"></path>
     </g>
   </svg>
 </template>
 
 <script>
 import anime from 'animejs'
-import Parallax from 'parallax-js'
 import polygonClipping from 'polygon-clipping'
 
 export default {
@@ -21,12 +18,10 @@ export default {
       slices: [],
       baseOptions: {
         poly: null,
-        interactive: true,
-        numSlices: 20,
+        color: 'white',
+        numSlices: 18,
         numPointsPerPolygon: 3,
-        minDepth: -3,
-        maxDepth: 3,
-        opacity: 0.25,
+        opacity: 0.5,
         maxDelay: 2,
         radius: 75
       }
@@ -78,9 +73,8 @@ export default {
 
         let slice = {
           dString,
-          color: `hsl(${Math.random() * 360}, 80%, 65%)`,
+          color: this.mergedOptions.color,
           opacity: this.mergedOptions.opacity,
-          depth: this.mergedOptions.minDepth + Math.random() * (this.mergedOptions.maxDepth - this.mergedOptions.minDepth),
           translateX: 0,
           translateY: 0,
           scale: 1
@@ -105,17 +99,6 @@ export default {
   },
   created () {
     this.generateSlices()
-  },
-  mounted () {
-    if (this.mergedOptions.interactive) {
-      new Parallax(this.$refs.layersWrap, {
-        relativeInput: true,
-        limitX: 10,
-        limitY: 0,
-        scalarX: 1,
-        frictionX: 0.05
-      })
-    }
   }
 }
 </script>
@@ -128,17 +111,11 @@ export default {
   backface-visibility: hidden;
 }
 
-.layers-wrap {
-  isolation: isolate;
-  backface-visibility: hidden;
-}
-
 .slice-wrap {
   backface-visibility: hidden;
 }
 
 .slice {
-  mix-blend-mode: overlay;
   transform-origin: center;
   transform-style: preserve-3d;
   backface-visibility: hidden;

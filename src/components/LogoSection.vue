@@ -1,0 +1,40 @@
+<template>
+  <div class="logo-section">
+    <div class="logo-wrap">
+      <logo :effect="effect" :color="color"></logo>
+    </div>
+    {{logoColor}}
+  </div>
+</template>
+
+<script>
+import Logo from '~/components/Logo'
+
+export default {
+  name: 'LogoSection',
+  props: ['effect', 'color'],
+  components: {
+    Logo
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.logo-section {
+  min-height: 50vh;
+  clip-path: inset(0 0 0 0);
+
+  &:nth-child(odd) {
+    background-color: #eee;
+  }
+}
+
+.logo-wrap {
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  width: 30vh;
+  height: 30vh;
+  transform: translate(-50%, -50%);
+}
+</style>
