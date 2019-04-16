@@ -1,21 +1,25 @@
 <template>
   <Layout>
-    <logo-section :effect="effect" :color="colorAtIndex(0)" :progress="scrollProgress">
+    <div class="logo-wrap">
+      <logo :effect="effect" :color="color" :progress="scrollProgress"></logo>
+    </div>
+
+    <logo-section>
       <h1 class="my-name">
         Miles Ingram
       </h1>
     </logo-section>
-    <logo-section :effect="effect" :color="colorAtIndex(1)" :progress="scrollProgress">
+    <logo-section>
       <h2 class="my-pitch">
         Bits, Bots, Bio, Battlestar Galactica
       </h2>
     </logo-section>
-    <logo-section :effect="effect" :color="colorAtIndex(2)" :progress="scrollProgress">
+    <logo-section>
       <h2 class="my-about">
         NYC born and raised, I started dabbling with programming by making silly flash games and bizzare lego mindstorms.
       </h2>
     </logo-section>
-    <logo-section :effect="effect" :color="colorAtIndex(index + 3)" :progress="scrollProgress" v-for="(experience, index) in $page.experiences.edges" :key="index">
+    <logo-section v-for="(experience, index) in $page.experiences.edges" :key="index">
     </logo-section>
   </Layout>
 </template>
@@ -37,10 +41,12 @@
 </page-query>
 
 <script>
+import Logo from '~/components/Logo'
 import LogoSection from '~/components/LogoSection'
 
 export default {
   components: {
+    Logo,
     LogoSection
   },
   data () {
@@ -48,7 +54,9 @@ export default {
       effects: ['EffectDroplets', 'EffectGradient', 'EffectSlices', 'EffectWebs'],
       effectsToView: [],
       effect: null,
-      colors: ['#4abdac', '#fc4a1a', '#f7b733', '#228ae6'],
+      colors: ['#fc4a1a', '#f7b733', '#228ae6'],
+      colorsToView: [],
+      color: null,
       scrollProgressTarget: 0,
       scrollProgress: 0,
       scrollEase: 0.1,
@@ -60,18 +68,27 @@ export default {
       let moduloIndex = index % this.colors.length
       return this.colors[moduloIndex]
     },
-    rotateEffect () {
+    rotateLogo () {
       if (!this.effectsToView.length) {
         this.effectsToView = this.effects.filter((effect) => {
           return effect !== this.effect
         })
       }
-      let randomIndex = Math.floor(Math.random() * this.effectsToView.length)
-      this.effect = this.effectsToView[randomIndex]
-      this.effectsToView.splice(randomIndex, 1)
+      let randomEffectIndex = Math.floor(Math.random() * this.effectsToView.length)
+      this.effect = this.effectsToView[randomEffectIndex]
+      this.effectsToView.splice(randomEffectIndex, 1)
+
+      if (!this.colorsToView.length) {
+        this.colorsToView = this.colors.filter((color) => {
+          return color !== this.color
+        })
+      }
+      let randomColorIndex = Math.floor(Math.random() * this.colorsToView.length)
+      this.color = this.colorsToView[randomColorIndex]
+      this.colorsToView.splice(randomColorIndex, 1)
     },
     updateScrollProgressTarget () {
-      this.scrollProgressTarget = 1 - (window.pageYOffset / (document.body.clientHeight - window.innerHeight))
+      this.scrollProgressTarget = Math.max(1 - (window.pageYOffset / (window.innerHeight * 1)), 0)
     },
     updateScrollProgress () {
       this.scrollProgress += (this.scrollProgressTarget - this.scrollProgress) * this.scrollEase
@@ -80,7 +97,7 @@ export default {
   },
   created () {
     if (process.isClient) {
-      this.rotateEffect()
+      this.rotateLogo()
       window.addEventListener('scroll', this.updateScrollProgressTarget)
       window.addEventListener('resize', this.updateScrollProgressTarget)
       this.updateScrollProgressTarget()
@@ -98,6 +115,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.logo-wrap {
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  width: 30vh;
+  height: 30vh;
+  transform: translate(-50%, -50%);
+}
+
 .my-name {
   text-transform: uppercase;
 }

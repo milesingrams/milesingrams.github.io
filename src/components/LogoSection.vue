@@ -1,10 +1,5 @@
 <template>
   <section class="logo-section">
-    <div class="logo-wrap">
-      <keep-alive>
-        <logo v-if="inViewport" :effect="effect" :color="color" :progress="progress"></logo>
-      </keep-alive>
-    </div>
     <div class="logo-section-content">
       <slot></slot>
     </div>
@@ -16,30 +11,7 @@ import Logo from '~/components/Logo'
 
 export default {
   name: 'LogoSection',
-  props: ['effect', 'color', 'progress'],
-  components: {
-    Logo
-  },
-  data () {
-    return  {
-      inViewport: false
-    }
-  },
-  watch: {
-    'progress' () {
-      this.updateInViewport()
-    }
-  },
-  methods: {
-    updateInViewport () {
-      let rect = this.$el.getBoundingClientRect()
-      let height = rect.bottom - rect.top
-      this.inViewport = rect.top > -height && rect.bottom < window.innerHeight + height
-    }
-  },
-  mounted () {
-    this.updateInViewport()
-  }
+  props: ['color']
 }
 </script>
 
@@ -49,7 +21,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  clip-path: inset(0 0 0 0);
 
   &:nth-child(even) {
     background-color: #efefef;
@@ -57,16 +28,7 @@ export default {
 }
 
 .logo-section-content {
-  z-index: 1;
   padding: $spacing-s;
-}
-
-.logo-wrap {
-  position: fixed;
-  left: 50vw;
-  top: 50vh;
-  width: 30vh;
-  height: 30vh;
-  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 </style>

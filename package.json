@@ -13,6 +13,8 @@
     "include-media": "^1.4.9",
     "polygon-clipping": "^0.14.0",
     "simplex-noise": "^2.4.0",
+    "typeface-averia-serif-libre": "0.0.72",
+    "typeface-open-sans": "0.0.54",
     "typeface-raleway": "0.0.54"
   },
   "devDependencies": {
