@@ -1,6 +1,6 @@
 <template>
-  <section class="logo-section" :style="{'background-color': color}">
-    <div class="logo-section-content">
+  <section class="section" :style="{'background-color': color}">
+    <div class="section-content">
       <slot></slot>
     </div>
   </section>
@@ -16,14 +16,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo-section {
+.section {
   min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.logo-section-content {
+.section-content {
   padding: $spacing-s;
   z-index: 1;
 }

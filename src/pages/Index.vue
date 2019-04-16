@@ -54,7 +54,7 @@ export default {
       effects: ['EffectDroplets', 'EffectGradient', 'EffectSlices', 'EffectWebs'],
       effectsToView: [],
       effect: null,
-      colors: ['#4abdac', '#fc4a1a', '#f7b733', '#228ae6'],
+      colors: ['#ffffff', '#DEEEF9', '#DEF9EB'],
       scrollProgressTarget: 0,
       scrollProgress: 0,
       scrollEase: 0.1,
