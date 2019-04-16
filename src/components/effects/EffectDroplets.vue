@@ -19,11 +19,11 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        minOpacity: 0.4,
-        maxOpacity: 0.8,
+        minOpacity: 0.3,
+        maxOpacity: 0.6,
         maxDepth: 4,
-        duration: 300,
-        maxDelay: 1,
+        maxDelay: 2,
+        duration: 1,
         radius: 50,
       }
     }
@@ -64,41 +64,41 @@ export default {
       let droplet = {
         cx,
         cy,
-        radius: 0,
+        radius,
+        opacity: 0,
         depth,
         color: this.mergedOptions.color
       }
 
       if (depth === this.mergedOptions.maxDepth) {
         if (this.insidePoly([cx, cy])) {
-          droplet.opacity = this.mergedOptions.minOpacity + Math.random() * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity)
+          let newOpacity = this.mergedOptions.minOpacity + Math.random() * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity)
           this.droplets.push(droplet)
 
           this.animationTimeline.add({
             targets: droplet,
-            radius: radius,
+            opacity: [0, newOpacity],
             easing: 'easeInQuad',
-            duration: this.mergedOptions.duration
+            duration: this.mergedOptions.duration * 1000
           }, startOffset)
         }
       } else {
-        droplet.opacity = opacity
         this.droplets.push(droplet)
 
         this.animationTimeline.add({
           targets: droplet,
-          radius: radius,
+          opacity: [0, opacity],
           easing: 'easeInQuad',
-          duration: this.mergedOptions.duration
+          duration: this.mergedOptions.duration * 1000
         }, startOffset)
 
-        let delay = startOffset + this.mergedOptions.duration + Math.random() * (this.mergedOptions.maxDelay * 1000)
+        let delay = startOffset + (this.mergedOptions.duration + Math.random() * (100 - cx) * this.mergedOptions.maxDelay) * 1000
 
         this.animationTimeline.add({
           targets: droplet,
-          radius: 0,
+          opacity: 0,
           easing: 'easeOutQuad',
-          duration: this.mergedOptions.duration
+          duration: this.mergedOptions.duration * 1000
         }, delay)
 
         let halfRad = radius / 2

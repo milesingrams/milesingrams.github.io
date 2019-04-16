@@ -34,7 +34,10 @@ export default {
       effectsToView: [],
       effect: null,
       colors: ['#4abdac', '#fc4a1a', '#f7b733', '#4abdac', '#fc4a1a', '#f7b733'],
-      scrollProgress: 0
+      scrollProgressTarget: 0,
+      scrollProgress: 0,
+      scrollEase: 0.1,
+      scrollAnimation: null
     }
   },
   methods: {
@@ -48,19 +51,26 @@ export default {
       this.effect = this.effectsToView[randomIndex]
       this.effectsToView.splice(randomIndex, 1)
     },
+    updateScrollProgressTarget () {
+      this.scrollProgressTarget = 1 - (window.pageYOffset / window.innerHeight)
+    },
     updateScrollProgress () {
-      this.scrollProgress = window.pageYOffset / window.innerHeight
+      this.scrollProgress += (this.scrollProgressTarget - this.scrollProgress) * this.scrollEase
+      this.scrollAnimation = window.requestAnimationFrame(this.updateScrollProgress)
     }
   },
   created () {
-    this.rotateEffect()
-    window.addEventListener('scroll', this.updateScrollProgress)
-    window.addEventListener('resize', this.updateScrollProgress)
-    this.updateScrollProgress()
+    if (process.isClient) {
+      this.rotateEffect()
+      window.addEventListener('scroll', this.updateScrollProgressTarget)
+      window.addEventListener('resize', this.updateScrollProgressTarget)
+      this.updateScrollProgressTarget()
+      this.updateScrollProgress()
+    }
   },
   beforeDestroy () {
-    window.removeEventListener('scroll', this.updateScrollProgress)
-    window.removeEventListener('resize', this.updateScrollProgress)
+    window.removeEventListener('scroll', this.updateScrollProgressTarget)
+    window.removeEventListener('resize', this.updateScrollProgressTarget)
   },
   metaInfo: {
     title: 'Miles Ingram'

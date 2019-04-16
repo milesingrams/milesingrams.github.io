@@ -24,8 +24,10 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        minOpacity: 0.4,
-        maxOpacity: 0.8,
+        minOpacity: 0.2,
+        maxOpacity: 0.6,
+        minStrokeWidth: 1,
+        maxStrokeWidth: 2,
         numPaths: 40,
         numPointsPerPath: 6,
         maxDelay: 2,
@@ -80,7 +82,7 @@ export default {
           dString,
           color: this.mergedOptions.color,
           opacity: this.mergedOptions.minOpacity + depth * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity),
-          strokeWidth:this.mergedOptions.minStrokeWidth + depth * (this.mergedOptions.maxStrokeWidth - this.mergedOptions.minStrokeWidth),
+          strokeWidth: this.mergedOptions.minStrokeWidth + depth * (this.mergedOptions.maxStrokeWidth - this.mergedOptions.minStrokeWidth),
           dashArray: 400 * this.mergedOptions.numPointsPerPath,
           dashOffset: 400 * this.mergedOptions.numPointsPerPath
         }

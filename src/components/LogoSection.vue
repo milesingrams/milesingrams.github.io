@@ -46,7 +46,7 @@ export default {
   clip-path: inset(0 0 0 0);
 
   &:nth-child(even) {
-    background-color: #eee;
+    background-color: #efefef;
   }
 }
 
