@@ -1,11 +1,14 @@
 <template>
-  <div class="logo-section">
+  <section class="logo-section">
     <div class="logo-wrap">
       <keep-alive>
         <logo v-if="inViewport" :effect="effect" :color="color" :progress="progress"></logo>
       </keep-alive>
     </div>
-  </div>
+    <div class="logo-section-content">
+      <slot></slot>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -43,11 +46,19 @@ export default {
 <style lang="scss" scoped>
 .logo-section {
   min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   clip-path: inset(0 0 0 0);
 
   &:nth-child(even) {
     background-color: #efefef;
   }
+}
+
+.logo-section-content {
+  z-index: 1;
+  padding: $spacing-s;
 }
 
 .logo-wrap {

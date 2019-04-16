@@ -1,6 +1,21 @@
 <template>
   <Layout>
-    <logo-section class="section" :effect="effect" :color="colorAtIndex(index)" :progress="scrollProgress" v-for="(experience, index) in $page.experiences.edges" :key="index">
+    <logo-section :effect="effect" :color="colorAtIndex(0)" :progress="scrollProgress">
+      <h1 class="my-name">
+        Miles Ingram
+      </h1>
+    </logo-section>
+    <logo-section :effect="effect" :color="colorAtIndex(1)" :progress="scrollProgress">
+      <h2 class="my-pitch">
+        Bits, Bots, Bio, Battlestar Galactica
+      </h2>
+    </logo-section>
+    <logo-section :effect="effect" :color="colorAtIndex(2)" :progress="scrollProgress">
+      <h2 class="my-about">
+        NYC born and raised, I started dabbling with programming by making silly flash games and bizzare lego mindstorms.
+      </h2>
+    </logo-section>
+    <logo-section :effect="effect" :color="colorAtIndex(index + 3)" :progress="scrollProgress" v-for="(experience, index) in $page.experiences.edges" :key="index">
     </logo-section>
   </Layout>
 </template>
@@ -83,4 +98,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.my-name {
+  text-transform: uppercase;
+}
+
+.my-name, .my-pitch, .my-about {
+  font-weight: 400;
+  text-align: center;
+}
+
+.experience-section {
+}
 </style>
