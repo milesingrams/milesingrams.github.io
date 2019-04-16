@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <logo-section class="section" :effect="effect" :color="colors[index]" :progress="scrollProgress" v-for="(experience, index) in $page.experiences.edges" :key="index">
+    <logo-section class="section" :effect="effect" :color="colorAtIndex(index)" :progress="scrollProgress" v-for="(experience, index) in $page.experiences.edges" :key="index">
     </logo-section>
   </Layout>
 </template>
@@ -33,7 +33,7 @@ export default {
       effects: ['EffectDroplets', 'EffectGradient', 'EffectSlices', 'EffectWebs'],
       effectsToView: [],
       effect: null,
-      colors: ['#4abdac', '#fc4a1a', '#f7b733', '#4abdac', '#fc4a1a', '#f7b733'],
+      colors: ['#4abdac', '#fc4a1a', '#f7b733', '#228ae6'],
       scrollProgressTarget: 0,
       scrollProgress: 0,
       scrollEase: 0.1,
@@ -41,6 +41,10 @@ export default {
     }
   },
   methods: {
+    colorAtIndex (index) {
+      let moduloIndex = index % this.colors.length
+      return this.colors[moduloIndex]
+    },
     rotateEffect () {
       if (!this.effectsToView.length) {
         this.effectsToView = this.effects.filter((effect) => {
@@ -52,7 +56,7 @@ export default {
       this.effectsToView.splice(randomIndex, 1)
     },
     updateScrollProgressTarget () {
-      this.scrollProgressTarget = 1 - (window.pageYOffset / window.innerHeight)
+      this.scrollProgressTarget = 1 - (window.pageYOffset / (document.body.clientHeight - window.innerHeight))
     },
     updateScrollProgress () {
       this.scrollProgress += (this.scrollProgressTarget - this.scrollProgress) * this.scrollEase
