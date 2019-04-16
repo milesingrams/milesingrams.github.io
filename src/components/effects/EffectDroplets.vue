@@ -19,7 +19,7 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        minOpacity: 0.3,
+        minOpacity: 0.4,
         maxOpacity: 0.6,
         maxDepth: 4,
         maxDelay: 2,

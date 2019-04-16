@@ -1,26 +1,26 @@
 <template>
   <Layout>
     <div class="logo-wrap">
-      <logo :effect="effect" :color="color" :progress="scrollProgress"></logo>
+      <logo :effect="effect" color="#000000" :progress="scrollProgress"></logo>
     </div>
 
-    <logo-section>
+    <color-section :color="colorAtIndex(0)">
       <h1 class="my-name">
         Miles Ingram
       </h1>
-    </logo-section>
-    <logo-section>
+    </color-section>
+    <color-section :color="colorAtIndex(1)">
       <h2 class="my-pitch">
         Bits, Bots, Bio, Battlestar Galactica
       </h2>
-    </logo-section>
-    <logo-section>
+    </color-section>
+    <color-section :color="colorAtIndex(2)">
       <h2 class="my-about">
         NYC born and raised, I started dabbling with programming by making silly flash games and bizzare lego mindstorms.
       </h2>
-    </logo-section>
-    <logo-section v-for="(experience, index) in $page.experiences.edges" :key="index">
-    </logo-section>
+    </color-section>
+    <color-section v-for="(experience, index) in $page.experiences.edges" :color="colorAtIndex(3 + index)" :key="index">
+  </color-section>
   </Layout>
 </template>
 
@@ -42,21 +42,19 @@
 
 <script>
 import Logo from '~/components/Logo'
-import LogoSection from '~/components/LogoSection'
+import ColorSection from '~/components/ColorSection'
 
 export default {
   components: {
     Logo,
-    LogoSection
+    ColorSection
   },
   data () {
     return {
       effects: ['EffectDroplets', 'EffectGradient', 'EffectSlices', 'EffectWebs'],
       effectsToView: [],
       effect: null,
-      colors: ['#fc4a1a', '#f7b733', '#228ae6'],
-      colorsToView: [],
-      color: null,
+      colors: ['#4abdac', '#fc4a1a', '#f7b733', '#228ae6'],
       scrollProgressTarget: 0,
       scrollProgress: 0,
       scrollEase: 0.1,
@@ -77,15 +75,6 @@ export default {
       let randomEffectIndex = Math.floor(Math.random() * this.effectsToView.length)
       this.effect = this.effectsToView[randomEffectIndex]
       this.effectsToView.splice(randomEffectIndex, 1)
-
-      if (!this.colorsToView.length) {
-        this.colorsToView = this.colors.filter((color) => {
-          return color !== this.color
-        })
-      }
-      let randomColorIndex = Math.floor(Math.random() * this.colorsToView.length)
-      this.color = this.colorsToView[randomColorIndex]
-      this.colorsToView.splice(randomColorIndex, 1)
     },
     updateScrollProgressTarget () {
       this.scrollProgressTarget = Math.max(1 - (window.pageYOffset / (window.innerHeight * 1)), 0)

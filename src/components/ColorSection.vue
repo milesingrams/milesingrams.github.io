@@ -1,5 +1,5 @@
 <template>
-  <section class="logo-section">
+  <section class="logo-section" :style="{'background-color': color}">
     <div class="logo-section-content">
       <slot></slot>
     </div>
@@ -21,10 +21,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &:nth-child(even) {
-    background-color: #efefef;
-  }
 }
 
 .logo-section-content {
