@@ -5,21 +5,29 @@
     </div>
 
     <color-section :color="colorAtIndex(0)">
-      <h1 class="my-name">
-        Miles Ingram
-      </h1>
+      <h2 class="about-text">
+        Hi, I'm Miles
+      </h2>
     </color-section>
     <color-section :color="colorAtIndex(1)">
-      <h2 class="my-pitch">
-        Bits, Bots, Bio, Battlestar Galactica
+      <h2 class="about-text">
+        I Like
       </h2>
+      <div>
+        <span class="tag">Bits</span> <span class="tag">Bots</span> <span class="tag">Bio</span> <span class="tag">Battlestar Galactica</span>
+      </div>
     </color-section>
     <color-section :color="colorAtIndex(2)">
-      <h2 class="my-about">
-        NYC born and raised, I started dabbling with programming by making silly flash games and bizzare lego mindstorms.
+      <h2 class="about-text">
+        NYC born and raised, I started dabbling with programming at a young age by making silly Flash games and clunky Lego Mindstorms.
       </h2>
     </color-section>
-    <color-section v-for="(experience, index) in $page.experiences.edges" :color="colorAtIndex(3 + index)" :key="index">
+    <color-section :color="colorAtIndex(3)">
+      <h2 class="about-text">
+        Many years later I'm still doing the same thing, just with MUCH cooler equiptment.
+      </h2>
+    </color-section>
+    <color-section v-for="(experience, index) in $page.experiences.edges" :color="colorAtIndex(4 + index)" :key="index">
   </color-section>
   </Layout>
 </template>
@@ -54,7 +62,7 @@ export default {
       effects: ['EffectDroplets', 'EffectGradient', 'EffectSlices', 'EffectWebs'],
       effectsToView: [],
       effect: null,
-      colors: ['#ffffff', '#DEEEF9', '#DEF9EB'],
+      colors: ['#FFFFFF', '#DEEEF9', '#DEF9EB'],
       scrollProgressTarget: 0,
       scrollProgress: 0,
       scrollEase: 0.1,
@@ -77,7 +85,7 @@ export default {
       this.effectsToView.splice(randomEffectIndex, 1)
     },
     updateScrollProgressTarget () {
-      this.scrollProgressTarget = Math.max(1 - (window.pageYOffset / (window.innerHeight * 1)), 0)
+      this.scrollProgressTarget = Math.max(1 - window.pageYOffset / window.innerHeight, 0)
     },
     updateScrollProgress () {
       this.scrollProgress += (this.scrollProgressTarget - this.scrollProgress) * this.scrollEase
@@ -113,13 +121,18 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-.my-name {
-  text-transform: uppercase;
+.about-text {
+  font-weight: 400;
+  font-family: 'Averia Serif Libre';
+  text-align: center;
 }
 
-.my-name, .my-pitch, .my-about {
-  font-weight: 400;
-  text-align: center;
+.tag {
+  color: white;
+  padding: $spacing-xxxs $spacing-xxs;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  background-color: black;
 }
 
 .experience-section {

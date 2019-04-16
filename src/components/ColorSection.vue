@@ -24,7 +24,8 @@ export default {
 }
 
 .section-content {
-  padding: $spacing-s;
+  max-width: 900px;
+  padding: 80px $spacing-s;
   z-index: 1;
 }
 </style>

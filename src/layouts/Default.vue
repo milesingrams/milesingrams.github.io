@@ -11,7 +11,7 @@
 }
 
 .texture {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   width: 100%;
