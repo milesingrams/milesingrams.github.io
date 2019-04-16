@@ -49,7 +49,7 @@ export default {
       this.effectsToView.splice(randomIndex, 1)
     },
     updateScrollProgress () {
-      this.scrollProgress = 1 - window.pageYOffset / window.innerHeight
+      this.scrollProgress = window.pageYOffset / window.innerHeight
     }
   },
   created () {

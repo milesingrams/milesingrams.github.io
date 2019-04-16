@@ -1,7 +1,9 @@
 <template>
   <div class="logo-section">
     <div class="logo-wrap">
-      <logo :effect="effect" :color="color" :progress="progress"></logo>
+      <keep-alive>
+        <logo v-if="inViewport" :effect="effect" :color="color" :progress="progress"></logo>
+      </keep-alive>
     </div>
   </div>
 </template>
@@ -14,6 +16,26 @@ export default {
   props: ['effect', 'color', 'progress'],
   components: {
     Logo
+  },
+  data () {
+    return  {
+      inViewport: false
+    }
+  },
+  watch: {
+    'progress' () {
+      this.updateInViewport()
+    }
+  },
+  methods: {
+    updateInViewport () {
+      let rect = this.$el.getBoundingClientRect()
+      let height = rect.bottom - rect.top
+      this.inViewport = rect.top > -height && rect.bottom < window.innerHeight + height
+    }
+  },
+  mounted () {
+    this.updateInViewport()
   }
 }
 </script>

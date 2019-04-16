@@ -19,12 +19,12 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
+        minOpacity: 0.4,
+        maxOpacity: 0.8,
         maxDepth: 4,
         duration: 300,
         maxDelay: 1,
         radius: 50,
-        minOpacity: 0.4,
-        maxOpacity: 0.8
       }
     }
   },
@@ -125,7 +125,7 @@ export default {
       autoplay: false
     })
 
-    this.createDroplet(50, 50, this.mergedOptions.radius, 1, 0, 0)
+    this.createDroplet(50, 50, this.mergedOptions.radius, 0.5, 0, 0)
     this.updateSeek()
   }
 }

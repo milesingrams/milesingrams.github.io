@@ -24,8 +24,10 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        numPaths: 75,
-        numPointsPerPath: 3,
+        minOpacity: 0.4,
+        maxOpacity: 0.8,
+        numPaths: 40,
+        numPointsPerPath: 6,
         maxDelay: 2,
         duration: 1,
         radius: 75
@@ -77,8 +79,8 @@ export default {
         let path = {
           dString,
           color: this.mergedOptions.color,
-          opacity: 0.2 + depth * 0.6,
-          strokeWidth: 1 + depth,
+          opacity: this.mergedOptions.minOpacity + depth * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity),
+          strokeWidth:this.mergedOptions.minStrokeWidth + depth * (this.mergedOptions.maxStrokeWidth - this.mergedOptions.minStrokeWidth),
           dashArray: 400 * this.mergedOptions.numPointsPerPath,
           dashOffset: 400 * this.mergedOptions.numPointsPerPath
         }

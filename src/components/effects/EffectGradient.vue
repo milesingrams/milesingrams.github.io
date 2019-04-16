@@ -9,7 +9,7 @@
       </defs>
     </svg>
     <div class="effect-canvas-wrap">
-      <canvas class="effect-canvas" ref="canvas" width="30" height="30"></canvas>
+      <canvas class="effect-canvas" ref="canvas" width="40" height="40"></canvas>
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        noiseScale: 18,
+        noiseScale: 15,
         noiseSpeed: 1
       }
     }
@@ -55,6 +55,11 @@ export default {
       return rgb
     }
   },
+  watch: {
+    'progress' () {
+      this.draw()
+    }
+  },
   methods: {
     draw () {
       for (let x = 0; x <= this.$refs.canvas.width; x++) {
@@ -62,13 +67,12 @@ export default {
         for (let y = 0; y <= this.$refs.canvas.height; y++) {
           let yPos = y / this.mergedOptions.noiseScale
           let noise = this.noise.noise3D(xPos, yPos, this.progress * this.mergedOptions.noiseSpeed)
-          let alpha = noise * this.progress
+          let alpha = Math.abs(noise) * this.progress
           this.context.fillStyle = `rgba(${this.colorRGB}, ${alpha})`
           this.context.clearRect(x, y, 1, 1)
           this.context.fillRect(x, y, 1, 1)
         }
       }
-      this.animationFrame = requestAnimationFrame(this.draw)
     },
     run () {
       this.draw()
@@ -78,12 +82,7 @@ export default {
     let bodyStyle = getComputedStyle(document.body)
     this.noise = new SimplexNoise()
     this.context = this.$refs.canvas.getContext('2d')
-    this.run()
-  },
-  beforeDestroy () {
-    if (this.animationFrame) {
-      cancelAnimationFrame(this.animationFrame)
-    }
+    this.draw()
   }
 }
 </script>
