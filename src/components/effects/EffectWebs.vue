@@ -29,7 +29,7 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        fillOpacity: 0.5,
+        fillOpacity: 0.6,
         strokeOpacity: 1,
         minStrokeWidth: 2,
         maxStrokeWidth: 8,
@@ -72,14 +72,6 @@ export default {
         autoplay: false
       })
 
-      this.fillOpacity = 0
-      this.animationTimeline.add({
-        targets: this,
-        fillOpacity: this.mergedOptions.fillOpacity,
-        easing: 'easeOutQuad',
-        duration: this.mergedOptions.duration * 1000 / 2
-      })
-
       this.paths = []
       for (let i = 0; i < this.mergedOptions.numPaths; i++) {
         let dString = `M${this.randomPointPerimeter().join(',')}`
@@ -106,6 +98,14 @@ export default {
 
         this.paths.push(path)
       }
+
+      this.fillOpacity = 0
+      this.animationTimeline.add({
+        targets: this,
+        fillOpacity: this.mergedOptions.fillOpacity,
+        easing: 'easeOutQuad',
+        duration: this.animationTimeline.duration
+      }, 0)
     }
   },
   created () {
