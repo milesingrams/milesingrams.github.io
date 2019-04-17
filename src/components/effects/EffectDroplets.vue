@@ -8,6 +8,7 @@
 
 <script>
 import anime from 'animejs'
+import insidePoly from 'robust-point-in-polygon'
 
 export default {
   name: 'EffectDroplets',
@@ -42,17 +43,12 @@ export default {
     updateSeek () {
       this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
     },
-    insidePoly (point) {
-  		let insidePoly = false
-  		for (let i = 0, j = this.mergedOptions.poly.length - 1; i < this.mergedOptions.poly.length; j = i++) {
-  			let xi = this.mergedOptions.poly[i][0]
-        let yi = this.mergedOptions.poly[i][1]
-  			let xj = this.mergedOptions.poly[j][0]
-        let yj = this.mergedOptions.poly[j][1]
-  			let intersect = ((yi > point[1]) !== (yj > point[1])) && (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi)
-  			if (intersect) insidePoly = !insidePoly
-  		}
-  		return insidePoly
+    inside (point) {
+      if (this.mergedOptions.poly) {
+        return insidePoly(this.mergedOptions.poly, point) < 1
+      } else {
+        return false
+      }
   	},
     getCorners (droplet, radius) {
       return [
@@ -73,7 +69,7 @@ export default {
       }
 
       if (depth === this.mergedOptions.maxDepth) {
-        if (this.insidePoly([cx, cy])) {
+        if (this.inside([cx, cy])) {
           let newOpacity = this.mergedOptions.minOpacity + Math.random() * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity)
           this.droplets.push(droplet)
 
@@ -108,7 +104,7 @@ export default {
 
         let cornersInM = 0
         for (let i = 0; i < corners.length; i++) {
-          if (this.insidePoly(corners[i])) {
+          if (this.inside(corners[i])) {
             cornersInM++
           }
         }

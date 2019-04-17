@@ -12,6 +12,7 @@
     "gridsome": "^0.5.7",
     "include-media": "^1.4.9",
     "polygon-clipping": "^0.14.0",
+    "robust-point-in-polygon": "^1.0.3",
     "simplex-noise": "^2.4.0",
     "typeface-averia-serif-libre": "^0.0.72",
     "typeface-lato": "^0.0.54"
