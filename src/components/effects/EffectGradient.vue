@@ -100,6 +100,7 @@ export default {
 }
 
 .effect-canvas {
+  display: block;
   width: 100%;
   height: 100%;
   filter: blur(5px);

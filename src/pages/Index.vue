@@ -32,13 +32,9 @@
           <h2 class="about-text">
             NYC born and raised, I started dabbling with programming at a young age by making silly Flash games and clunky Lego Mindstorms.
           </h2>
-        </div>
-      </section>
-
-      <section class="color-section">
-        <div class="section-content">
+          <div class="divider-line"></div>
           <h2 class="about-text">
-            Many years later I'm still doing the same thing, just with MUCH cooler equiptment.
+            Many years later I'm still doing the same thing, just with MUCH cooler equipment.
           </h2>
         </div>
       </section>
@@ -150,7 +146,7 @@ export default {
       this.effectsToView.splice(randomEffectIndex, 1)
     },
     updateScrollProgressTarget () {
-      this.scrollProgressTarget = Math.max(1 - window.pageYOffset / window.innerHeight / 1.5, 0)
+      this.scrollProgressTarget = Math.max(1 - window.pageYOffset / window.innerHeight / 1, 0)
     },
     updateScrollProgress () {
       this.scrollProgress += (this.scrollProgressTarget - this.scrollProgress) * this.scrollEase
@@ -215,12 +211,28 @@ export default {
   font-weight: 400;
   font-family: 'Averia Serif Libre';
   text-align: center;
+  margin: 0;
+}
+
+.divider-line {
+  width: 100%;
+  padding: $spacing-m 0;
+
+  &::before {
+    position: absolute;
+    content: '';
+    left: 50%;
+    width: 60px;
+    transform: translateX(-50%);
+    border-bottom: 1px solid black;
+  }
 }
 
 .tag-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: $spacing-xxs;
 
   .tag {
     color: white;
@@ -233,21 +245,24 @@ export default {
 .beliefs-list {
   display: flex;
   flex-wrap: wrap;
+  margin-top: $spacing-xs;
 
   .belief {
     width: 280px;
     margin: $spacing-xxs;
-    padding: $spacing-xs $spacing-s;
+    padding: $spacing-s;
     border: 1px solid black;
     flex-grow: 1;
 
     .belief-header {
+      line-height: 1.25;
       font-weight: 600;
       margin-bottom: $spacing-xxxs;
     }
 
     .belief-text {
-      padding: 0;
+      font-size: 0.9rem;
+      margin: 0;
     }
   }
 }
