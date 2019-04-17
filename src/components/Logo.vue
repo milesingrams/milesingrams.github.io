@@ -140,6 +140,7 @@ export default {
 
 <style lang="scss" scoped>
 .logo {
+  cursor: pointer;
   width: 100%;
   height: 100%;
 }
@@ -170,6 +171,7 @@ export default {
       width: 100%;
       text-align: center;
       line-height: 3rem;
+      opacity: 0.7;
     }
   }
 
