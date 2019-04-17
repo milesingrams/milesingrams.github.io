@@ -29,7 +29,7 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        fillOpacity: 0.6,
+        fillOpacity: 0.55,
         strokeOpacity: 1,
         minStrokeWidth: 2,
         maxStrokeWidth: 8,
