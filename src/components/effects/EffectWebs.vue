@@ -67,15 +67,19 @@ export default {
       return [x, y]
     },
     generate () {
-      this.paths = []
+      this.animationTimeline = anime.timeline({
+        autoplay: false
+      })
 
       this.fillOpacity = 0
       this.animationTimeline.add({
         targets: this,
         fillOpacity: this.mergedOptions.fillOpacity,
+        easing: 'easeOutQuad',
         duration: this.mergedOptions.duration * 1000 / 2
       })
 
+      this.paths = []
       for (let i = 0; i < this.mergedOptions.numPaths; i++) {
         let dString = `M${this.randomPointPerimeter().join(',')}`
         for (let j = 0; j < this.mergedOptions.numPointsPerPath; j++) {
@@ -95,6 +99,7 @@ export default {
           targets: path,
           dashOffset: 500 * this.mergedOptions.numPointsPerPath,
           strokeWidth: this.mergedOptions.minStrokeWidth,
+          easing: 'easeOutQuad',
           duration: this.mergedOptions.duration * 1000
         }, Math.random() * this.mergedOptions.maxDelay * 1000)
 
@@ -103,10 +108,6 @@ export default {
     }
   },
   created () {
-    this.animationTimeline = anime.timeline({
-      autoplay: false,
-      easing: 'easeOutQuad'
-    })
     this.generate()
     this.updateSeek()
   }

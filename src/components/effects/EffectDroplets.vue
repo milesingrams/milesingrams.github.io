@@ -22,8 +22,8 @@ export default {
         minOpacity: 0.4,
         maxOpacity: 0.6,
         maxDepth: 4,
-        maxDelay: 2,
-        duration: 1,
+        maxDelay: 1,
+        duration: 0.1,
         radius: 50,
       }
     }
@@ -92,7 +92,7 @@ export default {
           duration: this.mergedOptions.duration * 1000
         }, startOffset)
 
-        let delay = startOffset + (this.mergedOptions.duration + Math.random() * (100 - cx) * this.mergedOptions.maxDelay) * 1000
+        let delay = startOffset + (this.mergedOptions.duration + Math.random() * this.mergedOptions.maxDelay) * 1000
 
         this.animationTimeline.add({
           targets: droplet,
@@ -120,14 +120,13 @@ export default {
       }
     },
     generate () {
+      this.animationTimeline = anime.timeline({
+        autoplay: false
+      })
       this.createDroplet(50, 50, this.mergedOptions.radius, 0.5, 0, 0)
     }
   },
   created () {
-    this.animationTimeline = anime.timeline({
-      autoplay: false
-    })
-
     this.generate()
     this.updateSeek()
   }

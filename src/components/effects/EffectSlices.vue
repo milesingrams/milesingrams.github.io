@@ -23,8 +23,8 @@ export default {
         opacity: 0.2,
         numSlices: 20,
         numPointsPerPolygon: 3,
-        maxDelay: 4,
-        duration: 1,
+        maxDelay: 3,
+        duration: 0.5,
         radius: 75
       }
     }
@@ -56,6 +56,10 @@ export default {
       return [x, y]
     },
     generate () {
+      this.animationTimeline = anime.timeline({
+        autoplay: false
+      })
+
       this.slices = []
 
       for (let i = 0; i < this.mergedOptions.numSlices; i++) {
@@ -98,7 +102,8 @@ export default {
           translateX: [(startingPoint[0] - 50) / 3, slice.translateX],
           translateY: [(startingPoint[1] - 50) / 3, slice.translateY],
           scale: [1.5, slice.scale],
-          duration: this.mergedOptions.duration * 1000,
+          easing: 'easeOutQuad',
+          duration: this.mergedOptions.duration * 1000
         }, Math.random() * this.mergedOptions.maxDelay * 1000)
 
         this.slices.push(slice)
@@ -106,10 +111,6 @@ export default {
     }
   },
   created () {
-    this.animationTimeline = anime.timeline({
-      autoplay: false,
-      easing: 'easeOutQuad'
-    })
     this.generate()
     this.updateSeek()
   }
