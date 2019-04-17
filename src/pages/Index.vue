@@ -74,7 +74,7 @@
                 Make it Fun
               </h3>
               <p class="belief-text">
-                Work is only as enjoyable as you make it. Finding ways to get excited about a problem can both inspire you and those around you to skip the procrastination and face the challenge head-on.
+                Work is only as enjoyable as you make it. Finding ways to get excited about a problem can both inspire you and your team to skip the procrastination and face the challenge head-on.
               </p>
             </div>
           </div>
