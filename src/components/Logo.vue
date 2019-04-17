@@ -183,7 +183,7 @@ export default {
       left: 0;
       width: 100%;
       text-align: center;
-      line-height: 38px;
+      line-height: 40px;
       opacity: 0.7;
     }
   }
