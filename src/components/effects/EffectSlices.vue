@@ -55,7 +55,7 @@ export default {
       let y = Math.floor(50 + this.mergedOptions.radius * Math.sin(rand))
       return [x, y]
     },
-    generateSlices () {
+    generate () {
       this.slices = []
 
       for (let i = 0; i < this.mergedOptions.numSlices; i++) {
@@ -110,7 +110,7 @@ export default {
       autoplay: false,
       easing: 'easeOutQuad'
     })
-    this.generateSlices()
+    this.generate()
     this.updateSeek()
   }
 }

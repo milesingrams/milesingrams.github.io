@@ -118,6 +118,9 @@ export default {
           }
         }
       }
+    },
+    generate () {
+      this.createDroplet(50, 50, this.mergedOptions.radius, 0.5, 0, 0)
     }
   },
   created () {
@@ -125,7 +128,7 @@ export default {
       autoplay: false
     })
 
-    this.createDroplet(50, 50, this.mergedOptions.radius, 0.5, 0, 0)
+    this.generate()
     this.updateSeek()
   }
 }
@@ -136,11 +139,5 @@ export default {
   width: 100%;
   height: 100%;
   overflow: visible;
-}
-
-.droplets-wrap {
-}
-
-.droplet {
 }
 </style>

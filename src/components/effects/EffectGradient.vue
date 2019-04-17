@@ -24,9 +24,6 @@ export default {
     return {
       context: null,
       noise: null,
-      animationFrame: null,
-      colorPrimary: null,
-      colorSecondary: null,
       baseOptions: {
         poly: null,
         color: 'white',
@@ -74,13 +71,9 @@ export default {
           this.context.fillRect(x, y, 1, 1)
         }
       }
-    },
-    run () {
-      this.draw()
     }
   },
   mounted () {
-    let bodyStyle = getComputedStyle(document.body)
     this.noise = new SimplexNoise()
     this.context = this.$refs.canvas.getContext('2d')
     this.draw()
