@@ -135,7 +135,7 @@ export default {
       let moduloIndex = index % this.colors.length
       return this.colors[moduloIndex]
     },
-    rotateLogo () {
+    rotateEffect () {
       if (!this.effectsToView.length) {
         if (!this.effect) {
           let previousEffect = localStorage.getItem('previousEffect', this.effect)
@@ -162,7 +162,7 @@ export default {
   },
   created () {
     if (process.isClient) {
-      this.rotateLogo()
+      this.rotateEffect()
       window.addEventListener('scroll', this.updateScrollProgressTarget)
       window.addEventListener('resize', this.updateScrollProgressTarget)
       this.updateScrollProgressTarget()

@@ -2,8 +2,10 @@
   <svg class="effect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <defs v-if="mergedOptions.poly">
       <mask class="effect-mask" id="effect-mask">
-        <circle cx="50" cy="50" :r="mergedOptions.radius" fill="white"></circle>
-        <path class="path" v-for="(path, index) in paths" :d="path.dString" stroke="black" :opacity="path.opacity" :stroke-width="path.strokeWidth" :stroke-dasharray="path.dashArray" :stroke-dashoffset="path.dashOffset" vector-effect="non-scaling-stroke" :key="index"></path>
+        <circle class="mask-circle" cx="50" cy="50" :r="mergedOptions.radius"></circle>
+        <g class="paths-wrap">
+          <path class="path" v-for="(path, index) in paths" :d="path.dString" :opacity="path.opacity" :stroke-width="path.strokeWidth" :stroke-dasharray="path.dashArray" :stroke-dashoffset="path.dashOffset" vector-effect="non-scaling-stroke" :key="index"></path>
+        </g>
       </mask>
     </defs>
 
@@ -28,11 +30,10 @@ export default {
         poly: null,
         color: 'white',
         fillOpacity: 0.5,
-        minStrokeOpacity: 0.5,
-        maxStrokeOpacity: 1,
+        strokeOpacity: 1,
         minStrokeWidth: 2,
         maxStrokeWidth: 8,
-        numPaths: 60,
+        numPaths: 50,
         numPointsPerPath: 10,
         maxDelay: 2,
         duration: 1,
@@ -89,7 +90,7 @@ export default {
         let path = {
           dString,
           color: this.mergedOptions.color,
-          opacity: this.mergedOptions.minStrokeOpacity + Math.random() * (this.mergedOptions.maxStrokeOpacity - this.mergedOptions.minStrokeOpacity),
+          opacity: this.mergedOptions.strokeOpacity,
           strokeWidth: this.mergedOptions.maxStrokeWidth,
           dashArray: 500 * this.mergedOptions.numPointsPerPath,
           dashOffset: 0
@@ -121,8 +122,12 @@ export default {
   overflow: visible;
 }
 
+.mask-circle {
+  fill: white;
+}
+
 .path {
   fill: none;
-  stroke-linecap: round;
+  stroke: black;
 }
 </style>
