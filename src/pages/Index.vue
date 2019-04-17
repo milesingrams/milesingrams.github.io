@@ -47,18 +47,18 @@
           <div class="beliefs-list">
             <div class="belief">
               <h3 class="belief-header">
-                Read the Docs
+                Read Up
               </h3>
               <p class="belief-text">
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                Sure, jumping right in works sometimes, but a little reading goes a long way. Before jumping into something new I want to know the basics and best practices first. I'll be thankful for it in the long run.
               </p>
             </div>
             <div class="belief">
               <h3 class="belief-header">
-                Plan, Try, Revisit
+                Hack if you must
               </h3>
               <p class="belief-text">
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                Most things can be done the <i>right</i> way. But sometimes, to solve an atypical problem within a limited framework you gotta shush the perfectionist and channel Dr. Frankenstein.
               </p>
             </div>
             <div class="belief">
@@ -66,7 +66,7 @@
                 Selectively Optimize
               </h3>
               <p class="belief-text">
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                5% faster isn't worth it if it takes you 500% longer. Particularly processor-hungry code needs to be addressed, but don't spend an hour sharpening your butter knife.
               </p>
             </div>
             <div class="belief">
@@ -74,7 +74,7 @@
                 Make it Fun
               </h3>
               <p class="belief-text">
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+
               </p>
             </div>
           </div>

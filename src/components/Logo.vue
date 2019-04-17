@@ -1,5 +1,5 @@
 <template>
-  <div class="logo" :class="{'no-pointer-events': scrollY > 20}" @click="onLogoClick">
+  <div class="logo" :class="{'no-pointer-events': !atPageTop}" @click="onLogoClick">
     <client-only>
       <transition appear name="fadeInOut" mode="out-in">
         <component :is="effect" :progress="progress" :options="{ poly, color }"></component>
@@ -40,6 +40,7 @@ export default {
       animationEase: 0.1,
       animationPageCoverage: 1,
       scrollY: 0,
+      logoClicked: false,
       foldUpAnimation: null,
       poly: [
         [0, 0],
@@ -63,6 +64,18 @@ export default {
       } else {
         return this.animationProgress
       }
+    },
+    atPageTop () {
+      if (this.scrollY < 20) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
+  watch: {
+    'atPageTop' () {
+      this.updateFoldUpAnimation()
     }
   },
   methods: {
@@ -87,17 +100,21 @@ export default {
     onWindowScrollResize () {
       this.scrollY = window.pageYOffset
       this.animationProgressTarget = Math.min(window.pageYOffset / (window.innerHeight * this.animationPageCoverage), 1)
-      this.updateFoldUpAnimation()
     },
     updateScrollProgress () {
       this.animationProgress += (this.animationProgressTarget - this.animationProgress) * this.animationEase
       window.requestAnimationFrame(this.updateScrollProgress)
     },
     onLogoClick () {
+      this.logoClicked = true
       this.rotateEffect()
+      this.updateFoldUpAnimation()
     },
     updateFoldUpAnimation () {
-      if (!this.foldUpAnimation) {
+      if (this.foldUpAnimation) {
+        this.foldUpAnimation.pause()
+      }
+      if (this.atPageTop && !this.logoClicked) {
         this.foldUpAnimation = anime({
           targets: this.$refs.foldUp,
           height: '15%',
@@ -105,22 +122,16 @@ export default {
           delay: 3000,
           endDelay: 700,
           duration: 300,
-          direction: 'alternate',
-          autoplay: false
+          direction: 'alternate'
+        })
+      } else {
+        this.foldUpAnimation = anime({
+          targets: this.$refs.foldUp,
+          height: 0,
+          easing: 'easeInOutQuad',
+          duration: 300
         })
       }
-      if (this.scrollY < 20) {
-        this.foldUpAnimation.restart()
-        this.foldUpAnimation.play()
-      } else {
-        this.foldUpAnimation.restart()
-        this.foldUpAnimation.pause()
-      }
-    }
-  },
-  created () {
-    if (process.isClient) {
-      this.rotateEffect()
     }
   },
   mounted () {
@@ -129,6 +140,8 @@ export default {
       window.addEventListener('resize', this.onWindowScrollResize)
       this.onWindowScrollResize()
       this.updateScrollProgress()
+      this.rotateEffect()
+      this.updateFoldUpAnimation()
     }
   },
   beforeDestroy () {
@@ -170,7 +183,7 @@ export default {
       left: 0;
       width: 100%;
       text-align: center;
-      line-height: 3rem;
+      line-height: 38px;
       opacity: 0.7;
     }
   }
