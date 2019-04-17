@@ -1,7 +1,7 @@
 <template>
   <svg class="effect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <g class="slices-wrap">
-      <path class="slice" v-for="(slice, index) in slices" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :style="{transform: `translate3d(${slice.translateX}px, ${slice.translateY}px, 0px) scale(${slice.scale})`}" :key="index"></path>
+      <path class="slice" v-for="(slice, index) in slices" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :style="{'transform': `translate3d(${slice.translateX}px, ${slice.translateY}px, 0px) scale(${slice.scale})`}" :key="index"></path>
     </g>
   </svg>
 </template>

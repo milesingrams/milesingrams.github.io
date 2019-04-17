@@ -1,12 +1,12 @@
 <template>
   <Layout>
     <div class="logo-wrap">
-      <logo :effect="effect" color="#000000" :progress="scrollProgress"></logo>
+      <logo color="#000000"></logo>
     </div>
 
     <div class="sections">
       <section class="color-section">
-        <div class="section-content">
+        <div class="section-content no-pointer-events">
           <h2 class="about-text">
             Hi, I'm Miles
           </h2>
@@ -14,7 +14,7 @@
       </section>
 
       <section class="color-section">
-        <div class="section-content">
+        <div class="section-content no-pointer-events">
           <h2 class="about-text">
             I Like
           </h2>
@@ -47,7 +47,7 @@
           <div class="beliefs-list">
             <div class="belief">
               <h3 class="belief-header">
-                Belief Header
+                Read the Docs
               </h3>
               <p class="belief-text">
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -55,7 +55,7 @@
             </div>
             <div class="belief">
               <h3 class="belief-header">
-                Belief Header
+                Plan, Try, Revisit
               </h3>
               <p class="belief-text">
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -63,7 +63,7 @@
             </div>
             <div class="belief">
               <h3 class="belief-header">
-                Belief Header
+                Selectively Optimize
               </h3>
               <p class="belief-text">
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -71,7 +71,7 @@
             </div>
             <div class="belief">
               <h3 class="belief-header">
-                Belief Header
+                Make it Fun
               </h3>
               <p class="belief-text">
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -120,58 +120,8 @@ export default {
   },
   data () {
     return {
-      effects: ['EffectDroplets', 'EffectGradient', 'EffectSlices', 'EffectWebs'],
-      effectsToView: [],
-      effect: null,
       colors: ['#FFFFFF', '#DEEEF9', '#DEF9EB'],
-      scrollProgressTarget: 0,
-      scrollProgress: 0,
-      scrollEase: 0.1,
-      scrollAnimation: null
     }
-  },
-  methods: {
-    colorAtIndex (index) {
-      let moduloIndex = index % this.colors.length
-      return this.colors[moduloIndex]
-    },
-    rotateEffect () {
-      if (!this.effectsToView.length) {
-        if (!this.effect) {
-          let previousEffect = localStorage.getItem('previousEffect', this.effect)
-          if (previousEffect) {
-            this.effect = previousEffect
-          }
-        }
-        this.effectsToView = this.effects.filter((effect) => {
-          return effect !== this.effect
-        })
-      }
-      let randomEffectIndex = Math.floor(Math.random() * this.effectsToView.length)
-      this.effect = this.effectsToView[randomEffectIndex]
-      this.effectsToView.splice(randomEffectIndex, 1)
-      localStorage.setItem('previousEffect', this.effect)
-    },
-    updateScrollProgressTarget () {
-      this.scrollProgressTarget = Math.max(1 - window.pageYOffset / window.innerHeight / 1, 0)
-    },
-    updateScrollProgress () {
-      this.scrollProgress += (this.scrollProgressTarget - this.scrollProgress) * this.scrollEase
-      this.scrollAnimation = window.requestAnimationFrame(this.updateScrollProgress)
-    }
-  },
-  created () {
-    if (process.isClient) {
-      this.rotateEffect()
-      window.addEventListener('scroll', this.updateScrollProgressTarget)
-      window.addEventListener('resize', this.updateScrollProgressTarget)
-      this.updateScrollProgressTarget()
-      this.updateScrollProgress()
-    }
-  },
-  beforeDestroy () {
-    window.removeEventListener('scroll', this.updateScrollProgressTarget)
-    window.removeEventListener('resize', this.updateScrollProgressTarget)
   },
   metaInfo: {
     title: 'Miles Ingram'
@@ -272,8 +222,5 @@ export default {
       margin: 0;
     }
   }
-}
-
-.experience-section {
 }
 </style>
