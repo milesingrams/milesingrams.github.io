@@ -137,6 +137,12 @@ export default {
     },
     rotateLogo () {
       if (!this.effectsToView.length) {
+        if (!this.effect) {
+          let previousEffect = localStorage.getItem('previousEffect', this.effect)
+          if (previousEffect) {
+            this.effect = previousEffect
+          }
+        }
         this.effectsToView = this.effects.filter((effect) => {
           return effect !== this.effect
         })
@@ -144,6 +150,7 @@ export default {
       let randomEffectIndex = Math.floor(Math.random() * this.effectsToView.length)
       this.effect = this.effectsToView[randomEffectIndex]
       this.effectsToView.splice(randomEffectIndex, 1)
+      localStorage.setItem('previousEffect', this.effect)
     },
     updateScrollProgressTarget () {
       this.scrollProgressTarget = Math.max(1 - window.pageYOffset / window.innerHeight / 1, 0)
