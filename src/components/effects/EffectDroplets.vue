@@ -45,9 +45,11 @@ export default {
     insidePoly (point) {
   		let insidePoly = false
   		for (let i = 0, j = this.mergedOptions.poly.length - 1; i < this.mergedOptions.poly.length; j = i++) {
-  			let xi = this.mergedOptions.poly[i][0], yi = this.mergedOptions.poly[i][1]
-  			let xj = this.mergedOptions.poly[j][0], yj = this.mergedOptions.poly[j][1]
-  			let intersect = ((yi > point[1]) != (yj > point[1])) && (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi)
+  			let xi = this.mergedOptions.poly[i][0]
+        let yi = this.mergedOptions.poly[i][1]
+  			let xj = this.mergedOptions.poly[j][0]
+        let yj = this.mergedOptions.poly[j][1]
+  			let intersect = ((yi > point[1]) !== (yj > point[1])) && (point[0] < (xj - xi) * (point[1] - yi) / (yj - yi) + xi)
   			if (intersect) insidePoly = !insidePoly
   		}
   		return insidePoly
