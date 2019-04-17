@@ -156,7 +156,6 @@ export default {
   created () {
     if (process.isClient) {
       this.rotateLogo()
-      this.effect = 'EffectWebs'
       window.addEventListener('scroll', this.updateScrollProgressTarget)
       window.addEventListener('resize', this.updateScrollProgressTarget)
       this.updateScrollProgressTarget()

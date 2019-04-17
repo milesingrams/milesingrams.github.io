@@ -87,13 +87,13 @@ export default {
           color: this.mergedOptions.color,
           opacity: this.mergedOptions.minStrokeOpacity + Math.random() * (this.mergedOptions.maxStrokeOpacity - this.mergedOptions.minStrokeOpacity),
           strokeWidth: this.mergedOptions.maxStrokeWidth,
-          dashArray: 400 * this.mergedOptions.numPointsPerPath,
+          dashArray: 500 * this.mergedOptions.numPointsPerPath,
           dashOffset: 0
         }
 
         this.animationTimeline.add({
           targets: path,
-          dashOffset: 400 * this.mergedOptions.numPointsPerPath,
+          dashOffset: 500 * this.mergedOptions.numPointsPerPath,
           strokeWidth: this.mergedOptions.minStrokeWidth,
           duration: this.mergedOptions.duration * 1000
         }, Math.random() * this.mergedOptions.maxDelay * 1000)
