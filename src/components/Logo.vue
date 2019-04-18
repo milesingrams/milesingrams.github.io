@@ -117,7 +117,7 @@ export default {
       if (this.atPageTop && !this.logoClicked) {
         this.foldUpAnimation = anime({
           targets: this.$refs.foldUp,
-          height: '15%',
+          height: '30%',
           easing: 'easeInOutQuad',
           delay: 3000,
           endDelay: 700,
@@ -173,7 +173,7 @@ export default {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 100%;
+    height: 50%;
     box-shadow: 0 -.5px 0 .5px rgba(0, 0, 0, 0.1) inset;
     overflow: hidden;
 
@@ -192,10 +192,10 @@ export default {
     content: '';
     position: absolute;
     left: 0;
-    bottom: 100%;
+    bottom: 50%;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(white 60%, #ddd);
+    height: 50%;
+    background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.1));
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), 0 -4px 6px rgba(0, 0, 0, 0.1);
   }
 }

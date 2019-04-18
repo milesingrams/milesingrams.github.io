@@ -50,7 +50,7 @@
                 Read Up
               </h3>
               <p class="belief-text">
-                Sure, jumping right in works sometimes, but a little reading goes a long way. Before jumping into something new I want to know the basics and best practices first. I'll be thankful for it in the long run.
+                Sure, jumping right in works sometimes, but a little reading goes a long way. Before starting something new I want to know the basics and best practices first. I'll be thankful for it in the long run.
               </p>
             </div>
             <div class="belief">
@@ -74,7 +74,7 @@
                 Make it Fun
               </h3>
               <p class="belief-text">
-                Work is only as enjoyable as you make it. Finding ways to get excited about a problem can both inspire you and your team to skip the procrastination and face the challenge head-on.
+                Work is only as enjoyable as you make it. Finding ways to get excited about a project can inspire both you and your team to skip the procrastination and face the challenge head-on.
               </p>
             </div>
           </div>
