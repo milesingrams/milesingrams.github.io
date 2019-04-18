@@ -58,7 +58,7 @@
                 Hack if you must
               </h3>
               <p class="belief-text">
-                Most things can be done the <i>right</i> way. But sometimes, to solve an atypical problem within a limited framework you gotta shush the perfectionist and channel Dr. Frankenstein.
+                Most things can be done the <i>right</i> way. But sometimes, to solve an atypical problem within a limited framework I have to shush the perfectionist and channel Dr. Frankenstein.
               </p>
             </div>
             <div class="belief">
@@ -66,7 +66,7 @@
                 Selectively Optimize
               </h3>
               <p class="belief-text">
-                5% faster isn't worth it if it takes you 500% longer. Particularly processor-hungry code needs to be addressed, but don't spend an hour sharpening your butter knife.
+                5% faster isn't worth it if it takes me 500% longer. Particularly processor-hungry code needs to be addressed, but don't spend an hour sharpening your butter knife.
               </p>
             </div>
             <div class="belief">
@@ -74,7 +74,7 @@
                 Make it Fun
               </h3>
               <p class="belief-text">
-                Work is only as enjoyable as you make it. Finding ways to get excited about a project can inspire both you and your team to skip the procrastination and face the challenge head-on.
+                Work is only as enjoyable as you make it. Finding ways to get excited about a project can inspire both me and my team to skip the procrastination and face the challenges head-on.
               </p>
             </div>
           </div>
@@ -205,7 +205,7 @@ export default {
   margin-top: $spacing-xs;
 
   .belief {
-    width: 280px;
+    flex-basis: 280px;
     margin: $spacing-xxs;
     padding: $spacing-s;
     border: 1px solid black;

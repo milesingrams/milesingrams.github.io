@@ -183,7 +183,7 @@ export default {
       left: 0;
       width: 100%;
       text-align: center;
-      line-height: 2.5rem;
+      line-height: 2.6rem;
       font-size: 1.1rem;
       font-weight: 500;
       opacity: 0.7;
