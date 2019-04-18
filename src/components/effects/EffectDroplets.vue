@@ -1,6 +1,6 @@
 <template>
   <svg class="effect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <g class="droplets-wrap">
+    <g class="droplets-wrap" :opacity="totalOpacity">
       <circle class="droplet" v-for="(droplet, index) in droplets" :cx="droplet.cx" :cy="droplet.cy" :r="droplet.radius" :fill="droplet.color" :opacity="droplet.opacity" :key="index"></circle>
     </g>
   </svg>
@@ -17,9 +17,11 @@ export default {
     return {
       droplets: [],
       animationTimeline: null,
+      totalOpacity: 0,
       baseOptions: {
         poly: null,
         color: 'white',
+        totalOpacity: 1,
         minOpacity: 0.4,
         maxOpacity: 0.6,
         maxDepth: 4,
@@ -122,6 +124,13 @@ export default {
         autoplay: false
       })
       this.createDroplet(50, 50, this.mergedOptions.radius, 0.5, 0, 0)
+      this.totalOpacity = 0
+      this.animationTimeline.add({
+        targets: this,
+        totalOpacity: this.mergedOptions.totalOpacity,
+        easing: 'easeInOutQuad',
+        duration: this.animationTimeline.duration * 0.66
+      }, 0)
     }
   },
   created () {

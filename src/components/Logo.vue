@@ -95,7 +95,7 @@ export default {
       this.effect = this.effectsToView[randomEffectIndex]
       this.effectsToView.splice(randomEffectIndex, 1)
       localStorage.setItem('previousEffect', this.effect)
-      this.animationProgress = 1
+      this.animationProgress = 10
     },
     onWindowScrollResize () {
       this.scrollY = window.pageYOffset
@@ -160,9 +160,9 @@ export default {
 
 .fold-up {
   position: absolute;
-  left: 0;
+  left: 25%;
+  right: 25%;
   bottom: 0;
-  width: 100%;
   height: 0;
   background-color: white;
   pointer-events: none;
@@ -183,7 +183,9 @@ export default {
       left: 0;
       width: 100%;
       text-align: center;
-      line-height: 40px;
+      line-height: 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 500;
       opacity: 0.7;
     }
   }
@@ -195,8 +197,8 @@ export default {
     bottom: 50%;
     width: 100%;
     height: 50%;
-    background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.1));
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), 0 -4px 6px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.125));
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 -4px 16px rgba(0, 0, 0, 0.1);
   }
 }
 </style>

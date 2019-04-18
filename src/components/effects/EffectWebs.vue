@@ -10,8 +10,8 @@
     </defs>
 
     <g class="poly-wrap" mask="url(#effect-mask)">
-      <polygon v-if="mergedOptions.poly" :points="polyPointString" :fill="mergedOptions.color" :opacity="fillOpacity"></polygon>
-      <circle v-if="!mergedOptions.poly" cx="50" cy="50" :r="mergedOptions.radius" :fill="mergedOptions.color" :opacity="fillOpacity"></circle>
+      <polygon v-if="mergedOptions.poly" :points="polyPointString" :fill="mergedOptions.color" :opacity="totalOpacity"></polygon>
+      <circle v-if="!mergedOptions.poly" cx="50" cy="50" :r="mergedOptions.radius" :fill="mergedOptions.color" :opacity="totalOpacity"></circle>
     </g>
   </svg>
 </template>
@@ -26,10 +26,11 @@ export default {
     return {
       paths: [],
       animationTimeline: null,
+      totalOpacity: 0,
       baseOptions: {
         poly: null,
         color: 'white',
-        fillOpacity: 0.55,
+        totalOpacity: 0.55,
         strokeOpacity: 1,
         minStrokeWidth: 2,
         maxStrokeWidth: 8,
@@ -99,12 +100,12 @@ export default {
         this.paths.push(path)
       }
 
-      this.fillOpacity = 0
+      this.totalOpacity = 0
       this.animationTimeline.add({
         targets: this,
-        fillOpacity: this.mergedOptions.fillOpacity,
-        easing: 'easeOutQuad',
-        duration: this.animationTimeline.duration
+        totalOpacity: this.mergedOptions.totalOpacity,
+        easing: 'easeInOutQuad',
+        duration: this.animationTimeline.duration * 0.66
       }, 0)
     }
   },

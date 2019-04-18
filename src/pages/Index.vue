@@ -147,7 +147,7 @@ export default {
 
   .section-content {
     max-width: 900px;
-    padding: 80px $spacing-l;
+    padding: $spacing-xxl $spacing-m;
     z-index: 1;
   }
 
@@ -179,7 +179,7 @@ export default {
     position: absolute;
     content: '';
     left: 50%;
-    width: 60px;
+    width: $spacing-xxl;
     transform: translateX(-50%);
     border-bottom: 1px solid black;
   }
