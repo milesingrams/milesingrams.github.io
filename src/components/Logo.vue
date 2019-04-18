@@ -129,7 +129,7 @@ export default {
           targets: this.$refs.foldUp,
           height: 0,
           easing: 'easeInOutQuad',
-          duration: 300
+          duration: 150
         })
       }
     }
