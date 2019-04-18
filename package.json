@@ -10,7 +10,6 @@
   "dependencies": {
     "animejs": "^3.0.1",
     "gridsome": "^0.5.7",
-    "include-media": "^1.4.9",
     "polygon-clipping": "^0.14.0",
     "robust-point-in-polygon": "^1.0.3",
     "simplex-noise": "^2.4.0",
@@ -21,6 +20,7 @@
     "@gridsome/source-filesystem": "^0.3.0",
     "@gridsome/transformer-remark": "^0.2.1",
     "http-server": "^0.11.1",
+    "include-media": "^1.4.9",
     "node-sass": "^4.11.0",
     "normalize-scss": "^7.0.1",
     "sass-loader": "^7.1.0",
