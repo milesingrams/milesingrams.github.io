@@ -22,6 +22,7 @@
     "@gridsome/transformer-remark": "^0.2.1",
     "http-server": "^0.11.1",
     "node-sass": "^4.11.0",
+    "normalize-scss": "^7.0.1",
     "sass-loader": "^7.1.0",
     "style-resources-loader": "^1.2.1",
     "vue-svg-loader": "^0.12.0"

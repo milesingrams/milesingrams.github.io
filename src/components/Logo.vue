@@ -1,5 +1,5 @@
 <template>
-  <div class="logo" :class="{'no-pointer-events': !atPageTop}" @click="onLogoClick">
+  <div class="logo" v-show="progress" :class="{'no-pointer-events': !atPageTop}" @click="onLogoClick">
     <client-only>
       <transition appear name="fadeInOut" mode="out-in">
         <component :is="effect" :progress="progress" :options="{ poly, color }"></component>
@@ -103,6 +103,7 @@ export default {
     },
     updateScrollProgress () {
       this.animationProgress += (this.animationProgressTarget - this.animationProgress) * this.animationEase
+      this.animationProgress = Math.floor(this.animationProgress * 1000) / 1000
       window.requestAnimationFrame(this.updateScrollProgress)
     },
     onLogoClick () {

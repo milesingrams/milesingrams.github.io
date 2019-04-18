@@ -1,0 +1,50 @@
+// SPACING
+
+$spacing-list: 0, 0.25rem, 0.5rem, 0.75rem, 1rem, 1.25rem, 1.5rem, 1.75rem, 2rem;
+$spacing-types: margin, padding;
+
+@for $i from 1 through length($spacing-list) {
+  @each $type in $spacing-types {
+    .#{$type}-#{$i - 1} {
+      margin: #{nth($spacing-list, $i)};
+    }
+
+    .#{$type}-v-#{$i - 1} {
+      margin: 0 #{nth($spacing-list, $i)};
+    }
+
+    .#{$type}-h-#{$i - 1} {
+      margin: #{nth($spacing-list, $i)} 0;
+    }
+
+    .#{$type}-t-#{$i - 1} {
+      margin-top: #{nth($spacing-list, $i)};
+    }
+
+    .#{$type}-b-#{$i - 1} {
+      margin-bottom: #{nth($spacing-list, $i)};
+    }
+
+    .#{$type}-l-#{$i - 1} {
+      margin-left: #{nth($spacing-list, $i)};
+    }
+
+    .#{$type}-r-#{$i - 1} {
+      margin-right: #{nth($spacing-list, $i)};
+    }
+  }
+}
+
+// MISC
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.pointer-events {
+  pointer-events: auto;
+}
+
+.no-pointer-events {
+  pointer-events: none;
+}

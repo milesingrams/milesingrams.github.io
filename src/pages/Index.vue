@@ -15,7 +15,7 @@
 
       <section class="color-section">
         <div class="section-content no-pointer-events">
-          <h2 class="about-text">
+          <h2 class="about-text margin-b-2">
             I Like
           </h2>
           <div class="tag-list">
@@ -41,7 +41,7 @@
 
       <section class="color-section">
         <div class="section-content">
-          <h2 class="about-text">
+          <h2 class="about-text margin-b-2">
             My beliefs are
           </h2>
           <div class="beliefs-list">
@@ -90,6 +90,11 @@
       </section>
 
       <section class="color-section" v-for="(experience, index) in $page.experiences.edges" :key="index">
+        <div class="section-content">
+          <h2 class="section-title">
+            {{experience.node.title}}
+          </h2>
+        </div>
       </section>
     </div>
   </Layout>
@@ -130,6 +135,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$section-max-width: 900px;
+
 .logo-wrap {
   position: fixed;
   left: 50vw;
@@ -146,40 +153,43 @@ export default {
   justify-content: center;
 
   .section-content {
-    max-width: 900px;
-    padding: $spacing-xxl $spacing-m;
+    max-width: $section-max-width;
+    padding: 4rem 1.5rem;
     z-index: 1;
   }
 
-  &:nth-child(3n+1) {
+  &:nth-child(3n + 1) {
     background-color: #FFFFFF;
   }
 
-  &:nth-child(3n+2) {
+  &:nth-child(3n + 2) {
     background-color: #DEEEF9;
   }
 
-  &:nth-child(3n+3) {
+  &:nth-child(3n + 3) {
     background-color: #DEF9EB;
   }
 }
 
-.about-text {
+.section-title {
+  font-size: 2rem;
+}
+
+.about-text, .section-title {
   font-weight: 400;
   font-family: 'Averia Serif Libre';
   text-align: center;
-  margin: 0;
 }
 
 .divider-line {
   width: 100%;
-  padding: $spacing-m 0;
+  padding: 1.5rem 0;
 
   &::before {
     position: absolute;
     content: '';
     left: 50%;
-    width: $spacing-xxl;
+    width: 4rem;
     transform: translateX(-50%);
     border-bottom: 1px solid black;
   }
@@ -189,11 +199,10 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: $spacing-xxs;
 
   .tag {
     color: white;
-    padding: $spacing-xxxs $spacing-xxs;
+    padding: 0.25rem 0.5rem;
     margin: 0.25rem;
     background-color: black;
   }
@@ -202,24 +211,22 @@ export default {
 .beliefs-list {
   display: flex;
   flex-wrap: wrap;
-  margin-top: $spacing-xs;
 
   .belief {
-    flex-basis: 280px;
-    margin: $spacing-xxs;
-    padding: $spacing-s;
+    flex-basis: 260px;
+    margin: 0.5rem;
+    padding: 1rem;
     border: 1px solid black;
     flex-grow: 1;
 
     .belief-header {
       line-height: 1.25;
       font-weight: 600;
-      margin-bottom: $spacing-xxxs;
+      margin-bottom: 0.25rem;
     }
 
     .belief-text {
       font-size: 0.9rem;
-      margin: 0;
     }
   }
 }

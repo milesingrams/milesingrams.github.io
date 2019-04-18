@@ -1,4 +1,4 @@
-@import "~include-media/dist/_include-media.scss";
+@import "~include-media/dist/include-media";
 
 $breakpoints: (
   'small': 375px,
@@ -8,25 +8,6 @@ $breakpoints: (
   'large': 1440px,
   'x-large': 2000px
 );
-
-//BORDER RADIUS
-
-$br-s: 2px;
-$br-m: 4px;
-$br-l: 6px;
-$br-xl: 8px;
-
-//SPACING
-
-$spacing-xxxs: .25rem;
-$spacing-xxs: .5rem;
-$spacing-xs: .75rem;
-$spacing-s: 1rem;
-$spacing-m: 1.5rem;
-$spacing-l: 2rem;
-$spacing-xl: 3rem;
-$spacing-xxl: 4rem;
-$spacing-xxxl: 6rem;
 
 //TYPOGRAPHY
 

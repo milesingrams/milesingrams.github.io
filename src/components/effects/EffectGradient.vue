@@ -89,6 +89,7 @@ export default {
 }
 
 .effect-canvas-wrap {
+  overflow: hidden;
   clip-path: url(#effect-clip);
 }
 

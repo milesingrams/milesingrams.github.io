@@ -19,13 +19,3 @@
     animation: fadeOut .2s var(--ease-out-quad) both;
   }
 }
-
-.scaleInOut {
-  &-enter-active {
-    animation: fadeInGrow .2s var(--ease-out-back) both;
-  }
-
-  &-leave-active {
-    animation: fadeOutShrink .2s var(--ease-in-back) both;
-  }
-}

@@ -1,5 +1,7 @@
-@import "reboot";
-@import "cssVars";
+@import "~normalize-scss/sass/normalize";
+@import "cssVariables";
 @import "animations";
 @import "vueTransitions";
+@import "utility";
+@import "typography";
 @import "base";
