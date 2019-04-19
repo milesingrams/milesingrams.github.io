@@ -123,11 +123,6 @@ export default {
   components: {
     Logo
   },
-  data () {
-    return {
-      colors: ['#FFFFFF', '#DEEEF9', '#DEF9EB'],
-    }
-  },
   metaInfo: {
     title: 'Miles Ingram'
   }
@@ -147,6 +142,8 @@ $section-max-width: 900px;
 }
 
 .color-section {
+  $color-list: #ffffff, #deeef9, #def9eb;
+
   min-height: 50vh;
   display: flex;
   align-items: center;
@@ -158,16 +155,10 @@ $section-max-width: 900px;
     z-index: 1;
   }
 
-  &:nth-child(3n + 1) {
-    background-color: #FFFFFF;
-  }
-
-  &:nth-child(3n + 2) {
-    background-color: #DEEEF9;
-  }
-
-  &:nth-child(3n + 3) {
-    background-color: #DEF9EB;
+  @for $i from 1 through length($color-list) {
+    &:nth-child(#{length($color-list)}n + #{$i}) {
+      background-color: #{nth($color-list, $i)};
+    }
   }
 }
 
