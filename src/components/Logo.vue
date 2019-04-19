@@ -38,7 +38,7 @@ export default {
       animationProgressTarget: 0,
       animationProgress: 0,
       animationEase: 0.1,
-      animationPageCoverage: 1,
+      animationPageCoverage: 1.25,
       scrollY: 0,
       logoClicked: false,
       foldUpAnimation: null,

@@ -5,7 +5,7 @@
     </div>
 
     <div class="sections">
-      <section class="color-section">
+      <section class="page-section">
         <div class="section-content no-pointer-events">
           <h2 class="about-text">
             Hi, I'm Miles
@@ -13,7 +13,7 @@
         </div>
       </section>
 
-      <section class="color-section">
+      <section class="page-section">
         <div class="section-content no-pointer-events">
           <h2 class="about-text margin-b-3">
             I Like
@@ -27,7 +27,7 @@
         </div>
       </section>
 
-      <section class="color-section">
+      <section class="page-section">
         <div class="section-content">
           <h2 class="about-text">
             NYC born and raised, I started dabbling with programming at a young age by making silly Flash games and clunky Lego Mindstorms.
@@ -39,7 +39,7 @@
         </div>
       </section>
 
-      <section class="color-section">
+      <section class="page-section">
         <div class="section-content">
           <h2 class="about-text margin-b-3">
             My beliefs are
@@ -81,7 +81,7 @@
         </div>
       </section>
 
-      <section class="color-section">
+      <section class="page-section">
         <div class="section-content">
           <h2 class="about-text">
             Here's what I've worked on so far
@@ -89,13 +89,29 @@
         </div>
       </section>
 
-      <section class="color-section" v-for="(experience, index) in $page.experiences.edges" :key="index">
-        <div class="section-content">
-          <h2 class="section-title">
-            {{experience.node.title}}
-          </h2>
-        </div>
-      </section>
+      <div v-for="(experience, index) in $page.experiences.edges" :key="index">
+        <section class="page-section experience-section" :style="{'background-color': experience.node.color}">
+          <div class="section-content">
+            <h2 class="experience-title">
+              {{experience.node.title}}
+            </h2>
+            <div class="divider-line"></div>
+            <h2 class="experience-position">
+              {{experience.node.position}}
+            </h2>
+          </div>
+        </section>
+        <section class="page-section">
+          <div class="section-content">
+            <p class="experience-description margin-b-6">
+              {{experience.node.description}}
+            </p>
+            <div class="tag-list">
+              <div class="tag" v-for="tag in experience.node.tags">{{tag}}</div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </Layout>
 </template>
@@ -107,6 +123,7 @@
       node {
         title
         date (format: "YYYY")
+        color
         tags
         position
         description
@@ -141,8 +158,8 @@ $section-max-width: 900px;
   transform: translate(-50%, -50%);
 }
 
-.color-section {
-  $color-list: #ffffff, #deeef9, #def9eb;
+.page-section {
+  $color-list: #ffffff, #f2f2f2;
 
   min-height: 50vh;
   display: flex;
@@ -162,14 +179,30 @@ $section-max-width: 900px;
   }
 }
 
-.section-title {
-  font-size: 2rem;
-}
-
-.about-text, .section-title {
+.about-text {
   font-weight: 400;
   font-family: 'Averia Serif Libre';
   text-align: center;
+}
+
+.experience-section {
+  color: white;
+}
+
+.experience-title, .experience-position {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-align: center;
+  letter-spacing: 0.3rem;
+}
+
+.experience-description {
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.2rem;
 }
 
 .divider-line {
@@ -182,7 +215,7 @@ $section-max-width: 900px;
     left: 50%;
     width: 4rem;
     transform: translateX(-50%);
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid currentColor;
   }
 }
 
