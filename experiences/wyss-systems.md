@@ -12,6 +12,7 @@ description: Development of microfluidic devices with human cell co-cultures to 
 tags:
   - Bits
   - Bots
+  - Bio
 
 skills:
   - Project management

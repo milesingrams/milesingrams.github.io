@@ -100,15 +100,15 @@
               {{experience.node.position}}
             </h2>
           </div>
+          <div class="tag-list experience-tags">
+            <div class="tag" :style="{'background-color': experience.node.color}" v-for="tag in experience.node.tags">{{tag}}</div>
+          </div>
         </section>
         <section class="page-section">
           <div class="section-content">
             <p class="experience-description margin-b-6">
               {{experience.node.description}}
             </p>
-            <div class="tag-list">
-              <div class="tag" v-for="tag in experience.node.tags">{{tag}}</div>
-            </div>
           </div>
         </section>
       </div>
@@ -156,11 +156,12 @@ $section-max-width: 900px;
   width: 30vh;
   height: 30vh;
   transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .page-section {
   $color-list: #ffffff, #f2f2f2;
-
+  position: relative;
   min-height: 50vh;
   display: flex;
   align-items: center;
@@ -193,7 +194,7 @@ $section-max-width: 900px;
   font-family: 'Averia Serif Libre';
   text-transform: uppercase;
   font-weight: 300;
-  font-size: 1.75rem;
+  font-size: 1.7rem;
   text-align: center;
   letter-spacing: 0.3rem;
 }
@@ -227,10 +228,18 @@ $section-max-width: 900px;
 
   .tag {
     color: white;
+    font-weight: 600;
     padding: 0.25rem 0.5rem;
-    margin: 0.25rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
     background-color: black;
   }
+}
+
+.experience-tags {
+  position: absolute;
+  top: 100%;
+  z-index: 1;
 }
 
 .beliefs-list {
