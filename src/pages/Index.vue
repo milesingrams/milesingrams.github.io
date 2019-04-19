@@ -15,7 +15,7 @@
 
       <section class="color-section">
         <div class="section-content no-pointer-events">
-          <h2 class="about-text margin-b-2">
+          <h2 class="about-text margin-b-3">
             I Like
           </h2>
           <div class="tag-list">
@@ -41,7 +41,7 @@
 
       <section class="color-section">
         <div class="section-content">
-          <h2 class="about-text margin-b-2">
+          <h2 class="about-text margin-b-3">
             My beliefs are
           </h2>
           <div class="beliefs-list">

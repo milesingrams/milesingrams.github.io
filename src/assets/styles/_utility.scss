@@ -1,36 +1,35 @@
 // SPACING
 
 $spacing-list: 0, 0.25rem, 0.5rem, 0.75rem, 1rem, 1.25rem, 1.5rem, 1.75rem, 2rem;
-$spacing-types: margin, padding;
 
-@for $i from 1 through length($spacing-list) {
-  @each $type in $spacing-types {
+@each $type in margin, padding {
+  @for $i from 1 through length($spacing-list) {
     .#{$type}-#{$i - 1} {
-      margin: #{nth($spacing-list, $i)};
+      #{$type}: #{nth($spacing-list, $i)} !important;
     }
 
     .#{$type}-v-#{$i - 1} {
-      margin: 0 #{nth($spacing-list, $i)};
+      #{$type}: #{nth($spacing-list, $i)} 0 !important;
     }
 
     .#{$type}-h-#{$i - 1} {
-      margin: #{nth($spacing-list, $i)} 0;
+      #{$type}: 0 #{nth($spacing-list, $i)} !important;
     }
 
     .#{$type}-t-#{$i - 1} {
-      margin-top: #{nth($spacing-list, $i)};
+      #{$type}-top: #{nth($spacing-list, $i)} !important;
     }
 
     .#{$type}-b-#{$i - 1} {
-      margin-bottom: #{nth($spacing-list, $i)};
+      #{$type}-bottom: #{nth($spacing-list, $i)} !important;
     }
 
     .#{$type}-l-#{$i - 1} {
-      margin-left: #{nth($spacing-list, $i)};
+      #{$type}-left: #{nth($spacing-list, $i)} !important;
     }
 
     .#{$type}-r-#{$i - 1} {
-      margin-right: #{nth($spacing-list, $i)};
+      #{$type}-right: #{nth($spacing-list, $i)} !important;
     }
   }
 }
@@ -38,13 +37,13 @@ $spacing-types: margin, padding;
 // MISC
 
 .cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .pointer-events {
-  pointer-events: auto;
+  pointer-events: auto !important;
 }
 
 .no-pointer-events {
-  pointer-events: none;
+  pointer-events: none !important;
 }

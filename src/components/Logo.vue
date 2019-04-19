@@ -175,7 +175,7 @@ export default {
     bottom: 0;
     width: 100%;
     height: 50%;
-    box-shadow: 0 -.5px 0 .5px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 -0.5px 0 0.5px rgba(0, 0, 0, 0.1) inset;
     overflow: hidden;
 
     .fold-up-text {

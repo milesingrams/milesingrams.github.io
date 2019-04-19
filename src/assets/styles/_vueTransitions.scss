@@ -1,21 +1,21 @@
 .fadeIn {
   &-enter-active {
-    animation: fadeIn .2s var(--ease-in-quad) both;
+    animation: fadeIn 0.2s var(--ease-in-quad) both;
   }
 }
 
 .fadeOut {
   &-leave-active {
-    animation: fadeOut .2s var(--ease-out-quad) both;
+    animation: fadeOut 0.2s var(--ease-out-quad) both;
   }
 }
 
 .fadeInOut {
   &-enter-active {
-    animation: fadeIn .2s var(--ease-in-quad) both;
+    animation: fadeIn 0.2s var(--ease-in-quad) both;
   }
 
   &-leave-active {
-    animation: fadeOut .2s var(--ease-out-quad) both;
+    animation: fadeOut 0.2s var(--ease-out-quad) both;
   }
 }
