@@ -214,18 +214,6 @@ $section-max-width: 900px;
   text-align: center;
 }
 
-.like-tags {
-  .tag {
-    border-radius: 4px;
-
-    @for $i from 1 through length($experience-colors) {
-      &:nth-child(#{length($experience-colors)}n + #{$i}) {
-        background-color: #{nth($experience-colors, $i)};
-      }
-    }
-  }
-}
-
 .beliefs-list {
   display: flex;
   flex-wrap: wrap;
