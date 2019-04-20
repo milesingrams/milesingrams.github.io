@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <layout>
     <div class="logo-wrap">
       <logo color="#000000"></logo>
     </div>
@@ -18,11 +18,23 @@
           <h2 class="about-text margin-b-3">
             I Like
           </h2>
-          <div class="tag-list">
-            <div class="tag">Bits</div>
-            <div class="tag">Bots</div>
-            <div class="tag">Bio</div>
-            <div class="tag">Battlestar Galactica</div>
+          <div class="tag-list like-tags">
+            <div class="tag margin-b-2">
+              <icon-bits class="icon"></icon-bits>
+              Bits
+            </div>
+            <div class="tag margin-b-2">
+              <icon-bots class="icon"></icon-bots>
+              Bots
+            </div>
+            <div class="tag margin-b-2">
+              <icon-bio class="icon"></icon-bio>
+              Bio
+            </div>
+            <div class="tag margin-b-2">
+              <icon-battlestar class="icon"></icon-battlestar>
+              Battlestar Galactica
+            </div>
           </div>
         </div>
       </section>
@@ -89,31 +101,39 @@
         </div>
       </section>
 
-      <div v-for="(experience, index) in $page.experiences.edges" :key="index">
-        <section class="page-section experience-section" :style="{'background-color': experience.node.color}">
-          <div class="section-content">
-            <h2 class="experience-title">
-              {{experience.node.title}}
-            </h2>
-            <div class="divider-line"></div>
-            <h2 class="experience-position">
-              {{experience.node.position}}
-            </h2>
+      <section class="experiences-wrap">
+        <div class="experience-wrap" v-for="(experience, index) in $page.experiences.edges" :key="index">
+
+          <div class="page-section experience-header">
+            <div class="section-content">
+              <h2 class="experience-title">
+                {{experience.node.title}}
+              </h2>
+              <div class="divider-line"></div>
+              <h2 class="experience-position">
+                {{experience.node.position}}
+              </h2>
+            </div>
+
+            <div class="tag-list experience-tags">
+              <div class="tag" v-for="tag in experience.node.tags">
+                <component :is="`Icon${tag}`" class="icon"></component>
+                {{tag}}
+              </div>
+            </div>
           </div>
-          <div class="tag-list experience-tags">
-            <div class="tag" :style="{'background-color': experience.node.color}" v-for="tag in experience.node.tags">{{tag}}</div>
+          <div class="page-section">
+            <div class="section-content">
+              <p class="experience-description margin-b-6">
+                {{experience.node.description}}
+              </p>
+            </div>
           </div>
-        </section>
-        <section class="page-section">
-          <div class="section-content">
-            <p class="experience-description margin-b-6">
-              {{experience.node.description}}
-            </p>
-          </div>
-        </section>
-      </div>
+
+        </div>
+      </section>
     </div>
-  </Layout>
+  </layout>
 </template>
 
 <page-query>
@@ -123,7 +143,6 @@
       node {
         title
         date (format: "YYYY")
-        color
         tags
         position
         description
@@ -135,10 +154,18 @@
 
 <script>
 import Logo from '~/components/Logo'
+import IconBits from '~/assets/icons/IconBits.svg'
+import IconBots from '~/assets/icons/IconBots.svg'
+import IconBio from '~/assets/icons/IconBio.svg'
+import IconBattlestar from '~/assets/icons/IconBattlestar.svg'
 
 export default {
   components: {
-    Logo
+    Logo,
+    IconBits,
+    IconBots,
+    IconBio,
+    IconBattlestar
   },
   metaInfo: {
     title: 'Miles Ingram'
@@ -156,11 +183,10 @@ $section-max-width: 900px;
   width: 30vh;
   height: 30vh;
   transform: translate(-50%, -50%);
-  pointer-events: none;
+  z-index: 1;
 }
 
 .page-section {
-  $color-list: #ffffff, #f2f2f2;
   position: relative;
   min-height: 50vh;
   display: flex;
@@ -170,12 +196,14 @@ $section-max-width: 900px;
   .section-content {
     max-width: $section-max-width;
     padding: 4rem 1.5rem;
-    z-index: 1;
+    z-index: 10;
   }
 
-  @for $i from 1 through length($color-list) {
-    &:nth-child(#{length($color-list)}n + #{$i}) {
-      background-color: #{nth($color-list, $i)};
+  $section-colors: #ffffff, #f2f2f2;
+
+  @for $i from 1 through length($section-colors) {
+    &:nth-child(#{length($section-colors)}n + #{$i}) {
+      background-color: #{nth($section-colors, $i)};
     }
   }
 }
@@ -186,60 +214,14 @@ $section-max-width: 900px;
   text-align: center;
 }
 
-.experience-section {
-  color: white;
-}
-
-.experience-title, .experience-position {
-  font-family: 'Averia Serif Libre';
-  text-transform: uppercase;
-  font-weight: 300;
-  font-size: 1.7rem;
-  text-align: center;
-  letter-spacing: 0.3rem;
-}
-
-.experience-description {
-  font-size: 1.2rem;
-  font-style: italic;
-  font-weight: 500;
-  text-align: center;
-  letter-spacing: 0.2rem;
-}
-
-.divider-line {
-  width: 100%;
-  padding: 1.5rem 0;
-
-  &::before {
-    position: absolute;
-    content: '';
-    left: 50%;
-    width: 4rem;
-    transform: translateX(-50%);
-    border-bottom: 1px solid currentColor;
-  }
-}
-
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
+.like-tags {
   .tag {
-    color: white;
-    font-weight: 600;
-    padding: 0.25rem 0.5rem;
-    margin-left: 0.25rem;
-    margin-right: 0.25rem;
-    background-color: black;
+    @for $i from 1 through length($experience-colors) {
+      &:nth-child(#{length($experience-colors)}n + #{$i}) {
+        background-color: #{nth($experience-colors, $i)};
+      }
+    }
   }
-}
-
-.experience-tags {
-  position: absolute;
-  top: 100%;
-  z-index: 1;
 }
 
 .beliefs-list {
@@ -261,6 +243,59 @@ $section-max-width: 900px;
 
     .belief-text {
       font-size: 0.9rem;
+    }
+  }
+}
+
+.experience-wrap {
+  .experience-header {
+    color: white;
+    background-color: var(--section-color);
+  }
+
+  .experience-title, .experience-position {
+    font-family: 'Averia Serif Libre';
+    text-transform: uppercase;
+    font-weight: 300;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .experience-title {
+    font-size: 1.7rem;
+    letter-spacing: 0.3rem;
+  }
+
+  .experience-position {
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .experience-tags {
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+
+    .tag {
+      color: white;
+      background-color: var(--section-color);
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .experience-description {
+    max-width: 600px;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.025rem;
+  }
+
+  @for $i from 1 through length($experience-colors) {
+    &:nth-child(#{length($experience-colors)}n + #{$i}) {
+      --section-color: #{nth($experience-colors, $i)};
     }
   }
 }

@@ -1,0 +1,39 @@
+.icon {
+  --iconColor: currentColor;
+  width: 1rem;
+  height: 1rem;
+}
+
+.divider-line {
+  width: 100%;
+  padding: 1.5rem 0;
+
+  &::before {
+    position: absolute;
+    content: '';
+    left: 50%;
+    width: 4rem;
+    transform: translateX(-50%);
+    border-bottom: 1px solid currentColor;
+  }
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .tag {
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    background-color: black;
+
+    .icon {
+      margin-right: 0.5rem;
+    }
+  }
+}

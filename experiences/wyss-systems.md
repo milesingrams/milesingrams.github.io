@@ -1,18 +1,16 @@
 ---
 date: 2016-01-01
 
-color: '#ef476f'
-
 title: Wyss Institute
 
 position: Systems Engineer
 
-description: Development of microfluidic devices with human cell co-cultures to emulate human organ structures in-vitro.
-
 tags:
-  - Bits
-  - Bots
-  - Bio
+- Bits
+- Bots
+- Bio
+
+description: Development of microfluidic devices with human cell co-cultures to emulate human organ structures in-vitro.
 
 skills:
   - Project management

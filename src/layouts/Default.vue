@@ -18,5 +18,6 @@
   height: 100%;
   background-image: url('../assets/images/textures/paper.png');
   pointer-events: none;
+  z-index: 100;
 }
 </style>

@@ -1,7 +1,9 @@
 @import "~normalize-scss/sass/normalize";
-@import "cssVariables";
-@import "animations";
-@import "vueTransitions";
-@import "utility";
-@import "typography";
+
+@import "css-variables";
 @import "base";
+@import "utility";
+@import "components";
+@import "typography";
+@import "animations";
+@import "vue-transitions";
