@@ -109,7 +109,11 @@
               <h2 class="experience-title">
                 {{experience.node.title}}
               </h2>
-              <div class="divider-line"></div>
+              <div class="experience-date">
+                <span class="experience-date-text">
+                  {{experience.node.date}}
+                </span>
+              </div>
               <h2 class="experience-position">
                 {{experience.node.position}}
               </h2>
@@ -214,6 +218,12 @@ $section-max-width: 900px;
   text-align: center;
 }
 
+.like-tags {
+  .tag {
+    border-radius: 4px;
+  }
+}
+
 .beliefs-list {
   display: flex;
   flex-wrap: wrap;
@@ -241,6 +251,33 @@ $section-max-width: 900px;
   .experience-header {
     color: white;
     background-color: var(--section-color);
+  }
+
+  .experience-date {
+    position: relative;
+    width: 100%;
+    padding: 0.75rem 0;
+    text-align: center;
+
+    .experience-date-text {
+      position: relative;
+      padding: 0 0.5rem;
+      transform: translate(-50%, -50%);
+      background-color: var(--section-color);
+      font-family: 'Averia Serif Libre';
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 50%;
+      left: 50%;
+      width: 7rem;
+      transform: translate(-50%, -50%);
+      border-bottom: 1px solid currentColor;
+    }
   }
 
   .experience-title, .experience-position {
