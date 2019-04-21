@@ -37,7 +37,7 @@ export default {
       animationReverse: true,
       animationProgressTarget: 0,
       animationProgress: 0,
-      animationEase: 0.1,
+      animationEase: 0.075,
       animationPageCoverage: 1.25,
       scrollY: 0,
       logoClicked: false,

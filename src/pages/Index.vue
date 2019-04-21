@@ -58,36 +58,44 @@
           </h2>
           <div class="beliefs-list">
             <div class="belief">
-              <h3 class="belief-header">
-                Read Up
-              </h3>
-              <p class="belief-text">
-                Sure, jumping right in works sometimes, but a little reading goes a long way. Before starting something new I want to know the basics and best practices first. I'll be thankful for it in the long run.
-              </p>
+              <div class="belief-content">
+                <h3 class="belief-header">
+                  Read Up
+                </h3>
+                <p class="belief-text">
+                  Sure, jumping right in works sometimes, but a little reading goes a long way. Before starting something new I want to know the basics and best practices first. I'll be thankful for it in the long run.
+                </p>
+              </div>
             </div>
             <div class="belief">
-              <h3 class="belief-header">
-                Hack if you must
-              </h3>
-              <p class="belief-text">
-                Most things can be done the <i>right</i> way. But sometimes, to solve an atypical problem within a limited framework I have to shush the perfectionist and channel Dr. Frankenstein.
-              </p>
+              <div class="belief-content">
+                <h3 class="belief-header">
+                  Hack if you must
+                </h3>
+                <p class="belief-text">
+                  Most things can be done the <i>right</i> way. But sometimes, to solve an atypical problem within a limited framework I have to shush the perfectionist and channel Dr. Frankenstein.
+                </p>
+              </div>
             </div>
             <div class="belief">
-              <h3 class="belief-header">
-                Selectively Optimize
-              </h3>
-              <p class="belief-text">
-                5% faster isn't worth it if it takes me 500% longer. Particularly processor-hungry code needs to be addressed, but don't spend an hour sharpening your butter knife.
-              </p>
+              <div class="belief-content">
+                <h3 class="belief-header">
+                  Selectively Optimize
+                </h3>
+                <p class="belief-text">
+                  5% faster isn't worth it if it takes me 500% longer. Particularly processor-hungry code needs to be addressed, but don't spend an hour sharpening your butter knife.
+                </p>
+              </div>
             </div>
             <div class="belief">
-              <h3 class="belief-header">
-                Make it Fun
-              </h3>
-              <p class="belief-text">
-                Work is only as enjoyable as you make it. Finding ways to get excited about a project can inspire both me and my team to skip the procrastination and face the challenges head-on.
-              </p>
+              <div class="belief-content">
+                <h3 class="belief-header">
+                  Make it Fun
+                </h3>
+                <p class="belief-text">
+                  Work is only as enjoyable as you make it. Finding ways to get excited about a project can inspire both me and my team to skip the procrastination and face the challenges head-on.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -225,11 +233,15 @@ $section-max-width: 900px;
   flex-wrap: wrap;
 
   .belief {
-    flex-basis: 260px;
-    margin: 0.5rem;
-    padding: 1rem;
-    border: 1px solid black;
+    flex-basis: 100%;
     flex-grow: 1;
+    padding: 0.5rem;
+
+    .belief-content {
+      padding: 1rem;
+      border: 1px solid black;
+      height: 100%;
+    }
 
     .belief-header {
       line-height: 1.25;
@@ -239,6 +251,10 @@ $section-max-width: 900px;
 
     .belief-text {
       font-size: 0.9rem;
+    }
+
+    @include media('>phone') {
+      flex-basis: 50%;
     }
   }
 }
