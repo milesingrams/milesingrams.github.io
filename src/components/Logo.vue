@@ -103,9 +103,8 @@ export default {
     },
     updateScrollProgress () {
       this.animationProgress += (this.animationProgressTarget - this.animationProgress) * this.animationEase
-      this.animationProgress = Math.round(this.animationProgress * 1000) / 1000
-      if (this.animationProgressTarget - this.animationProgress < 0.01) {
-        this.animationProgress = this.animationProgressTarget
+      if (1 - this.animationProgress < 0.001) {
+        this.animationProgress = 1
       }
       window.requestAnimationFrame(this.updateScrollProgress)
     },
