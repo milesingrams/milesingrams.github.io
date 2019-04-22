@@ -5,16 +5,7 @@ title: Wyss Institute
 
 position: Systems Engineer
 
-tags:
-- Bits
-- Bots
-- Bio
+tags: [ Bits, Bots, Bio ]
 
-description: Development of microfluidic devices with human cell co-cultures to emulate human organ structures in-vitro.
-
-skills:
-  - Project management
-  - Full stack engineering
-  - Database design
-  - HTML, Javascript, CSS
+description: Description
 ---

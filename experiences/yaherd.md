@@ -5,23 +5,20 @@ title: YaHerd
 
 position: Creator
 
-tags:
-- Bits
+tags: [ Bits ]
 
-description: YaHerd is an event planning web application that allows you to get your people to the right place at the right time. No accounts necessary.
-
-accomplishments:
-  - Accomplishment 1
-
-images:
-  - Image1.png
+description: YaHerd is an event planning web app that allows you to organize your friends whether or not they have Facebook. I created it because many of my friends left Facebook for privacy concerns, leading to the absurd situation of texting them screenshots of upcoming Facebook events I was planning. With YaHerd you can have an attractive and streamlined event planning experience, no account necessary.
 
 skills:
-  - Project management
-  - Full stack engineering
-  - Database design
-  - HTML, Javascript, CSS
+  - type: Bits
+    items:
+      - Server[less] Engineering
+      - Database Design
+      - Node, Firebase
+      - Vue, Vuex
+      - HTML, Javascript, CSS
+  - type: Battlestar Galactica
+    items:
+      - Project Management
 
-publications:
-  - Publication 1
 ---

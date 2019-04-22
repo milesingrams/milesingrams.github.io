@@ -117,7 +117,9 @@
               <h2 class="experience-title">
                 {{experience.node.title}}
               </h2>
+
               <div class="divider-line"></div>
+
               <h2 class="experience-position">
                 {{experience.node.position}}
               </h2>
@@ -130,11 +132,26 @@
               </div>
             </div>
           </div>
+
           <div class="page-section">
             <div class="section-content">
               <p class="experience-description margin-b-6">
                 {{experience.node.description}}
               </p>
+
+              <div class="experience-skills-list">
+                <div v-for="skillObj in experience.node.skills" class="skills-box">
+                  <div class="skills-box-content">
+                    <h3 class="skills-box-header">{{skillObj.type}}</h3>
+
+                    <div class="tag-list skills-box-list">
+                      <div class="tag margin-b-2" v-for="skill in skillObj.items">
+                        {{skill}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -154,6 +171,10 @@
         tags
         position
         description
+        skills {
+          type
+          items
+        }
       }
     }
   }
@@ -182,8 +203,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$section-max-width: 900px;
-
 .logo-wrap {
   position: fixed;
   left: 50vw;
@@ -202,7 +221,7 @@ $section-max-width: 900px;
   justify-content: center;
 
   .section-content {
-    max-width: $section-max-width;
+    max-width: 900px;
     padding: 4rem 1.5rem;
     z-index: 10;
   }
@@ -279,7 +298,7 @@ $section-max-width: 900px;
   }
 
   .experience-position {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     letter-spacing: 0.2rem;
   }
 
@@ -299,12 +318,51 @@ $section-max-width: 900px;
   }
 
   .experience-description {
-    max-width: 600px;
-    font-size: 1.2rem;
+    margin: 0 auto;
+    max-width: 650px;
+    font-size: 1.3rem;
     font-style: italic;
     font-weight: 500;
     text-align: center;
     letter-spacing: 0.025rem;
+  }
+
+
+  .experience-skills-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    .skills-box {
+      flex-basis: 100%;
+      flex-grow: 1;
+      padding: 0.5rem;
+
+      .skills-box-content {
+        padding: 1rem;
+        border: 1px solid black;
+        height: 100%;
+
+        .skills-box-header {
+          line-height: 1.25;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+        }
+
+        .skills-box-list {
+          margin-left: -0.25rem;
+          justify-content: flex-start;
+
+          .tag {
+            border-radius: 4px;
+            background-color: var(--section-color);
+          }
+        }
+      }
+
+      @include media('>tablet') {
+        flex-basis: 50%;
+      }
+    }
   }
 
   @for $i from 1 through length($experience-colors) {
