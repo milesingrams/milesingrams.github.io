@@ -15,7 +15,7 @@
 
       <section class="page-section">
         <div class="section-content no-pointer-events">
-          <h2 class="about-text margin-b-2">
+          <h2 class="about-text margin-b-3">
             I Like
           </h2>
           <div class="tag-list like-tags">
@@ -53,7 +53,7 @@
 
       <section class="page-section">
         <div class="section-content">
-          <h2 class="about-text margin-b-2">
+          <h2 class="about-text margin-b-4">
             My beliefs are
           </h2>
           <div class="beliefs-list">
@@ -309,11 +309,12 @@ export default {
     top: 100%;
     z-index: 1;
 
+
     .tag {
       color: white;
       background-color: var(--section-color);
-      margin: 0.5rem;
-      margin-top: 0;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
     }
