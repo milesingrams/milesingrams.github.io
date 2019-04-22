@@ -15,23 +15,23 @@
 
       <section class="page-section">
         <div class="section-content no-pointer-events">
-          <h2 class="about-text margin-b-3">
+          <h2 class="about-text margin-b-2">
             I Like
           </h2>
           <div class="tag-list like-tags">
-            <div class="tag margin-b-2">
+            <div class="tag">
               <icon-bits class="icon"></icon-bits>
               Bits
             </div>
-            <div class="tag margin-b-2">
+            <div class="tag">
               <icon-bots class="icon"></icon-bots>
               Bots
             </div>
-            <div class="tag margin-b-2">
+            <div class="tag">
               <icon-bio class="icon"></icon-bio>
               Bio
             </div>
-            <div class="tag margin-b-2">
+            <div class="tag">
               <icon-battlestar class="icon"></icon-battlestar>
               Battlestar Galactica
             </div>
@@ -53,7 +53,7 @@
 
       <section class="page-section">
         <div class="section-content">
-          <h2 class="about-text margin-b-3">
+          <h2 class="about-text margin-b-2">
             My beliefs are
           </h2>
           <div class="beliefs-list">
@@ -133,19 +133,21 @@
             </div>
           </div>
 
-          <div class="page-section">
+          <div class="page-section experience-content">
             <div class="section-content">
-              <p class="experience-description margin-b-6">
+              <p class="experience-description margin-b-8">
                 {{experience.node.description}}
               </p>
 
               <div class="experience-skills-list">
                 <div v-for="skillObj in experience.node.skills" class="skills-box">
                   <div class="skills-box-content">
-                    <h3 class="skills-box-header">{{skillObj.type}}</h3>
+                    <h3 class="skills-box-header">
+                      {{skillObj.type}}
+                    </h3>
 
                     <div class="tag-list skills-box-list">
-                      <div class="tag margin-b-2" v-for="skill in skillObj.items">
+                      <div class="tag" v-for="skill in skillObj.items">
                         {{skill}}
                       </div>
                     </div>
@@ -264,7 +266,6 @@ export default {
 
     .belief-header {
       line-height: 1.25;
-      font-weight: 600;
       margin-bottom: 0.25rem;
     }
 
@@ -310,8 +311,8 @@ export default {
     .tag {
       color: white;
       background-color: var(--section-color);
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
+      margin: 0.5rem;
+      margin-top: 0;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
     }
@@ -319,10 +320,8 @@ export default {
 
   .experience-description {
     margin: 0 auto;
-    max-width: 650px;
-    font-size: 1.3rem;
-    font-style: italic;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 300;
     text-align: center;
     letter-spacing: 0.025rem;
   }
@@ -338,13 +337,13 @@ export default {
       padding: 0.5rem;
 
       .skills-box-content {
-        padding: 1rem;
-        border: 1px solid black;
+        background-color: rgba(0, 0, 0, 0.05);
+        padding: 1.5rem;
         height: 100%;
 
         .skills-box-header {
-          line-height: 1.25;
-          font-weight: 600;
+          font-size: 1.2rem;
+          color: var(--section-color);
           margin-bottom: 0.5rem;
         }
 
@@ -353,21 +352,26 @@ export default {
           justify-content: flex-start;
 
           .tag {
-            border-radius: 4px;
+            font-size: 0.9rem;
+            padding: 0.15rem 0.5rem;
+            margin: 0.15rem;
             background-color: var(--section-color);
           }
         }
       }
 
-      @include media('>tablet') {
+      @include media('>phone') {
         flex-basis: 50%;
       }
     }
   }
 
   @for $i from 1 through length($experience-colors) {
+    $sectionColor: nth($experience-colors, $i);
+
     &:nth-child(#{length($experience-colors)}n + #{$i}) {
-      --section-color: #{nth($experience-colors, $i)};
+      --section-color: #{$sectionColor};
+      --section-color-rgb: #{hexToRGB($sectionColor)};
     }
   }
 }

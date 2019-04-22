@@ -4,32 +4,35 @@ $spacing-list: 0, 0.25rem, 0.5rem, 0.75rem, 1rem, 1.25rem, 1.5rem, 1.75rem, 2rem
 
 @each $type in margin, padding {
   @for $i from 1 through length($spacing-list) {
-    .#{$type}-#{$i - 1} {
-      #{$type}: #{nth($spacing-list, $i)} !important;
+    $spacing: nth($spacing-list, $i);
+    $number: $i - 1;
+
+    .#{$type}-#{$number} {
+      #{$type}: #{$spacing} !important;
     }
 
-    .#{$type}-v-#{$i - 1} {
-      #{$type}: #{nth($spacing-list, $i)} 0 !important;
+    .#{$type}-v-#{$number} {
+      #{$type}: #{$spacing} 0 !important;
     }
 
-    .#{$type}-h-#{$i - 1} {
-      #{$type}: 0 #{nth($spacing-list, $i)} !important;
+    .#{$type}-h-#{$number} {
+      #{$type}: 0 #{$spacing} !important;
     }
 
-    .#{$type}-t-#{$i - 1} {
-      #{$type}-top: #{nth($spacing-list, $i)} !important;
+    .#{$type}-t-#{$number} {
+      #{$type}-top: #{$spacing} !important;
     }
 
-    .#{$type}-b-#{$i - 1} {
-      #{$type}-bottom: #{nth($spacing-list, $i)} !important;
+    .#{$type}-b-#{$number} {
+      #{$type}-bottom: #{$spacing} !important;
     }
 
-    .#{$type}-l-#{$i - 1} {
-      #{$type}-left: #{nth($spacing-list, $i)} !important;
+    .#{$type}-l-#{$number} {
+      #{$type}-left: #{$spacing} !important;
     }
 
-    .#{$type}-r-#{$i - 1} {
-      #{$type}-right: #{nth($spacing-list, $i)} !important;
+    .#{$type}-r-#{$number} {
+      #{$type}-right: #{$spacing} !important;
     }
   }
 }

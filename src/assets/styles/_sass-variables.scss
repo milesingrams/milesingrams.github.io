@@ -1,5 +1,8 @@
 @import "~include-media/dist/include-media";
 
+
+// MEDIA QUERIES
+
 $breakpoints: (
   'small': 375px,
   'phone': 540px,
@@ -12,7 +15,11 @@ $breakpoints: (
 
 // COLORS
 
-$experience-colors: #02c8a7, #ef476f, #e5a91d, #118ab2;
+$experience-colors: #00bf9f, #ef476f, #e5a91d, #118ab2;
+
+@function hexToRGB($colorHex) {
+  @return #{red($colorHex)}, #{green($colorHex)}, #{blue($colorHex)};
+}
 
 
 //TYPOGRAPHY

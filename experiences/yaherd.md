@@ -12,13 +12,15 @@ description: YaHerd is an event planning web app that allows you to organize you
 skills:
   - type: Bits
     items:
-      - Server[less] Engineering
+      - Server Engineering
       - Database Design
-      - Node, Firebase
-      - Vue, Vuex
-      - HTML, Javascript, CSS
+      - Node.js
+      - Firebase
+      - Vue / Vuex
+      - HTML
+      - Javascript
+      - CSS / SASS
   - type: Battlestar Galactica
     items:
       - Project Management
-
 ---
