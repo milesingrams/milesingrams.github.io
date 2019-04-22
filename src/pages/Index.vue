@@ -252,6 +252,7 @@ export default {
 .beliefs-list {
   display: flex;
   flex-wrap: wrap;
+  margin: -0.5rem;
 
   .belief {
     flex-basis: 100%;
@@ -320,9 +321,9 @@ export default {
 
   .experience-description {
     margin: 0 auto;
+    padding: 1rem 0;
     font-size: 1.5rem;
     font-weight: 300;
-    text-align: center;
     letter-spacing: 0.025rem;
   }
 
@@ -330,6 +331,7 @@ export default {
   .experience-skills-list {
     display: flex;
     flex-wrap: wrap;
+    margin: -0.5rem;
 
     .skills-box {
       flex-basis: 100%;
@@ -337,7 +339,7 @@ export default {
       padding: 0.5rem;
 
       .skills-box-content {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: rgba(0, 0, 0, 0.03);
         padding: 1.5rem;
         height: 100%;
 
@@ -348,8 +350,8 @@ export default {
         }
 
         .skills-box-list {
-          margin-left: -0.25rem;
           justify-content: flex-start;
+          margin: -0.15rem;
 
           .tag {
             font-size: 0.9rem;

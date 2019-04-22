@@ -2,8 +2,19 @@
   <div class="page-content">
     <slot/>
     <div class="texture"></div>
+    <svg-filters></svg-filters>
   </div>
 </template>
+
+<script>
+import SvgFilters from '~/components/SvgFilters'
+
+export default {
+  components: {
+    SvgFilters
+  }
+}
+</script>
 
 <style lang="scss">
 .page-content {

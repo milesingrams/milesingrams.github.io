@@ -7,5 +7,5 @@ position: Microdevice Design Engineer
 
 tags: [ Bits, Bio ]
 
-description: Development of microfluidic devices with human cell co-cultures to emulate human organ structures in-vitro.
+description: Description
 ---
