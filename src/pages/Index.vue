@@ -19,21 +19,9 @@
             I Like
           </h2>
           <div class="tag-list like-tags">
-            <div class="tag">
-              <icon-bits class="icon"></icon-bits>
-              Bits
-            </div>
-            <div class="tag">
-              <icon-bots class="icon"></icon-bots>
-              Bots
-            </div>
-            <div class="tag">
-              <icon-bio class="icon"></icon-bio>
-              Bio
-            </div>
-            <div class="tag">
-              <icon-battlestar class="icon"></icon-battlestar>
-              Battlestar Galactica
+            <div class="tag" v-for="tag in tags">
+              <component :is="iconForTag(tag)" class="icon"></component>
+              {{tag}}
             </div>
           </div>
         </div>
@@ -127,7 +115,7 @@
 
             <div class="tag-list experience-tags">
               <div class="tag" v-for="tag in experience.node.tags">
-                <component :is="`Icon${tag}`" class="icon"></component>
+                <component :is="iconForTag(tag)" class="icon"></component>
                 {{tag}}
               </div>
             </div>
@@ -188,7 +176,7 @@ import Logo from '~/components/Logo'
 import IconBits from '~/assets/icons/IconBits.svg'
 import IconBots from '~/assets/icons/IconBots.svg'
 import IconBio from '~/assets/icons/IconBio.svg'
-import IconBattlestar from '~/assets/icons/IconBattlestar.svg'
+import IconBattlestarGalactica from '~/assets/icons/IconBattlestarGalactica.svg'
 
 export default {
   components: {
@@ -196,7 +184,17 @@ export default {
     IconBits,
     IconBots,
     IconBio,
-    IconBattlestar
+    IconBattlestarGalactica
+  },
+  data () {
+    return {
+      tags: ['Bits', 'Bots', 'Bio', 'Battlestar Galactica']
+    }
+  },
+  methods: {
+    iconForTag (tagName) {
+      return `Icon${tagName.replace(' ', '')}`
+    }
   },
   metaInfo: {
     title: 'Miles Ingram'
