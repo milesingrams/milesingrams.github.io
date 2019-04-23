@@ -2,7 +2,7 @@
   <div class="ink-bleed-overlay" v-if="!finished">
     <svg class="invisible" xmlns="http://www.w3.org/2000/svg">
       <filter id="ink-filter">
-        <feTurbulence type="fractalNoise" baseFrequency="0.0025" numOctaves="4" :seed="seed"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="2" :seed="seed"/>
         <feColorMatrix :values="colorMatrixValues" result="texture" />
         <feComposite in="SourceGraphic" in2="texture" operator="in" />
       </filter>
@@ -26,7 +26,7 @@ export default {
       baseOptions: {
         color: '#ffffff',
         duration: 2,
-        intensity: 10
+        intensity: 20
       }
     }
   },
