@@ -102,7 +102,7 @@ export default {
           translateX: [(startingPoint[0] - 50) / 3, slice.translateX],
           translateY: [(startingPoint[1] - 50) / 3, slice.translateY],
           scale: [1.5, slice.scale],
-          easing: 'easeOutQuad',
+          easing: 'easeInOutQuad',
           duration: this.mergedOptions.duration * 1000
         }, Math.random() * this.mergedOptions.maxDelay * 1000)
 

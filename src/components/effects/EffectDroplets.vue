@@ -78,7 +78,7 @@ export default {
           this.animationTimeline.add({
             targets: droplet,
             opacity: [0, newOpacity],
-            easing: 'easeInQuad',
+            easing: 'easeInOutQuad',
             duration: this.mergedOptions.duration * 1000
           }, startOffset)
         }
@@ -88,7 +88,7 @@ export default {
         this.animationTimeline.add({
           targets: droplet,
           opacity: [0, opacity],
-          easing: 'easeInQuad',
+          easing: 'easeInOutQuad',
           duration: this.mergedOptions.duration * 1000
         }, startOffset)
 
@@ -97,7 +97,7 @@ export default {
         this.animationTimeline.add({
           targets: droplet,
           opacity: 0,
-          easing: 'easeOutQuad',
+          easing: 'easeInOutQuad',
           duration: this.mergedOptions.duration * 1000
         }, delay)
 

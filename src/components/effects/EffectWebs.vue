@@ -93,7 +93,7 @@ export default {
           targets: path,
           dashOffset: 500 * this.mergedOptions.numPointsPerPath,
           strokeWidth: this.mergedOptions.minStrokeWidth,
-          easing: 'easeOutQuad',
+          easing: 'easeInOutQuad',
           duration: this.mergedOptions.duration * 1000
         }, Math.random() * this.mergedOptions.maxDelay * 1000)
 
