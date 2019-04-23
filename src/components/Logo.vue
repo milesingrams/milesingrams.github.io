@@ -39,7 +39,6 @@ export default {
       animationProgress: 0,
       animationEase: 0.075,
       animationPageCoverage: 1.25,
-      scrollY: 0,
       logoClicked: false,
       foldUpAnimation: null,
       poly: [
@@ -66,7 +65,7 @@ export default {
       }
     },
     atPageTop () {
-      if (this.scrollY < 20) {
+      if (this.animationProgressTarget < 0.05) {
         return true
       } else {
         return false

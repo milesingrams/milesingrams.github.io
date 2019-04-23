@@ -4,16 +4,16 @@
       <logo color="#000000"></logo>
     </div>
 
-    <div class="sections">
-      <section class="page-section">
+    <section class="about-wrap">
+      <div class="page-section">
         <div class="section-content no-pointer-events">
           <h2 class="about-text">
             Hi, I'm Miles
           </h2>
         </div>
-      </section>
+      </div>
 
-      <section class="page-section">
+      <div class="page-section">
         <div class="section-content no-pointer-events">
           <h2 class="about-text margin-b-3">
             I Like
@@ -25,9 +25,9 @@
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section class="page-section">
+      <div class="page-section">
         <div class="section-content">
           <h2 class="about-text">
             NYC born and raised, I started dabbling with programming at a young age by making silly Flash games and clunky Lego Mindstorms.
@@ -37,9 +37,9 @@
             Many years later I'm still doing the same thing, just with MUCH cooler equipment.
           </h2>
         </div>
-      </section>
+      </div>
 
-      <section class="page-section">
+      <div class="page-section">
         <div class="section-content">
           <h2 class="about-text margin-b-4">
             My beliefs are
@@ -87,67 +87,71 @@
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section class="page-section">
+      <div class="page-section">
         <div class="section-content">
           <h2 class="about-text">
             Here's what I've worked on so far
           </h2>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="experiences-wrap">
-        <div class="experience-wrap" v-for="(experience, index) in $page.experiences.edges" :key="index">
+    <section class="experiences-wrap">
+      <div class="experience" v-for="(experience, index) in $page.experiences.edges" :key="index">
 
-          <div class="page-section experience-header">
-            <div class="section-content">
-              <h2 class="experience-title">
-                {{experience.node.title}}
-              </h2>
+        <div class="page-section experience-header">
+          <ink-bleed-overlay></ink-bleed-overlay>
 
-              <div class="divider-line"></div>
+          <div class="section-content">
+            <h2 class="experience-title">
+              {{experience.node.title}}
+            </h2>
 
-              <h2 class="experience-position">
-                {{experience.node.position}}
-              </h2>
-            </div>
+            <div class="divider-line"></div>
 
-            <div class="tag-list experience-tags">
-              <div class="tag" v-for="tag in experience.node.tags">
-                <component :is="iconForTag(tag)" class="icon"></component>
-                {{tag}}
-              </div>
-            </div>
+            <h2 class="experience-position">
+              {{experience.node.position}}
+            </h2>
           </div>
 
-          <div class="page-section experience-content">
-            <div class="section-content">
-              <p class="experience-description margin-b-8">
-                {{experience.node.description}}
-              </p>
+          <div class="tag-list experience-tags">
+            <div class="tag" v-for="tag in experience.node.tags">
+              <component :is="iconForTag(tag)" class="icon"></component>
+              {{tag}}
+            </div>
+          </div>
+        </div>
 
-              <div class="experience-skills-list">
-                <div v-for="skillObj in experience.node.skills" class="skills-box">
-                  <div class="skills-box-content">
-                    <h3 class="skills-box-header">
-                      {{skillObj.type}}
-                    </h3>
+        <div class="page-section experience-content">
+          <ink-bleed-overlay></ink-bleed-overlay>
 
-                    <div class="tag-list skills-box-list">
-                      <div class="tag" v-for="skill in skillObj.items">
-                        {{skill}}
-                      </div>
+          <div class="section-content">
+            <p class="experience-description margin-b-8">
+              {{experience.node.description}}
+            </p>
+
+            <div class="experience-skills-list">
+              <div v-for="skillObj in experience.node.skills" class="skills-box">
+                <div class="skills-box-content">
+                  <h3 class="skills-box-header">
+                    {{skillObj.type}}
+                  </h3>
+
+                  <div class="tag-list skills-box-list">
+                    <div class="tag" v-for="skill in skillObj.items">
+                      {{skill}}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
-      </section>
-    </div>
+
+      </div>
+    </section>
   </layout>
 </template>
 
@@ -173,6 +177,7 @@
 
 <script>
 import Logo from '~/components/Logo'
+import InkBleedOverlay from '~/components/InkBleedOverlay'
 import IconBits from '~/assets/icons/IconBits.svg'
 import IconBots from '~/assets/icons/IconBots.svg'
 import IconBio from '~/assets/icons/IconBio.svg'
@@ -181,6 +186,7 @@ import IconBattlestarGalactica from '~/assets/icons/IconBattlestarGalactica.svg'
 export default {
   components: {
     Logo,
+    InkBleedOverlay,
     IconBits,
     IconBots,
     IconBio,
@@ -194,6 +200,13 @@ export default {
   methods: {
     iconForTag (tagName) {
       return `Icon${tagName.replace(' ', '')}`
+    },
+    onWindowScrollResize () {
+      let rect = this.$el.getBoundingClientRect()
+      let height = rect.bottom - rect.top
+      if (rect.top > -height && rect.bottom < window.innerHeight + height) {
+        this.run()
+      }
     }
   },
   metaInfo: {
@@ -225,140 +238,44 @@ export default {
     padding: 4rem 1.5rem;
     z-index: 10;
   }
-
-  $section-colors: #ffffff, #f2f2f2;
-
-  @for $i from 1 through length($section-colors) {
-    &:nth-child(#{length($section-colors)}n + #{$i}) {
-      background-color: #{nth($section-colors, $i)};
-    }
-  }
 }
 
-.about-text {
-  font-family: 'Averia Serif Libre';
-  font-weight: 500;
-  text-align: center;
-}
-
-.like-tags {
-  .tag {
-    border-radius: 4px;
-  }
-}
-
-.beliefs-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -0.5rem;
-
-  .belief {
-    flex-basis: 100%;
-    flex-grow: 1;
-    padding: 0.5rem;
-
-    .belief-content {
-      padding: 1rem;
-      border: 1px solid black;
-      height: 100%;
-    }
-
-    .belief-header {
-      line-height: 1.25;
-      margin-bottom: 0.25rem;
-    }
-
-    .belief-text {
-      font-size: 0.9rem;
-    }
-
-    @include media('>phone') {
-      flex-basis: 50%;
-    }
-  }
-}
-
-.experience-wrap {
-  .experience-header {
-    color: white;
-    background-color: var(--section-color);
-  }
-
-  .experience-title, .experience-position {
+.about-wrap {
+  .about-text {
     font-family: 'Averia Serif Libre';
-    text-transform: uppercase;
-    font-weight: 300;
-    line-height: 1.2;
+    font-weight: 500;
     text-align: center;
   }
 
-  .experience-title {
-    font-size: 1.7rem;
-    letter-spacing: 0.3rem;
-  }
-
-  .experience-position {
-    font-size: 1.3rem;
-    letter-spacing: 0.2rem;
-  }
-
-  .experience-tags {
-    position: absolute;
-    top: 100%;
-    z-index: 1;
-
-
+  .like-tags {
     .tag {
-      color: white;
-      background-color: var(--section-color);
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
+      border-radius: 4px;
     }
   }
 
-  .experience-description {
-    margin: 0 auto;
-    padding: 1rem 0;
-    font-size: 1.5rem;
-    font-weight: 300;
-    letter-spacing: 0.025rem;
-  }
-
-
-  .experience-skills-list {
+  .beliefs-list {
     display: flex;
     flex-wrap: wrap;
     margin: -0.5rem;
 
-    .skills-box {
+    .belief {
       flex-basis: 100%;
       flex-grow: 1;
       padding: 0.5rem;
 
-      .skills-box-content {
-        background-color: rgba(0, 0, 0, 0.03);
-        padding: 1.5rem;
+      .belief-content {
+        padding: 1rem;
+        border: 1px solid black;
         height: 100%;
+      }
 
-        .skills-box-header {
-          font-size: 1.2rem;
-          color: var(--section-color);
-          margin-bottom: 0.5rem;
-        }
+      .belief-header {
+        line-height: 1.25;
+        margin-bottom: 0.25rem;
+      }
 
-        .skills-box-list {
-          justify-content: flex-start;
-          margin: -0.15rem;
-
-          .tag {
-            font-size: 0.9rem;
-            padding: 0.15rem 0.5rem;
-            margin: 0.15rem;
-            background-color: var(--section-color);
-          }
-        }
+      .belief-text {
+        font-size: 0.9rem;
       }
 
       @include media('>phone') {
@@ -367,12 +284,114 @@ export default {
     }
   }
 
-  @for $i from 1 through length($experience-colors) {
-    $sectionColor: nth($experience-colors, $i);
+  .page-section {
+    $section-colors: #ffffff, #f2f2f2;
 
-    &:nth-child(#{length($experience-colors)}n + #{$i}) {
-      --section-color: #{$sectionColor};
-      --section-color-rgb: #{hexToRGB($sectionColor)};
+    @for $i from 1 through length($section-colors) {
+      &:nth-child(#{length($section-colors)}n + #{$i}) {
+        background-color: #{nth($section-colors, $i)};
+      }
+    }
+  }
+}
+
+.experiences-wrap {
+  .experience {
+    .experience-header {
+      color: white;
+      background-color: var(--section-color);
+    }
+
+    .experience-title, .experience-position {
+      font-family: 'Averia Serif Libre';
+      text-transform: uppercase;
+      font-weight: 300;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .experience-title {
+      font-size: 1.7rem;
+      letter-spacing: 0.3rem;
+    }
+
+    .experience-position {
+      font-size: 1.3rem;
+      letter-spacing: 0.2rem;
+    }
+
+    .experience-tags {
+      position: absolute;
+      top: 100%;
+      z-index: 1;
+
+
+      .tag {
+        color: white;
+        background-color: var(--section-color);
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+    }
+
+    .experience-description {
+      margin: 0 auto;
+      padding: 1rem 0;
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 0.025rem;
+    }
+
+
+    .experience-skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -0.5rem;
+
+      .skills-box {
+        flex-basis: 100%;
+        flex-grow: 1;
+        padding: 0.5rem;
+
+        .skills-box-content {
+          background-color: rgba(0, 0, 0, 0.03);
+          padding: 1.5rem;
+          height: 100%;
+
+          .skills-box-header {
+            font-size: 1.2rem;
+            color: var(--section-color);
+            margin-bottom: 0.5rem;
+          }
+
+          .skills-box-list {
+            justify-content: flex-start;
+            margin: -0.15rem;
+
+            .tag {
+              font-size: 0.9rem;
+              padding: 0.15rem 0.5rem;
+              margin: 0.15rem;
+              background-color: var(--section-color);
+            }
+          }
+        }
+
+        @include media('>phone') {
+          flex-basis: 50%;
+        }
+      }
+    }
+
+    @for $i from 1 through length($experience-colors) {
+      $sectionColor: nth($experience-colors, $i);
+
+      &:nth-child(#{length($experience-colors)}n + #{$i}) {
+        --section-color: #{$sectionColor};
+        --section-color-rgb: #{hexToRGB($sectionColor)};
+      }
     }
   }
 }
