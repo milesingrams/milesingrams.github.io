@@ -1,8 +1,6 @@
 <template>
   <div class="experience" v-observe-visibility="observeVisibilityOptions">
     <div class="page-section experience-header">
-      <ink-bleed-overlay v-if="visible"></ink-bleed-overlay>
-
       <div class="section-content">
         <h2 class="experience-title">
           {{experience.node.title}}
@@ -54,7 +52,6 @@ import IconBits from '~/assets/icons/IconBits.svg'
 import IconBots from '~/assets/icons/IconBots.svg'
 import IconBio from '~/assets/icons/IconBio.svg'
 import IconBattlestarGalactica from '~/assets/icons/IconBattlestarGalactica.svg'
-import InkBleedOverlay from '~/components/InkBleedOverlay'
 
 export default {
   name: 'Experience',
@@ -63,8 +60,7 @@ export default {
     IconBits,
     IconBots,
     IconBio,
-    IconBattlestarGalactica,
-    InkBleedOverlay
+    IconBattlestarGalactica
   },
   data () {
     return {
