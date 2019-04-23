@@ -89,14 +89,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .experience-header {
   color: white;
   background-color: var(--section-color);
-
-  .ink-bleed-overlay {
-    height: 120%;
-  }
 }
 
 .experience-title, .experience-position {
@@ -121,7 +116,6 @@ export default {
   position: absolute;
   top: 100%;
   z-index: 1;
-
 
   .tag {
     color: white;
