@@ -102,8 +102,6 @@
       <div class="experience" v-for="(experience, index) in $page.experiences.edges" :key="index">
 
         <div class="page-section experience-header">
-          <ink-bleed-overlay></ink-bleed-overlay>
-
           <div class="section-content">
             <h2 class="experience-title">
               {{experience.node.title}}
@@ -125,8 +123,6 @@
         </div>
 
         <div class="page-section experience-content">
-          <ink-bleed-overlay></ink-bleed-overlay>
-
           <div class="section-content">
             <p class="experience-description margin-b-8">
               {{experience.node.description}}
@@ -200,13 +196,6 @@ export default {
   methods: {
     iconForTag (tagName) {
       return `Icon${tagName.replace(' ', '')}`
-    },
-    onWindowScrollResize () {
-      let rect = this.$el.getBoundingClientRect()
-      let height = rect.bottom - rect.top
-      if (rect.top > -height && rect.bottom < window.innerHeight + height) {
-        this.run()
-      }
     }
   },
   metaInfo: {
