@@ -117,7 +117,7 @@ export default {
 }
 
 .experience-position {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   letter-spacing: 0.2rem;
 }
 
@@ -157,7 +157,7 @@ export default {
     flex-basis: 50%;
 
     &:not(:last-child) {
-      padding-right: 1.5rem;
+      padding-right: 1.25rem;
     }
   }
 }
@@ -169,19 +169,19 @@ export default {
     font-size: 1.1rem;
 
     &:not(:last-child) {
-      margin-bottom: 1.3rem;
+      margin-bottom: 1.25rem;
     }
   }
 }
 
 .skills {
   background-color: #f3f3f3;
-  padding: 1.3rem 0;
+  padding: 1.25rem 0;
   border-radius: 4px;
 
   .skill-item {
     display: flex;
-    padding-right: 1.3rem;
+    padding-right: 1.25rem;
 
     .skill-type {
       flex-shrink: 0;
@@ -206,7 +206,7 @@ export default {
     }
 
     &:not(:last-child) {
-      margin-bottom: 1.3rem;
+      margin-bottom: 1.25rem;
     }
   }
 }
