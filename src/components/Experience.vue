@@ -29,19 +29,17 @@
         </p>
 
         <div class="achievements-skills-wrap">
-          <div class="achievements">
-            <ul>
-              <li>
-                asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
-              </li>
-              <li>
-                asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
-              </li>
-              <li>
-                asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
-              </li>
-            </ul>
-          </div>
+          <ul class="achievements">
+            <li class="achievement">
+              asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
+            </li>
+            <li class="achievement">
+              asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
+            </li>
+            <li class="achievement">
+              asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
+            </li>
+          </ul>
 
           <div class="skills">
             <div v-for="skillObj in experience.node.skills" class="skills-content">
@@ -151,6 +149,7 @@ export default {
 .achievements-skills-wrap {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .skills, .achievements {
@@ -163,15 +162,25 @@ export default {
 }
 
 .achievements {
+  .achievement {
+    border-left: 1px solid black;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
 }
 
 .skills {
   background-color: #f2f2f2;
-  padding: 1rem;
-  padding-left: 0;
+  padding: 1rem 0;
+  border-radius: 4px;
 
   .skills-content {
     display: flex;
+    padding-right: 1rem;
 
     .skills-type {
       flex-shrink: 0;
