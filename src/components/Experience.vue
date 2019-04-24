@@ -1,5 +1,6 @@
 <template>
   <div class="experience" v-observe-visibility="observeVisibilityOptions">
+
     <div class="page-section experience-header">
       <div class="section-content">
         <h2 class="experience-title">
@@ -23,25 +24,43 @@
 
     <div class="page-section experience-content">
       <div class="section-content">
-        <p class="experience-description margin-b-8">
+        <p class="experience-description">
           {{experience.node.description}}
         </p>
 
-        <div class="skills-box" v-if="experience.node.skills.length">
-          <div v-for="skillObj in experience.node.skills" class="skills-box-content">
-            <div class="skills-box-type">
-              <component :is="iconForTag(skillObj.type)" class="icon"></component>
-            </div>
+        <div class="achievements-skills-wrap">
+          <div class="achievements">
+            <ul>
+              <li>
+                asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
+              </li>
+              <li>
+                asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
+              </li>
+              <li>
+                asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
+              </li>
+            </ul>
+          </div>
 
-            <div class="tag-list skills-box-list">
-              <div class="tag" v-for="skill in skillObj.items">
-                {{skill}}
+          <div class="skills">
+            <div v-for="skillObj in experience.node.skills" class="skills-content">
+              <div class="skills-type">
+                <component :is="iconForTag(skillObj.type)" class="icon"></component>
+              </div>
+
+              <div class="tag-list skills-list">
+                <div class="tag" v-for="skill in skillObj.items">
+                  {{skill}}
+                </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
+
   </div>
 </template>
 
@@ -123,32 +142,48 @@ export default {
 
 .experience-description {
   margin: 0 auto;
-  padding: 1rem 0;
+  margin-bottom: 2rem;
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 0.025rem;
 }
 
+.achievements-skills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-.skills-box {
-  background-color: rgba(0, 0, 0, 0.04);
+.skills, .achievements {
+  flex-basis: 100%;
+  margin-bottom: 2rem;
+
+  @include media(">tablet") {
+    flex-basis: 50%;
+  }
+}
+
+.achievements {
+}
+
+.skills {
+  background-color: #f2f2f2;
   padding: 1rem;
   padding-left: 0;
-  width: 50%;
 
-  .skills-box-content {
+  .skills-content {
     display: flex;
 
-    .skills-box-type {
+    .skills-type {
       flex-shrink: 0;
       padding: 0 0.75rem;
 
       .icon {
+        opacity: 0.8;
         margin-top: 0.25rem;
       }
     }
 
-    .skills-box-list {
+    .skills-list {
       justify-content: flex-start;
       margin: -0.15rem;
 

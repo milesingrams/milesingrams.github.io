@@ -15,7 +15,7 @@
 
       <div class="page-section">
         <div class="section-content no-pointer-events">
-          <h2 class="about-text margin-b-3">
+          <h2 class="about-text margin-b-4">
             I Like
           </h2>
           <div class="tag-list like-tags">
@@ -199,15 +199,16 @@ export default {
     .belief-content {
       height: 100%;
       padding: 1rem;
-      border: 1px solid black;
     }
 
     .belief-header {
       line-height: 1.25;
-      margin-bottom: 0.25rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid black;
     }
 
     .belief-text {
+      padding-top: 0.25rem;
       font-size: 0.9rem;
     }
 
@@ -218,10 +219,10 @@ export default {
 }
 
 .experience {
-  @for $i from 1 through length($experience-colors) {
-    $sectionColor: nth($experience-colors, $i);
+  @for $i from 1 through length($site-colors) {
+    $sectionColor: nth($site-colors, $i);
 
-    &:nth-child(#{length($experience-colors)}n + #{$i}) {
+    &:nth-child(#{length($site-colors)}n + #{$i}) {
       --section-color: #{$sectionColor};
       --section-color-rgb: #{hexToRGB($sectionColor)};
     }
