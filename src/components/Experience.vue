@@ -29,21 +29,25 @@
         </p>
 
         <div class="achievements-skills-wrap">
-          <ul class="achievements">
-            <li class="achievement" v-for="achievement in experience.node.achievements">
-              {{achievement}}
-            </li>
-          </ul>
+          <div class="achievements-wrap">
+            <ul class="achievements">
+              <li class="achievement-item" v-for="achievement in experience.node.achievements">
+                {{achievement}}
+              </li>
+            </ul>
+          </div>
 
-          <div class="skills">
-            <div class="skills-content" v-for="skillObj in experience.node.skills">
-              <div class="skills-type">
-                <component :is="iconForTag(skillObj.type)" class="icon"></component>
-              </div>
+          <div class="skills-wrap">
+            <div class="skills">
+              <div class="skill-item" v-for="skillObj in experience.node.skills">
+                <div class="skill-type">
+                  <component :is="iconForTag(skillObj.type)" class="icon"></component>
+                </div>
 
-              <div class="tag-list skills-list">
-                <div class="tag" v-for="skill in skillObj.items">
-                  {{skill}}
+                <div class="tag-list skill-list">
+                  <div class="tag" v-for="skill in skillObj.items">
+                    {{skill}}
+                  </div>
                 </div>
               </div>
             </div>
@@ -145,38 +149,41 @@ export default {
   align-items: flex-start;
 }
 
-.skills, .achievements {
+.skills-wrap, .achievements-wrap {
   flex-basis: 100%;
-  margin-top: 2.5rem;
+  margin-top: 3rem;
 
   @include media(">tablet") {
     flex-basis: 50%;
+
+    &:not(:last-child) {
+      padding-right: 1.5rem;
+    }
   }
 }
 
 .achievements {
-  .achievement {
+  .achievement-item {
     padding-left: 0.75rem;
-    padding-right: 1rem;
     border-left: 3px solid rgba(var(--section-color-rgb), 0.5);
     font-size: 1.1rem;
 
     &:not(:last-child) {
-      margin-bottom: 1rem;
+      margin-bottom: 1.3rem;
     }
   }
 }
 
 .skills {
   background-color: #f3f3f3;
-  padding: 1.5rem 0;
+  padding: 1.3rem 0;
   border-radius: 4px;
 
-  .skills-content {
+  .skill-item {
     display: flex;
-    padding-right: 1rem;
+    padding-right: 1.3rem;
 
-    .skills-type {
+    .skill-type {
       flex-shrink: 0;
       padding: 0 0.75rem;
 
@@ -186,7 +193,7 @@ export default {
       }
     }
 
-    .skills-list {
+    .skill-list {
       justify-content: flex-start;
       margin: -0.15rem;
 
@@ -199,7 +206,7 @@ export default {
     }
 
     &:not(:last-child) {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.3rem;
     }
   }
 }
