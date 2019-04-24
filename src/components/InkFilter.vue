@@ -22,7 +22,7 @@ export default {
       seed: Math.floor(Math.random() * 9999),
       baseOptions: {
         duration: 2,
-        intensity: 20
+        intensity: 10
       }
     }
   },
@@ -57,7 +57,7 @@ export default {
           this.run()
           watcher()
         }
-      })
+      }, { immediate: true })
     }
   }
 }
