@@ -24,7 +24,7 @@ export default {
         opacity: 0.25,
         numSlices: 25,
         numPointsPerPolygon: 3,
-        translateSpread: 1.5,
+        translateSpread: 0.5,
         maxDelay: 3,
         duration: 0.5,
         radius: 75
@@ -99,8 +99,8 @@ export default {
           this.animationTimeline.add({
             targets: slice,
             opacity: [0, slice.opacity],
-            translateX: [(startingPoint[0] * this.mergedOptions.translateSpread - 50) / 3, slice.translateX],
-            translateY: [(startingPoint[1] * this.mergedOptions.translateSpread - 50) / 3, slice.translateY],
+            translateX: [(startingPoint[0] - 50) * this.mergedOptions.translateSpread, slice.translateX],
+            translateY: [(startingPoint[1] - 50) * this.mergedOptions.translateSpread, slice.translateY],
             scale: [1.5, slice.scale],
             easing: 'easeInOutQuad',
             duration: this.mergedOptions.duration * 1000
