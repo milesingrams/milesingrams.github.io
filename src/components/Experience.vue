@@ -152,10 +152,14 @@ export default {
 
 .skills-wrap, .achievements-wrap {
   flex-basis: 100%;
-  margin-bottom: 3rem;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
 
   @include media('>=tablet') {
     flex-basis: 50%;
+    margin-bottom: 3rem;
 
     &:not(:last-child) {
       padding-right: 1.5rem;
