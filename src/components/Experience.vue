@@ -185,7 +185,7 @@ export default {
     padding-right: 1.5rem;
 
     .skill-type {
-      flex-shrink: 0;
+      margin-top: 0.2rem;
       padding: 0 1rem;
 
       .icon {
@@ -195,6 +195,7 @@ export default {
 
     .skill-list {
       justify-content: flex-start;
+      align-items: flex-start;
       margin: -0.15rem;
 
       .tag {
