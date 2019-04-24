@@ -1,14 +1,8 @@
 <template>
   <div class="experience" v-observe-visibility="observeVisibilityOptions">
-    <svg class="invisible" xmlns="http://www.w3.org/2000/svg">
-      <filter :id="inkFilterId">
-        <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="2" :seed="inkSeed"/>
-        <feColorMatrix :values="inkMatrix" result="texture" />
-        <feComposite in="SourceGraphic" in2="texture" operator="in" />
-      </filter>
-    </svg>
+    <div class="page-section experience-header" :style="{'filter': `url(#${inkFilterId}-filter)`}">
+      <ink-filter :id="`${inkFilterId}`" :trigger="visible"></ink-filter>
 
-    <div class="page-section experience-header" :style="{'filter': `url(#${inkFilterId})`}">
       <div class="section-content">
         <h2 class="experience-title">
           {{experience.node.title}}
@@ -56,16 +50,17 @@
 </template>
 
 <script>
+import InkFilter from '~/components/InkFilter'
 import IconBits from '~/assets/icons/IconBits.svg'
 import IconBots from '~/assets/icons/IconBots.svg'
 import IconBio from '~/assets/icons/IconBio.svg'
 import IconBattlestarGalactica from '~/assets/icons/IconBattlestarGalactica.svg'
-import anime from 'animejs'
 
 export default {
   name: 'Experience',
   props: ['experience'],
   components: {
+    InkFilter,
     IconBits,
     IconBots,
     IconBio,
@@ -74,40 +69,20 @@ export default {
   data () {
     return {
       visible: false,
+      inkFilterId: Math.floor(Math.random() * 9999),
       observeVisibilityOptions: {
         callback: this.visibilityChanged,
         once: true
-      },
-      inkSeed: Math.floor(Math.random() * 100),
-      inkIntensity: 20,
-      inkDuration: 2,
-      inkProgress: 0
-    }
-  },
-  computed: {
-    inkFilterId () {
-      return `ink-filter-${this.inkSeed}`
-    },
-    inkMatrix () {
-      return `0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 ${-this.inkIntensity} ${(this.inkProgress) * this.inkIntensity}`
+      }
     }
   },
   methods: {
     iconForTag (tagName) {
       return `Icon${tagName.replace(' ', '')}`
     },
-    runInkAnimation () {
-      anime({
-        targets: this,
-        inkProgress: 1,
-        easing: 'easeInOutQuad',
-        duration: this.inkDuration * 1000,
-      })
-    },
     visibilityChanged (isVisible) {
       if (isVisible) {
         this.visible = true
-        this.runInkAnimation()
       }
     }
   }

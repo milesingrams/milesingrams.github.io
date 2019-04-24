@@ -1,6 +1,6 @@
 <template>
   <svg v-if="!finished" class="invisible" xmlns="http://www.w3.org/2000/svg">
-    <filter :id="inkFilterId">
+    <filter :id="filterId">
       <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="2" :seed="seed"/>
       <feColorMatrix :values="colorMatrixValues" result="texture" />
       <feComposite in="SourceGraphic" in2="texture" operator="in" />
@@ -12,25 +12,24 @@
 import anime from 'animejs'
 
 export default {
-  name: 'InkBleedOverlay',
-  props: ['options'],
+  name: 'InkFilter',
+  props: ['id', 'trigger', 'options'],
   data () {
     return {
       animation: null,
       progress: 0,
       finished: false,
-      seed: Math.floor(Math.random() * 100),
+      seed: Math.floor(Math.random() * 9999),
       baseOptions: {
-        color: '#ffffff',
         duration: 2,
         intensity: 20
       }
     }
   },
   computed: {
-    inkFilterId () {
-      return `ink-filter-${this.seed}`
-    }
+    filterId () {
+      return `${this.id}-filter`
+    },
     mergedOptions () {
       return Object.assign({}, this.baseOptions, this.options)
     },
@@ -53,7 +52,12 @@ export default {
   },
   mounted () {
     if (process.isClient) {
-      this.run()
+      let watcher = this.$watch('trigger', () => {
+        if (this.trigger) {
+          this.run()
+          watcher()
+        }
+      })
     }
   }
 }
