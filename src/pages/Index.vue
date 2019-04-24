@@ -204,7 +204,7 @@ export default {
     .belief-header {
       line-height: 1.25;
       padding-bottom: 0.25rem;
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.8);
     }
 
     .belief-text {

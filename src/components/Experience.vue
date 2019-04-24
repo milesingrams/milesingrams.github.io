@@ -140,7 +140,6 @@ export default {
 
 .experience-description {
   margin: 0 auto;
-  margin-bottom: 2rem;
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 0.025rem;
@@ -154,7 +153,7 @@ export default {
 
 .skills, .achievements {
   flex-basis: 100%;
-  margin-bottom: 2rem;
+  margin-top: 2.5rem;
 
   @include media(">tablet") {
     flex-basis: 50%;
@@ -163,9 +162,10 @@ export default {
 
 .achievements {
   .achievement {
-    border-left: 1px solid black;
     padding-left: 0.5rem;
     padding-right: 1rem;
+    border-left: 2px solid rgba(var(--section-color-rgb), 0.8);
+    font-size: 1.2rem;
 
     &:not(:last-child) {
       margin-bottom: 1rem;
@@ -175,7 +175,7 @@ export default {
 
 .skills {
   background-color: #f2f2f2;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   border-radius: 4px;
 
   .skills-content {
@@ -205,7 +205,7 @@ export default {
     }
 
     &:not(:last-child) {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
   }
 }
