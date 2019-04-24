@@ -153,7 +153,7 @@ export default {
   flex-basis: 100%;
   margin-top: 3rem;
 
-  @include media(">tablet") {
+  @include media('>=tablet') {
     flex-basis: 50%;
 
     &:not(:last-child) {

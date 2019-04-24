@@ -94,6 +94,7 @@
           <h2 class="about-text">
             Here's what I've worked on so far
           </h2>
+          <div class="work-start-arrow"></div>
         </div>
       </div>
     </section>
@@ -213,10 +214,19 @@ export default {
       font-size: 0.9rem;
     }
 
-    @include media('>phone') {
+    @include media('>=phone') {
       flex-basis: 50%;
     }
   }
+}
+
+.work-start-arrow {
+  $line-spacing: 13px;
+  margin: 0 auto;
+  margin-top: -0.25rem;
+  height: 75px;
+  background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, rgba(0, 0, 0, 0.3) $line-spacing, rgba(0, 0, 0, 0.3) ($line-spacing + 1px));
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
 }
 
 .experience {

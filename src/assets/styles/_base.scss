@@ -9,8 +9,12 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 
-  @include media('>tablet') {
+  @include media('>=tablet') {
     font-size: 16px;
+  }
+
+  @include media('<small') {
+    font-size: 12px;
   }
 }
 
