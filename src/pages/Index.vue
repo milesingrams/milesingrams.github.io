@@ -15,7 +15,7 @@
 
       <div class="page-section">
         <div class="section-content no-pointer-events">
-          <h2 class="about-text margin-b-4">
+          <h2 class="about-text margin-b-5">
             I Like
           </h2>
           <div class="tag-list like-tags">
@@ -41,7 +41,7 @@
 
       <div class="page-section">
         <div class="section-content">
-          <h2 class="about-text margin-b-4">
+          <h2 class="about-text margin-b-5">
             My beliefs are
           </h2>
           <div class="beliefs-list">
@@ -114,6 +114,7 @@
         tags
         position
         description
+        achievements
         skills {
           type
           items
@@ -170,7 +171,7 @@ export default {
 
 .about-wrap {
   .page-section {
-    $section-colors: #ffffff, #f2f2f2;
+    $section-colors: #ffffff, #f3f3f3;
 
     @for $i from 1 through length($section-colors) {
       &:nth-child(#{length($section-colors)}n + #{$i}) {
@@ -202,13 +203,13 @@ export default {
     }
 
     .belief-header {
-      line-height: 1.25;
-      padding-bottom: 0.25rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+      line-height: 1.2;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid black;
     }
 
     .belief-text {
-      padding-top: 0.25rem;
+      padding-top: 0.3rem;
       font-size: 0.9rem;
     }
 

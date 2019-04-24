@@ -30,19 +30,13 @@
 
         <div class="achievements-skills-wrap">
           <ul class="achievements">
-            <li class="achievement">
-              asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
-            </li>
-            <li class="achievement">
-              asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
-            </li>
-            <li class="achievement">
-              asdasdas dsadas asdasdsad sad asd asd asd sad sad asdasdasas dsadas dassad
+            <li class="achievement" v-for="achievement in experience.node.achievements">
+              {{achievement}}
             </li>
           </ul>
 
           <div class="skills">
-            <div v-for="skillObj in experience.node.skills" class="skills-content">
+            <div class="skills-content" v-for="skillObj in experience.node.skills">
               <div class="skills-type">
                 <component :is="iconForTag(skillObj.type)" class="icon"></component>
               </div>
@@ -162,10 +156,10 @@ export default {
 
 .achievements {
   .achievement {
-    padding-left: 0.5rem;
+    padding-left: 0.75rem;
     padding-right: 1rem;
-    border-left: 2px solid rgba(var(--section-color-rgb), 0.8);
-    font-size: 1.2rem;
+    border-left: 3px solid rgba(var(--section-color-rgb), 0.5);
+    font-size: 1.1rem;
 
     &:not(:last-child) {
       margin-bottom: 1rem;
@@ -174,7 +168,7 @@ export default {
 }
 
 .skills {
-  background-color: #f2f2f2;
+  background-color: #f3f3f3;
   padding: 1.5rem 0;
   border-radius: 4px;
 
