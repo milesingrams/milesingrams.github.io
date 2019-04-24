@@ -117,7 +117,7 @@ export default {
 }
 
 .experience-position {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   letter-spacing: 0.2rem;
 }
 
@@ -138,6 +138,7 @@ export default {
 
 .experience-description {
   margin: 0 auto;
+  margin-bottom: 3rem;
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 0.025rem;
@@ -151,45 +152,44 @@ export default {
 
 .skills-wrap, .achievements-wrap {
   flex-basis: 100%;
-  margin-top: 3rem;
+  margin-bottom: 3rem;
 
   @include media('>=tablet') {
     flex-basis: 50%;
 
     &:not(:last-child) {
-      padding-right: 1.25rem;
+      padding-right: 1.5rem;
     }
   }
 }
 
 .achievements {
   .achievement-item {
-    padding-left: 0.75rem;
+    padding-left: 1rem;
     border-left: 3px solid rgba(var(--section-color-rgb), 0.5);
     font-size: 1.1rem;
 
     &:not(:last-child) {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
   }
 }
 
 .skills {
   background-color: #f3f3f3;
-  padding: 1.25rem 0;
+  padding: 1.5rem 0;
   border-radius: 4px;
 
   .skill-item {
     display: flex;
-    padding-right: 1.25rem;
+    padding-right: 1.5rem;
 
     .skill-type {
       flex-shrink: 0;
-      padding: 0 0.75rem;
+      padding: 0 1rem;
 
       .icon {
         opacity: 0.8;
-        margin-top: 0.25rem;
       }
     }
 
@@ -206,7 +206,7 @@ export default {
     }
 
     &:not(:last-child) {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
   }
 }
