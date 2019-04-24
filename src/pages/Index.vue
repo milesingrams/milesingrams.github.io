@@ -20,7 +20,7 @@
           </h2>
           <div class="tag-list like-tags">
             <div class="tag" v-for="tag in tags">
-              <component :is="iconForTag(tag)" class="icon"></component>
+              <component :is="iconForTag(tag)" class="icon margin-r-2"></component>
               {{tag}}
             </div>
           </div>
@@ -186,12 +186,6 @@ export default {
   text-align: center;
 }
 
-.like-tags {
-  .tag {
-    border-radius: 4px;
-  }
-}
-
 .beliefs-list {
   display: flex;
   flex-wrap: wrap;
@@ -203,9 +197,9 @@ export default {
     padding: 0.5rem;
 
     .belief-content {
+      height: 100%;
       padding: 1rem;
       border: 1px solid black;
-      height: 100%;
     }
 
     .belief-header {

@@ -1,10 +1,6 @@
 <template>
   <div class="experience" v-observe-visibility="observeVisibilityOptions">
-    <div class="page-section experience-header" :style="{'filter': `url(#${inkFilterId}-filter)`}">
-      <client-only>
-        <ink-filter :id="`${inkFilterId}`" :trigger="visible"></ink-filter>
-      </client-only>
-
+    <div class="page-section experience-header">
       <div class="section-content">
         <h2 class="experience-title">
           {{experience.node.title}}
@@ -19,7 +15,7 @@
 
       <div class="tag-list experience-tags">
         <div class="tag" v-for="tag in experience.node.tags">
-          <component :is="iconForTag(tag)" class="icon"></component>
+          <component :is="iconForTag(tag)" class="icon margin-r-2"></component>
           {{tag}}
         </div>
       </div>
@@ -31,17 +27,15 @@
           {{experience.node.description}}
         </p>
 
-        <div class="experience-skills-list">
-          <div v-for="skillObj in experience.node.skills" class="skills-box">
-            <div class="skills-box-content">
-              <h3 class="skills-box-header">
-                {{skillObj.type}}
-              </h3>
+        <div class="skills-box" v-if="experience.node.skills.length">
+          <div v-for="skillObj in experience.node.skills" class="skills-box-content">
+            <div class="skills-box-type">
+              <component :is="iconForTag(skillObj.type)" class="icon"></component>
+            </div>
 
-              <div class="tag-list skills-box-list">
-                <div class="tag" v-for="skill in skillObj.items">
-                  {{skill}}
-                </div>
+            <div class="tag-list skills-box-list">
+              <div class="tag" v-for="skill in skillObj.items">
+                {{skill}}
               </div>
             </div>
           </div>
@@ -52,7 +46,6 @@
 </template>
 
 <script>
-import InkFilter from '~/components/InkFilter'
 import IconBits from '~/assets/icons/IconBits.svg'
 import IconBots from '~/assets/icons/IconBots.svg'
 import IconBio from '~/assets/icons/IconBio.svg'
@@ -62,7 +55,6 @@ export default {
   name: 'Experience',
   props: ['experience'],
   components: {
-    InkFilter,
     IconBits,
     IconBots,
     IconBio,
@@ -71,7 +63,6 @@ export default {
   data () {
     return {
       visible: false,
-      inkFilterId: Math.floor(Math.random() * 9999),
       observeVisibilityOptions: {
         callback: this.visibilityChanged,
         once: true
@@ -125,8 +116,8 @@ export default {
     background-color: var(--section-color);
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 }
 
@@ -139,42 +130,38 @@ export default {
 }
 
 
-.experience-skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -0.5rem;
+.skills-box {
+  background-color: rgba(0, 0, 0, 0.04);
+  padding: 1rem;
+  padding-left: 0;
+  width: 50%;
 
-  .skills-box {
-    flex-basis: 100%;
-    flex-grow: 1;
-    padding: 0.5rem;
+  .skills-box-content {
+    display: flex;
 
-    .skills-box-content {
-      background-color: rgba(0, 0, 0, 0.03);
-      padding: 1.5rem;
-      height: 100%;
+    .skills-box-type {
+      flex-shrink: 0;
+      padding: 0 0.75rem;
 
-      .skills-box-header {
-        font-size: 1.2rem;
-        color: var(--section-color);
-        margin-bottom: 0.5rem;
-      }
-
-      .skills-box-list {
-        justify-content: flex-start;
-        margin: -0.15rem;
-
-        .tag {
-          font-size: 0.9rem;
-          padding: 0.15rem 0.5rem;
-          margin: 0.15rem;
-          background-color: var(--section-color);
-        }
+      .icon {
+        margin-top: 0.25rem;
       }
     }
 
-    @include media('>phone') {
-      flex-basis: 50%;
+    .skills-box-list {
+      justify-content: flex-start;
+      margin: -0.15rem;
+
+      .tag {
+        font-size: 0.9rem;
+        padding: 0.15rem 0.5rem;
+        margin: 0.15rem;
+        background-color: var(--section-color);
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
     }
   }
 }
