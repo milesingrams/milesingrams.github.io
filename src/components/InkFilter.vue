@@ -51,14 +51,12 @@ export default {
     }
   },
   mounted () {
-    if (process.isClient) {
-      let watcher = this.$watch('trigger', () => {
-        if (this.trigger) {
-          this.run()
-          watcher()
-        }
-      }, { immediate: true })
-    }
+    let watcher = this.$watch('trigger', () => {
+      if (this.trigger) {
+        this.run()
+        watcher()
+      }
+    }, { immediate: true })
   }
 }
 </script>

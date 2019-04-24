@@ -1,7 +1,9 @@
 <template>
   <div class="experience" v-observe-visibility="observeVisibilityOptions">
     <div class="page-section experience-header" :style="{'filter': `url(#${inkFilterId}-filter)`}">
-      <ink-filter :id="`${inkFilterId}`" :trigger="visible"></ink-filter>
+      <client-only>
+        <ink-filter :id="`${inkFilterId}`" :trigger="visible"></ink-filter>
+      </client-only>
 
       <div class="section-content">
         <h2 class="experience-title">
