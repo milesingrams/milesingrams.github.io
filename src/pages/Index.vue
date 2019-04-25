@@ -6,7 +6,7 @@
 
     <section class="about-wrap">
       <div class="page-section">
-        <div class="section-content no-pointer-events">
+        <div class="section-content section-content-center no-pointer-events">
           <h2 class="about-text">
             Hi, I'm Miles
           </h2>
@@ -14,7 +14,7 @@
       </div>
 
       <div class="page-section">
-        <div class="section-content no-pointer-events">
+        <div class="section-content section-content-center no-pointer-events">
           <h2 class="about-text margin-b-5">
             I Like
           </h2>
@@ -28,7 +28,7 @@
       </div>
 
       <div class="page-section">
-        <div class="section-content">
+        <div class="section-content section-content-center">
           <h2 class="about-text">
             NYC born and raised, I started dabbling with programming at a young age by making silly Flash games and clunky Lego Mindstorms.
           </h2>
@@ -40,7 +40,7 @@
       </div>
 
       <div class="page-section">
-        <div class="section-content">
+        <div class="section-content section-content-center">
           <h2 class="about-text margin-b-5">
             My beliefs are
           </h2>
@@ -90,7 +90,7 @@
       </div>
 
       <div class="page-section">
-        <div class="section-content">
+        <div class="section-content section-content-center">
           <h2 class="about-text">
             Here's what I've worked on so far
           </h2>
@@ -119,6 +119,10 @@
         skills {
           type
           items
+        }
+        images {
+          preview: image (width: 300)
+          image (width: 1280)
         }
       }
     }
@@ -172,6 +176,11 @@ export default {
 
 .about-wrap {
   .page-section {
+
+    .section-content {
+      z-index: 10;
+    }
+
     $section-colors: #ffffff, #f3f3f3;
 
     @for $i from 1 through length($section-colors) {

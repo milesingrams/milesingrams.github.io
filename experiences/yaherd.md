@@ -30,4 +30,9 @@ skills:
     items:
       - Project Management
       - DNS Management
+
+images:
+  - image: ./images/test.jpg
+  - image: ./images/test2.jpg
+  - image: ./images/test3.gif
 ---

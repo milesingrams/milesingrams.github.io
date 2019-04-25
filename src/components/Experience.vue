@@ -2,7 +2,7 @@
   <div class="experience">
 
     <div class="page-section experience-header">
-      <div class="section-content">
+      <div class="section-content section-content-center">
         <h2 class="experience-title">
           {{experience.node.title}}
         </h2>
@@ -24,11 +24,11 @@
 
     <div class="page-section experience-content">
       <div class="section-content">
-        <p class="experience-description">
+        <p class="experience-description section-content-center">
           {{experience.node.description}}
         </p>
 
-        <div class="achievements-skills-wrap">
+        <div class="achievements-skills-wrap section-content-center">
           <div class="achievements-wrap">
             <ul class="achievements">
               <li class="achievement-item" v-for="achievement in experience.node.achievements">
@@ -54,12 +54,19 @@
           </div>
         </div>
 
-        <div class="experience-images">
+        <div class="image-gallery-wrap">
+          <ul class="image-gallery">
+            <li class="image-item" v-for="(image, index) in experience.node.images" @click="openImage(index)">
+              <g-image :src="image.preview"></g-image>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <image-viewer :images="experience.node.images"></image-viewer>
+    <client-only>
+      <image-viewer :images="experience.node.images" ref="imageViewer"></image-viewer>
+    </client-only>
   </div>
 </template>
 
@@ -83,6 +90,9 @@ export default {
   methods: {
     iconForTag (tagName) {
       return `Icon${tagName.replace(' ', '')}`
+    },
+    openImage (imageIndex) {
+      this.$refs.imageViewer.open(imageIndex)
     }
   }
 }
@@ -143,6 +153,7 @@ export default {
 
 .achievements-wrap, .skills-wrap {
   flex-basis: 100%;
+  margin-bottom: 3rem;
 
   @include media('>=tablet') {
     flex-basis: 50%;
@@ -151,8 +162,6 @@ export default {
 }
 
 .achievements-wrap {
-  margin-bottom: 3rem;
-
   @include media('>=tablet') {
     padding-right: 0.75rem;
   }
@@ -209,6 +218,39 @@ export default {
 
     &:not(:last-child) {
       margin-bottom: 1.5rem;
+    }
+  }
+}
+
+.image-gallery-wrap {
+  position: relative;
+  width: 100vw;
+  z-index: 1000;
+}
+
+.image-gallery {
+  width: 100%;
+  overflow-x: scroll;
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  .image-item {
+    position: relative;
+    min-width: 300px;
+    max-width: 300px;
+    height: auto;
+    line-height: 0;
+    box-shadow: 0 0 0 4px rgba(var(--section-color-rgb), 0.6);
+    transition: all 0.15s var(--ease-out-quad);
+
+    &:hover {
+      box-shadow: 0 0 0 8px rgba(var(--section-color-rgb), 0.6);
+    }
+
+    &:not(:last-child) {
+      margin-right: 2rem;
     }
   }
 }

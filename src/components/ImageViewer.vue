@@ -1,12 +1,10 @@
 <template>
   <transition appear name="image-viewer">
-    <div class="image-viewer" v-if="open" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+    <div class="image-viewer" v-if="isOpen" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
       <div class="image-viewer-content">
-        <transition appear mode="out-in" name="fadeInOut" :duration="100">
-          <img class="current-image" :src="currentImage" :key="currentImage">
-        </transition>
+          <g-image class="current-image" :src="currentImage.image"></g-image>
       </div>
-      <transition appear mode="out-in" name="fadeInOut" :duration="200">
+      <transition appear name="fadeInOut" :duration="200">
         <div class="image-viewer-nav" v-if="showNav">
           <button class="viewer-button close-button" @click="close">
             <icon-close class="icon"></icon-close>
@@ -38,7 +36,7 @@ export default {
   },
   data () {
     return {
-      open: false,
+      isOpen: false,
       imageIndex: 0,
       showNav: false
     }
@@ -49,8 +47,14 @@ export default {
     }
   },
   methods: {
+    open (imageIndex) {
+      if (imageIndex) {
+        this.imageIndex = imageIndex
+      }
+      this.isOpen = true
+    },
     close () {
-      this.open = false
+      this.isOpen = false
     },
     nextImage () {
       this.imageIndex++
