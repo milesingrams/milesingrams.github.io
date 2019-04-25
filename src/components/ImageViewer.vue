@@ -1,6 +1,6 @@
 <template>
   <transition appear name="image-viewer">
-    <div class="image-viewer" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+    <div class="image-viewer" v-if="open" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
       <div class="image-viewer-content">
         <transition appear mode="out-in" name="fadeInOut" :duration="100">
           <img class="current-image" :src="currentImage" :key="currentImage">
@@ -38,6 +38,7 @@ export default {
   },
   data () {
     return {
+      open: true,
       imageIndex: 0,
       showNav: false
     }
@@ -49,7 +50,7 @@ export default {
   },
   methods: {
     close () {
-      this.$emit('close')
+      this.open = false
     },
     nextImage () {
       this.imageIndex++
@@ -110,7 +111,7 @@ export default {
   height: 100vh;
   z-index: 10000;
   padding: 1.5rem 0.5rem;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 .image-viewer-content {

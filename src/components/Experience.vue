@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <image-viewer :images="['https://i.imgur.com/oWS6mfu.jpg', 'https://i.imgur.com/i7ViAZQ.jpg']"></image-viewer>
+    <image-viewer v-if="experience.node.title === 'YaHerd'" :images="['https://i.imgur.com/oWS6mfu.jpg', 'https://i.imgur.com/i7ViAZQ.jpg']"></image-viewer>
 
   </div>
 </template>
