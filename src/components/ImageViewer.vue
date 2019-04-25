@@ -1,6 +1,7 @@
 <template>
   <transition appear name="image-viewer">
     <div class="image-viewer" v-if="isOpen" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+      <div class="image-viewer-background" @click="close"></div>
       <div class="image-viewer-content">
           <g-image class="current-image" :src="currentImage.image"></g-image>
       </div>
@@ -115,7 +116,16 @@ export default {
   height: 100vh;
   z-index: 10000;
   padding: 1.5rem 0.5rem;
+}
+
+.image-viewer-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.85);
+  z-index: -1;
 }
 
 .image-viewer-content {
