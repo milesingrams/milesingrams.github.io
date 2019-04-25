@@ -38,7 +38,7 @@ export default {
   },
   data () {
     return {
-      open: true,
+      open: false,
       imageIndex: 0,
       showNav: false
     }
@@ -127,11 +127,16 @@ export default {
   display: flex;
   position: absolute;
   padding: 0.75rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.1s var(--ease-in-out-quad);
   border: none;
 
   .icon {
     margin: auto;
+  }
+
+  &:hover {
+    color: white;
   }
 }
 

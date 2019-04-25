@@ -18,12 +18,12 @@
           <h2 class="about-text margin-b-5">
             I Like
           </h2>
-          <div class="tag-list like-tags">
-            <div class="tag" v-for="tag in tags">
+          <ul class="tag-list like-tags">
+            <li class="tag" v-for="tag in tags">
               <component :is="iconForTag(tag)" class="icon margin-r-2"></component>
               {{tag}}
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
 

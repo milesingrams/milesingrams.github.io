@@ -14,12 +14,12 @@
         </h2>
       </div>
 
-      <div class="tag-list experience-tags">
-        <div class="tag" v-for="tag in experience.node.tags">
+      <ul class="tag-list experience-tags">
+        <li class="tag" v-for="tag in experience.node.tags">
           <component :is="iconForTag(tag)" class="icon margin-r-2"></component>
           {{tag}}
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
 
     <div class="page-section experience-content">
@@ -44,11 +44,11 @@
                   <component :is="iconForTag(skillObj.type)" class="icon"></component>
                 </div>
 
-                <div class="tag-list skill-list">
-                  <div class="tag" v-for="skill in skillObj.items">
+                <ul class="tag-list skill-list">
+                  <li class="tag" v-for="skill in skillObj.items">
                     {{skill}}
-                  </div>
-                </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -59,8 +59,7 @@
       </div>
     </div>
 
-    <image-viewer v-if="experience.node.title === 'YaHerd'" :images="['https://i.imgur.com/oWS6mfu.jpg', 'https://i.imgur.com/i7ViAZQ.jpg']"></image-viewer>
-
+    <image-viewer :images="experience.node.images"></image-viewer>
   </div>
 </template>
 
