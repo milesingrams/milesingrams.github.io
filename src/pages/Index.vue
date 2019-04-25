@@ -230,6 +230,16 @@ export default {
   height: 75px;
   background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, black $line-spacing, black ($line-spacing + 1px));
   clip-path: polygon(0 0, 50% 100%, 100% 0);
+  animation: arrowIn 0.75s var(--ease-out-quad);
+}
+
+@keyframes arrowIn {
+  from {
+    clip-path: polygon(0 -100%, 50% 0, 100% -100%);
+  }
+  to {
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+  }
 }
 
 .experience {
