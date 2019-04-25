@@ -242,11 +242,12 @@ export default {
     max-width: 300px;
     height: auto;
     line-height: 0;
-    box-shadow: 0 0 0 0 rgba(var(--section-color-rgb), 0), 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 3px rgba(var(--section-color-rgb), 0.6), 0 5px 15px rgba(0, 0, 0, 0.5);
     transition: all 0.15s var(--ease-out-quad);
 
     &:hover {
-      box-shadow: 0 0 0 8px rgba(var(--section-color-rgb), 0.6), 0 5px 20px rgba(0, 0, 0, 0.5);
+      transform: scale(1.02);
+      box-shadow: 0 0 0 6px rgba(var(--section-color-rgb), 0.6), 0 5px 20px rgba(0, 0, 0, 0.5);
     }
 
     &:not(:last-child) {
