@@ -229,8 +229,8 @@ export default {
   margin-top: -0.25rem;
   height: 75px;
   background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, black $line-spacing, black ($line-spacing + 1px));
-  clip-path: polygon(0 0, 50% 100%, 100% 0);
-  animation: arrowIn 0.75s var(--ease-out-quad);
+  clip-path: polygon(0 -100%, 50% 0, 100% -100%);
+  animation: arrowIn 1s var(--ease-out-quad) forwards;
 }
 
 @keyframes arrowIn {

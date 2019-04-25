@@ -1,5 +1,5 @@
 <template>
-  <div class="experience" v-observe-visibility="observeVisibilityOptions">
+  <div class="experience">
 
     <div class="page-section experience-header">
       <div class="section-content">
@@ -75,23 +75,9 @@ export default {
     IconBio,
     IconBattlestarGalactica
   },
-  data () {
-    return {
-      visible: false,
-      observeVisibilityOptions: {
-        callback: this.visibilityChanged,
-        once: true
-      }
-    }
-  },
   methods: {
     iconForTag (tagName) {
       return `Icon${tagName.replace(' ', '')}`
-    },
-    visibilityChanged (isVisible) {
-      if (isVisible) {
-        this.visible = true
-      }
     }
   }
 }
