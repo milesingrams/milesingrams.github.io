@@ -150,27 +150,33 @@ export default {
   align-items: flex-start;
 }
 
-.skills-wrap, .achievements-wrap {
+.achievements-wrap, .skills-wrap {
   flex-basis: 100%;
-
-  &:not(:last-child) {
-    margin-bottom: 3rem;
-  }
 
   @include media('>=tablet') {
     flex-basis: 50%;
     margin-bottom: 3rem;
+  }
+}
 
-    &:not(:last-child) {
-      padding-right: 1.5rem;
-    }
+.achievements-wrap {
+  margin-bottom: 3rem;
+
+  @include media('>=tablet') {
+    padding-right: 0.75rem;
+  }
+}
+
+.skills-wrap {
+  @include media('>=tablet') {
+    padding-left: 0.75rem;
   }
 }
 
 .achievements {
   .achievement-item {
     padding-left: 1rem;
-    border-left: 3px solid rgba(var(--section-color-rgb), 0.5);
+    border-left: 3px solid rgba(var(--section-color-rgb), 0.6);
     font-size: 1.1rem;
 
     &:not(:last-child) {

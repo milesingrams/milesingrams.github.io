@@ -201,16 +201,19 @@ export default {
     .belief-content {
       height: 100%;
       padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .belief-header {
       line-height: 1.2;
-      padding-bottom: 0.3rem;
+      padding-bottom: 0.5rem;
       border-bottom: 1px solid black;
     }
 
     .belief-text {
-      padding-top: 0.3rem;
+      padding-top: 0.5rem;
       font-size: 0.9rem;
     }
 
@@ -225,7 +228,7 @@ export default {
   margin: 0 auto;
   margin-top: -0.25rem;
   height: 75px;
-  background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, rgba(0, 0, 0, 0.3) $line-spacing, rgba(0, 0, 0, 0.3) ($line-spacing + 1px));
+  background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, black $line-spacing, black ($line-spacing + 1px));
   clip-path: polygon(0 0, 50% 100%, 100% 0);
 }
 
