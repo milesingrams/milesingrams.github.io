@@ -54,8 +54,12 @@
           </div>
         </div>
 
+        <div class="experience-images">
+        </div>
       </div>
     </div>
+
+    <image-viewer :images="['https://i.imgur.com/oWS6mfu.jpg', 'https://i.imgur.com/i7ViAZQ.jpg']"></image-viewer>
 
   </div>
 </template>
@@ -65,6 +69,7 @@ import IconBits from '~/assets/icons/IconBits.svg'
 import IconBots from '~/assets/icons/IconBots.svg'
 import IconBio from '~/assets/icons/IconBio.svg'
 import IconBattlestarGalactica from '~/assets/icons/IconBattlestarGalactica.svg'
+import ImageViewer from '~/components/ImageViewer'
 
 export default {
   name: 'Experience',
@@ -73,7 +78,8 @@ export default {
     IconBits,
     IconBots,
     IconBio,
-    IconBattlestarGalactica
+    IconBattlestarGalactica,
+    ImageViewer
   },
   methods: {
     iconForTag (tagName) {
