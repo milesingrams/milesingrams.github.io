@@ -1,9 +1,9 @@
 <template>
   <transition appear name="image-viewer">
-    <div class="image-viewer" v-if="isOpen" @wheel="onWheel">
+    <div class="image-viewer" v-if="isOpen" @wheel="onWheel" v-hammer:swipe="onSwipe">
       <div class="image-viewer-background" @click="close"></div>
       <div class="image-viewer-content">
-          <g-image class="current-image" :src="currentImage.image"></g-image>
+        <g-image class="current-image" :src="currentImage.image"></g-image>
       </div>
       <div class="image-viewer-nav">
         <button class="viewer-button close-button" @click="close">
@@ -94,6 +94,20 @@ export default {
         this.previousImage()
       }
     }, 250),
+    onSwipe (event) {
+      switch (event.direction) {
+        case 8:
+        case 16:
+          this.close()
+          break
+        case 4:
+          this.previousImage()
+          break
+        case 2:
+          this.nextImage()
+          break
+      }
+    },
     addWindowListeners () {
       window.addEventListener('keydown', this.onWindowKeyDown)
       document.documentElement.style.overflow = 'hidden'

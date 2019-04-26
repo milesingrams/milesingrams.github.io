@@ -33,6 +33,6 @@ skills:
 
 images:
   - image: ./images/test.jpg
+  - image: ./images/test1.png
   - image: ./images/test2.jpg
-  - image: ./images/test3.gif
 ---
