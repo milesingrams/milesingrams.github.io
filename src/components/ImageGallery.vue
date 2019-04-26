@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     onImageClick (imageIndex) {
-      console.log('ads')
       this.$emit('image-clicked', imageIndex)
     },
     onWindowResize () {

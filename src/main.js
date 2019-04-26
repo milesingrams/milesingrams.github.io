@@ -4,12 +4,15 @@ import 'typeface-lato'
 import 'typeface-averia-serif-libre'
 import '~/assets/styles/_index.scss'
 import VueObserveVisibility from 'vue-observe-visibility'
-import { VueHammer } from 'vue2-hammer'
 import DefaultLayout from '~/layouts/Default.vue'
 
 export default function (Vue, { router, head, isClient }) {
   Vue.use(VueObserveVisibility)
-  Vue.use(VueHammer)
+
+  if (isClient) {
+    const { VueHammer } = require('vue2-hammer')
+    Vue.use(VueHammer)
+  }
 
   // Set default layout as a global component
   Vue.component('layout', DefaultLayout)
