@@ -143,7 +143,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: -1;
 }
 
@@ -168,6 +168,9 @@ export default {
       }
 
       img {
+        background-color: white;
+        padding: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         pointer-events: all;
         flex: 0;
         max-width: 100%;

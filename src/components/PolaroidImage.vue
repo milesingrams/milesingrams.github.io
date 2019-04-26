@@ -1,6 +1,8 @@
 <template>
-  <div class="image-item" @click="onClick" @mousemove="onMouseMove" @mouseleave="onMouseLeave" :style="{'transform': `translateZ(${translateZ}rem) rotate3d(${axisX}, ${axisY * -1}, 0, ${magnitude * 7.5}deg)`}">
-    <g-image :src="image.preview" immediate="true" blur="10"></g-image>
+  <div class="polaroid-wrap">
+    <div class="polaroid" @click="onClick" @mousemove="onMouseMove" @mouseleave="onMouseLeave" :style="{'transform': `translateZ(${translateZ}rem) rotate3d(${axisX}, ${axisY * -1}, 0, ${magnitude * 7.5}deg)`}">
+      <g-image :src="image.preview" immediate="true" blur="10"></g-image>
+    </div>
   </div>
 </template>
 
@@ -8,7 +10,7 @@
 import anime from 'animejs'
 
 export default {
-  name: 'ImageGalleryImage',
+  name: 'PolaroidImage',
   props: ['image'],
   data () {
     return {
@@ -41,4 +43,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.polaroid-wrap {
+  perspective: 1250px;
+}
+
+.polaroid {
+  position: relative;
+  line-height: 0;
+  background-color: white;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.15);
+  padding: 0.75rem;
+  transition: all 0.2s var(--ease-out-quad);
+
+  &:hover {
+    box-shadow: 0 5px 20px -6px rgba(0, 0, 0, 0.2), 0 3px 10px -4px rgba(0, 0, 0, 0.2);
+  }
+
+  img {
+    max-width: 60vw;
+  }
+}
 </style>
