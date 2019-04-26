@@ -25,3 +25,18 @@ $site-colors: #00bf9f, #ef476f, #e5a91d, #118ab2;
 //TYPOGRAPHY
 
 $font-stack: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+
+//MIXINS
+
+@mixin scroll-mobile {
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin hide-scrollbar {
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE
+  &::-webkit-scrollbar {
+    display: none;  // Safari and Chrome
+  }
+}

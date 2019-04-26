@@ -1,23 +1,21 @@
 <template>
   <transition appear name="image-viewer">
-    <div class="image-viewer" v-if="isOpen" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+    <div class="image-viewer" v-if="isOpen">
       <div class="image-viewer-background" @click="close"></div>
       <div class="image-viewer-content">
           <g-image class="current-image" :src="currentImage.image"></g-image>
       </div>
-      <transition appear name="fadeInOut" :duration="200">
-        <div class="image-viewer-nav" v-if="showNav">
-          <button class="viewer-button close-button" @click="close">
-            <icon-close class="icon"></icon-close>
-          </button>
-          <button class="viewer-button left-button" @click="previousImage">
-            <icon-arrow-left class="icon"></icon-arrow-left>
-          </button>
-          <button class="viewer-button right-button" @click="nextImage">
-            <icon-arrow-right class="icon"></icon-arrow-right>
-          </button>
-        </div>
-      </transition>
+      <div class="image-viewer-nav">
+        <button class="viewer-button close-button" @click="close">
+          <icon-close class="icon"></icon-close>
+        </button>
+        <button class="viewer-button left-button" @click="previousImage">
+          <icon-arrow-left class="icon"></icon-arrow-left>
+        </button>
+        <button class="viewer-button right-button" @click="nextImage">
+          <icon-arrow-right class="icon"></icon-arrow-right>
+        </button>
+      </div>
     </div>
   </transition>
 </template>
@@ -38,8 +36,7 @@ export default {
   data () {
     return {
       isOpen: false,
-      imageIndex: 0,
-      showNav: false
+      imageIndex: 0
     }
   },
   computed: {
@@ -69,12 +66,6 @@ export default {
         this.imageIndex = this.images.length - 1
       }
     },
-    onMouseEnter () {
-      this.showNav = true
-    },
-    onMouseLeave () {
-      this.showNav = false
-    },
     onWindowKeyDown (event) {
       switch (event.keyCode) {
         case 27:
@@ -89,7 +80,6 @@ export default {
           this.nextImage()
           break
       }
-      event.preventDefault()
     },
     onWindowScroll (event) {
       event.preventDefault()
@@ -116,6 +106,13 @@ export default {
   height: 100vh;
   z-index: 10000;
   padding: 1.5rem 0.5rem;
+
+  &:hover {
+    .image-viewer-nav {
+      opacity: 1;
+    }
+  }
+
 }
 
 .image-viewer-background {
@@ -124,7 +121,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.75);
   z-index: -1;
 }
 
@@ -137,11 +134,19 @@ export default {
   }
 }
 
+.image-viewer-nav {
+  transition: opacity 0.2s var(--ease-in-out-quad);
+
+  @include media('>=desktop') {
+    opacity: 0;
+  }
+}
+
 .viewer-button {
   display: flex;
   position: absolute;
   padding: 0.75rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.75);
   transition: color 0.1s var(--ease-in-out-quad);
   border: none;
 
@@ -168,7 +173,7 @@ export default {
 .left-button, .right-button {
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .left-button {

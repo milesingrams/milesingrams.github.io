@@ -54,13 +54,7 @@
           </div>
         </div>
 
-        <div class="image-gallery-wrap">
-          <ul class="image-gallery">
-            <li class="image-item" v-for="(image, index) in experience.node.images" @click="openImage(index)">
-              <g-image :src="image.preview"></g-image>
-            </li>
-          </ul>
-        </div>
+        <image-gallery :images="experience.node.images" @image-clicked="openImage"></image-gallery>
       </div>
     </div>
 
@@ -75,6 +69,7 @@ import IconBits from '~/assets/icons/IconBits.svg'
 import IconBots from '~/assets/icons/IconBots.svg'
 import IconBio from '~/assets/icons/IconBio.svg'
 import IconBattlestarGalactica from '~/assets/icons/IconBattlestarGalactica.svg'
+import ImageGallery from '~/components/ImageGallery'
 import ImageViewer from '~/components/ImageViewer'
 
 export default {
@@ -85,6 +80,7 @@ export default {
     IconBots,
     IconBio,
     IconBattlestarGalactica,
+    ImageGallery,
     ImageViewer
   },
   methods: {
@@ -186,13 +182,8 @@ export default {
 }
 
 .skills {
-  background-color: #f3f3f3;
-  padding: 1.5rem 0;
-  border-radius: 4px;
-
   .skill-item {
     display: flex;
-    padding-right: 1.5rem;
 
     .skill-type {
       margin-top: 0.2rem;
@@ -206,6 +197,7 @@ export default {
     .skill-list {
       justify-content: flex-start;
       align-items: flex-start;
+      padding-right: 1.5rem;
       margin: -0.15rem;
 
       .tag {
@@ -226,33 +218,5 @@ export default {
   position: relative;
   width: 100vw;
   z-index: 1000;
-}
-
-.image-gallery {
-  width: 100%;
-  overflow-x: scroll;
-  padding: 2rem 1rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-
-  .image-item {
-    position: relative;
-    min-width: 300px;
-    max-width: 300px;
-    height: auto;
-    line-height: 0;
-    box-shadow: 0 0 0 3px rgba(var(--section-color-rgb), 0.6), 0 5px 15px rgba(0, 0, 0, 0.5);
-    transition: all 0.15s var(--ease-out-quad);
-
-    &:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 0 6px rgba(var(--section-color-rgb), 0.6), 0 5px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    &:not(:last-child) {
-      margin-right: 2rem;
-    }
-  }
 }
 </style>
