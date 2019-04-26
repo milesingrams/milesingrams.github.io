@@ -3,16 +3,20 @@
     <div class="image-viewer" v-if="isOpen" @wheel="onWheel" v-hammer:swipe="onSwipe">
       <div class="image-viewer-background" @click="close"></div>
       <div class="image-viewer-content">
-        <g-image class="current-image" :src="currentImage.image"></g-image>
+        <div class="images" :style="{'transform': `translateX(calc(${-100 * imageIndex}vw - ${2 * imageIndex}rem))`}">
+          <div class="image-wrap" v-for="image in images">
+            <g-image class="current-image" :src="image.image"></g-image>
+          </div>
+        </div>
       </div>
       <div class="image-viewer-nav">
         <button class="viewer-button close-button" @click="close">
           <icon-close class="icon"></icon-close>
         </button>
-        <button class="viewer-button left-button" @click="previousImage">
+        <button class="viewer-button left-button" :disabled="this.imageIndex === 0" @click="previousImage">
           <icon-arrow-left class="icon"></icon-arrow-left>
         </button>
-        <button class="viewer-button right-button" @click="nextImage">
+        <button class="viewer-button right-button" :disabled="this.imageIndex === this.images.length - 1" @click="nextImage">
           <icon-arrow-right class="icon"></icon-arrow-right>
         </button>
       </div>
@@ -58,15 +62,13 @@ export default {
       this.isOpen = false
     },
     nextImage () {
-      this.imageIndex++
-      if (this.imageIndex > this.images.length - 1) {
-        this.imageIndex = 0
+      if (this.imageIndex < this.images.length - 1) {
+        this.imageIndex++
       }
     },
     previousImage () {
-      this.imageIndex--
-      if (this.imageIndex < 0) {
-        this.imageIndex = this.images.length - 1
+      if (this.imageIndex > 0) {
+        this.imageIndex--
       }
     },
     onWindowKeyDown (event) {
@@ -132,7 +134,6 @@ export default {
   width: 100vw;
   height: 100vh;
   z-index: 10000;
-  padding: 1.5rem 0.5rem;
 
   &:hover {
     .image-viewer-nav {
@@ -152,11 +153,29 @@ export default {
 }
 
 .image-viewer-content {
-  margin: auto;
+  .images {
+    display: flex;
+    align-items: flex-start;
+    transition: transform 0.2s var(--ease-in-out-quad);
 
-  img {
-    max-width: 100%;
-    max-height: calc(100vh - 3rem);
+    .image-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      padding: 2rem 0;
+
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+
+      img {
+        flex: 0;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
   }
 }
 
@@ -170,17 +189,19 @@ export default {
 
 .viewer-button {
   display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   padding: 0.75rem;
   color: rgba(255, 255, 255, 0.75);
   transition: color 0.1s var(--ease-in-out-quad);
   border: none;
 
-  .icon {
-    margin: auto;
+  &:disabled {
+    color: rgba(255, 255, 255, 0.3);
   }
 
-  &:hover {
+  &:enabled:hover {
     color: white;
   }
 }
