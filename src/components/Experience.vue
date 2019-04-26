@@ -187,7 +187,7 @@ export default {
 
     .skill-type {
       margin-top: 0.2rem;
-      padding: 0 1rem;
+      padding-right: 1rem;
 
       .icon {
         opacity: 0.8;
@@ -197,7 +197,6 @@ export default {
     .skill-list {
       justify-content: flex-start;
       align-items: flex-start;
-      padding-right: 1.5rem;
       margin: -0.15rem;
 
       .tag {

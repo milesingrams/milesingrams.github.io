@@ -160,8 +160,8 @@ export default {
 }
 
 .close-button {
-  top: 6px;
-  right: 6px;
+  top: 0.5rem;
+  right: 0.5rem;
   background-color: transparent;
 
   .icon {
@@ -177,11 +177,11 @@ export default {
 }
 
 .left-button {
-  left: 6px;
+  left: 0.5rem;
 }
 
 .right-button {
-  right: 6px;
+  right: 0.5rem;
 }
 
 .image-viewer-enter-active {
