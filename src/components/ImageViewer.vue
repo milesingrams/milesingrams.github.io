@@ -183,53 +183,54 @@ export default {
 .image-viewer-nav {
   transition: opacity 0.2s var(--ease-in-out-quad);
 
+  .viewer-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.1s var(--ease-in-out-quad);
+    border: none;
+    cursor: pointer;
+
+    &:disabled {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    &:enabled:hover {
+      color: white;
+    }
+  }
+
+  .close-button {
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: transparent;
+
+    .icon {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+
+  .left-button, .right-button {
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .left-button {
+    left: 0.5rem;
+  }
+
+  .right-button {
+    right: 0.5rem;
+  }
+
   @include media('>=desktop') {
     opacity: 0;
   }
-}
-
-.viewer-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  padding: 0.75rem;
-  color: rgba(255, 255, 255, 0.75);
-  transition: color 0.1s var(--ease-in-out-quad);
-  border: none;
-
-  &:disabled {
-    color: rgba(255, 255, 255, 0.3);
-  }
-
-  &:enabled:hover {
-    color: white;
-  }
-}
-
-.close-button {
-  top: 0.5rem;
-  right: 0.5rem;
-  background-color: transparent;
-
-  .icon {
-    width: 1.2rem;
-    height: 1.2rem;
-  }
-}
-
-.left-button, .right-button {
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.left-button {
-  left: 0.5rem;
-}
-
-.right-button {
-  right: 0.5rem;
 }
 
 .image-viewer-enter-active {

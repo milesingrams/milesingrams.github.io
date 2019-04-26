@@ -54,6 +54,7 @@ export default {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.15);
   padding: 0.75rem;
   transition: all 0.2s var(--ease-out-quad);
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0 5px 20px -6px rgba(0, 0, 0, 0.2), 0 3px 10px -4px rgba(0, 0, 0, 0.2);
