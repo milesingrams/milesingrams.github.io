@@ -153,6 +153,8 @@ export default {
 }
 
 .image-viewer-content {
+  pointer-events: none;
+
   .images {
     display: flex;
     align-items: flex-start;
@@ -171,6 +173,7 @@ export default {
       }
 
       img {
+        pointer-events: all;
         flex: 0;
         max-width: 100%;
         max-height: 100%;
