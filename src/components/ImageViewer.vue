@@ -5,7 +5,7 @@
       <div class="image-viewer-content">
         <div class="images" :style="{'transform': `translateX(calc(${-100 * imageIndex}vw - ${2 * imageIndex}rem))`}">
           <div class="image-wrap" v-for="image in images">
-            <g-image class="current-image" :src="image.image"></g-image>
+            <g-image class="current-image" :src="image.image" immediate="true" blur="10"></g-image>
           </div>
         </div>
       </div>

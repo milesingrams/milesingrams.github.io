@@ -2,7 +2,7 @@
   <div class="image-gallery-wrap" :style="{'justify-content': centerContent ? 'center' : 'start'}">
     <ul class="image-gallery" ref="imageGallery">
       <li class="image-item" v-for="(image, index) in images" @click="onImageClick(index)">
-        <g-image :src="image.preview"></g-image>
+        <g-image :src="image.preview" immediate="true" blur="10"></g-image>
       </li>
     </ul>
   </div>
