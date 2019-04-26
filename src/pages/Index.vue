@@ -121,8 +121,8 @@
           items
         }
         images {
-          preview: image (width: 300)
-          image (width: 1280)
+          preview: image (width: 300, blur: 10)
+          image (width: 1280, blur: 10)
         }
       }
     }
