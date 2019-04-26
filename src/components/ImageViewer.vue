@@ -44,14 +44,9 @@ export default {
       imageIndex: 0
     }
   },
-  computed: {
-    currentImage () {
-      return this.images[this.imageIndex]
-    }
-  },
   methods: {
     open (imageIndex) {
-      if (imageIndex) {
+      if (imageIndex !== undefined) {
         this.imageIndex = imageIndex
       }
       this.addWindowListeners()
