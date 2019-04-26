@@ -1,6 +1,6 @@
 <template>
   <transition appear name="image-viewer">
-    <div class="image-viewer" v-if="isOpen">
+    <div class="image-viewer" v-if="isOpen" @wheel="onWheel">
       <div class="image-viewer-background" @click="close"></div>
       <div class="image-viewer-content">
           <g-image class="current-image" :src="currentImage.image"></g-image>
@@ -24,6 +24,7 @@
 import IconClose from '~/assets/icons/IconClose.svg'
 import IconArrowLeft from '~/assets/icons/IconArrowLeft.svg'
 import IconArrowRight from '~/assets/icons/IconArrowRight.svg'
+import utilities from '~/utilities'
 
 export default {
   name: 'ImageViewer',
@@ -49,9 +50,11 @@ export default {
       if (imageIndex) {
         this.imageIndex = imageIndex
       }
+      this.addWindowListeners()
       this.isOpen = true
     },
     close () {
+      this.removeWindowListeners()
       this.isOpen = false
     },
     nextImage () {
@@ -70,28 +73,38 @@ export default {
       switch (event.keyCode) {
         case 27:
           this.close()
+          event.preventDefault()
           break
         case 37:
         case 38:
           this.previousImage()
+          event.preventDefault()
           break
         case 39:
         case 40:
           this.nextImage()
+          event.preventDefault()
           break
       }
     },
-    onWindowScroll (event) {
-      event.preventDefault()
+    onWheel: utilities.throttle(function (event) {
+      if (event.deltaY > 0) {
+        this.nextImage()
+      } else {
+        this.previousImage()
+      }
+    }, 250),
+    addWindowListeners () {
+      window.addEventListener('keydown', this.onWindowKeyDown)
+      document.documentElement.style.overflow = 'hidden'
+    },
+    removeWindowListeners () {
+      window.removeEventListener('keydown', this.onWindowKeyDown)
+      document.documentElement.style.overflow = 'auto'
     }
   },
-  created () {
-    window.addEventListener('keydown', this.onWindowKeyDown)
-    window.addEventListener('scroll', this.onWindowScroll)
-  },
   beforeDestroy () {
-    window.removeEventListener('keydown', this.onWindowKeyDown)
-    window.removeEventListener('scroll', this.onWindowScroll)
+    this.removeWindowListeners()
   }
 }
 </script>
@@ -112,7 +125,6 @@ export default {
       opacity: 1;
     }
   }
-
 }
 
 .image-viewer-background {
