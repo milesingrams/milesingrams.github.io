@@ -1,6 +1,6 @@
 <template>
   <div class="polaroid-wrap">
-    <div class="polaroid" @click="onClick" @mousemove="onMouseMove" @mouseleave="onMouseLeave" :style="{'transform': `translateZ(${translateZ}rem) rotate3d(${axisX}, ${axisY * -1}, 0, ${magnitude * 7.5}deg)`}">
+    <div class="polaroid" @click="onClick" @mousemove="onMouseMove" @mouseleave="onMouseLeave" :style="{'transform': `translateZ(${translateZ}rem) rotate3d(${axisX}, ${axisY * -1}, 0, ${magnitude * 10}deg)`}">
       <g-image :src="image.preview" immediate="true" blur="10"></g-image>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
       let halfHeight = this.$el.clientHeight / 2
       let distX = event.offsetX - halfWidth
       let distY = event.offsetY - halfHeight
-      this.translateZ = 1.5
+      this.translateZ = 2
       this.axisX = distY
       this.axisY = distX
       this.magnitude = Math.sqrt(Math.pow(distX / halfWidth, 2) + Math.pow(distY / halfHeight, 2))
@@ -44,7 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 .polaroid-wrap {
-  perspective: 1250px;
+  perspective: 1000px;
 }
 
 .polaroid {
