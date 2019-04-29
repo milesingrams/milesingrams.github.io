@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <div class="page-section">
+      <div class="page-section" v-animate-visible>
         <div class="section-content section-content-center">
           <h2 class="about-text">
             Here's what I've worked on so far
@@ -239,14 +239,9 @@ export default {
   height: 75px;
   background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, black $line-spacing, black ($line-spacing + 1px));
   clip-path: polygon(0 -100%, 50% 0, 100% -100%);
-  animation: arrowIn 1s var(--ease-out-quad) forwards;
-}
+  transition: clip-path 1s var(--ease-out-quad);
 
-@keyframes arrowIn {
-  from {
-    clip-path: polygon(0 -100%, 50% 0, 100% -100%);
-  }
-  to {
+  .animate-visible & {
     clip-path: polygon(0 0, 50% 100%, 100% 0);
   }
 }
