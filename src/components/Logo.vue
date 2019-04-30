@@ -134,7 +134,7 @@ export default {
 
 .click-me {
   .pointer-icon {
-    --iconColor: #bbb;
+    --iconColor: #aaa;
     position: absolute;
     width: 18%;
     height: 18%;
@@ -142,7 +142,7 @@ export default {
     top: 88%;
     transform: translateX(-33%);
     opacity: 0;
-    animation: clickMePointer 2.5s var(--ease-in-out-quad) 4s forwards;
+    animation: clickMePointer 1.5s var(--ease-in-out-quad) 3.5s forwards;
   }
 
   .pulse {
@@ -154,7 +154,7 @@ export default {
     background: radial-gradient(transparent 25%, rgba(0, 0, 0, 0.5));
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    animation: clickMePulse 1s var(--ease-in-out-quad) 4.75s forwards;
+    animation: clickMePulse 1s var(--ease-out-quad) 3.9s forwards;
   }
 }
 
@@ -166,6 +166,11 @@ export default {
 
   33% {
     top: 88%;
+    opacity: 1;
+  }
+
+  66% {
+    top: 94%;
     opacity: 1;
   }
 
