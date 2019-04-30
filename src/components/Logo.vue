@@ -5,8 +5,11 @@
         <component :is="effect" :progress="progress" :options="{ poly, color }"></component>
       </transition>
     </client-only>
-    <transition appear name="click-me">
-      <icon-fingerprint class="click-me" v-if="atPageTop"></icon-fingerprint>
+    <transition name="fadeInOut">
+      <div class="click-me" v-if="atPageTop && !logoClicked">
+        <div class="pulse"></div>
+        <icon-pointer class="pointer-icon"></icon-pointer>
+      </div>
     </transition>
   </div>
 </template>
@@ -16,7 +19,7 @@ import EffectDroplets from '~/components/effects/EffectDroplets'
 import EffectGradient from '~/components/effects/EffectGradient'
 import EffectSlices from '~/components/effects/EffectSlices'
 import EffectWebs from '~/components/effects/EffectWebs'
-import IconFingerprint from '~/assets/icons/IconFingerprint.svg'
+import IconPointer from '~/assets/icons/IconPointer.svg'
 import anime from 'animejs'
 
 export default {
@@ -27,7 +30,7 @@ export default {
     EffectGradient,
     EffectSlices,
     EffectWebs,
-    IconFingerprint
+    IconPointer
   },
   data () {
     return {
@@ -130,20 +133,59 @@ export default {
 }
 
 .click-me {
-  position: absolute;
-  width: 20%;
-  height: 20%;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  --iconColor: rgba(0, 0, 0, 0.25);
-
-  &-enter-active {
-    animation: fadeIn 0.5s var(--ease-in-quad) both;
+  .pointer-icon {
+    --iconColor: #bbb;
+    position: absolute;
+    width: 18%;
+    height: 18%;
+    left: 50%;
+    top: 88%;
+    transform: translateX(-33%);
+    opacity: 0;
+    animation: clickMePointer 2.5s var(--ease-in-out-quad) 4s forwards;
   }
 
-  &-leave-active {
-    animation: fadeOut 0.5s var(--ease-out-quad) both;
+  .pulse {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 88%;
+    background: radial-gradient(transparent 25%, rgba(0, 0, 0, 0.5));
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: clickMePulse 1s var(--ease-in-out-quad) 4.75s forwards;
+  }
+}
+
+@keyframes clickMePointer {
+  0% {
+    top: 94%;
+    opacity: 0;
+  }
+
+  33% {
+    top: 88%;
+    opacity: 1;
+  }
+
+  100% {
+    top: 94%;
+    opacity: 0;
+  }
+}
+
+@keyframes clickMePulse {
+  from {
+    opacity: 1;
+    width: 0;
+    height: 0;
+  }
+
+  to {
+    opacity: 0;
+    width: 22%;
+    height: 22%;
   }
 }
 
