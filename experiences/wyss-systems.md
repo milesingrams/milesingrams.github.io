@@ -7,7 +7,7 @@ position: Systems Engineer
 
 tags: [ Bits, Bots ]
 
-description: As a systems engineer at the Wyss Institute I worked within the Human-Organs-on-Chips project to develop a robotic platform for human tissue culture and experimentation. The robot was designed to automatically perform the complex liquid handling, climate control, and imaging tasks necessary for culturing human organ tissue within microfluidic devices. I also built a web-based user interface to plan, schedule, and remotely manage simultaneous experiments on multiple robots.
+description: As a systems engineer at the Wyss Institute I worked within the Organs-on-Chips project to develop a robotic platform for human tissue culture and experimentation. The robot was designed to automatically perform the complex liquid handling, climate control, and imaging tasks necessary for culturing human organ tissue within microfluidic devices. Additionally, I built a web-based user interface to plan, schedule, and remotely manage simultaneous experiments on multiple robots.
 
 achievements:
   - Led all aspects of robot design, development, and construction.
