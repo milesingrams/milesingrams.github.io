@@ -1,7 +1,7 @@
 <template>
   <svg v-if="!finished" class="invisible" xmlns="http://www.w3.org/2000/svg">
     <filter :id="filterId">
-      <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="2" :seed="seed"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="2" :seed="seed" />
       <feColorMatrix :values="colorMatrixValues" result="texture" />
       <feComposite in="SourceGraphic" in2="texture" operator="in" />
     </filter>

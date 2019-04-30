@@ -5,11 +5,9 @@
         <component :is="effect" :progress="progress" :options="{ poly, color }"></component>
       </transition>
     </client-only>
-    <div class="fold-up" ref="foldUp">
-      <div class="fold-up-content">
-        <div class="fold-up-text">Click Me</div>
-      </div>
-    </div>
+    <transition appear name="click-me">
+      <icon-fingerprint class="click-me" v-if="atPageTop"></icon-fingerprint>
+    </transition>
   </div>
 </template>
 
@@ -18,6 +16,7 @@ import EffectDroplets from '~/components/effects/EffectDroplets'
 import EffectGradient from '~/components/effects/EffectGradient'
 import EffectSlices from '~/components/effects/EffectSlices'
 import EffectWebs from '~/components/effects/EffectWebs'
+import IconFingerprint from '~/assets/icons/IconFingerprint.svg'
 import anime from 'animejs'
 
 export default {
@@ -27,7 +26,8 @@ export default {
     EffectDroplets,
     EffectGradient,
     EffectSlices,
-    EffectWebs
+    EffectWebs,
+    IconFingerprint
   },
   data () {
     return {
@@ -40,7 +40,6 @@ export default {
       animationEase: 0.075,
       animationPageCoverage: 1.25,
       logoClicked: false,
-      foldUpAnimation: null,
       poly: [
         [0, 0],
         [50, 49.5],
@@ -70,11 +69,6 @@ export default {
       } else {
         return false
       }
-    }
-  },
-  watch: {
-    'atPageTop' () {
-      this.updateFoldUpAnimation()
     }
   },
   methods: {
@@ -110,30 +104,6 @@ export default {
     onLogoClick () {
       this.logoClicked = true
       this.rotateEffect()
-      this.updateFoldUpAnimation()
-    },
-    updateFoldUpAnimation () {
-      if (this.foldUpAnimation) {
-        this.foldUpAnimation.pause()
-      }
-      if (this.atPageTop && !this.logoClicked) {
-        this.foldUpAnimation = anime({
-          targets: this.$refs.foldUp,
-          height: '30%',
-          easing: 'easeInOutQuad',
-          delay: 3000,
-          endDelay: 700,
-          duration: 300,
-          direction: 'alternate'
-        })
-      } else {
-        this.foldUpAnimation = anime({
-          targets: this.$refs.foldUp,
-          height: 0,
-          easing: 'easeInOutQuad',
-          duration: 150
-        })
-      }
     }
   },
   mounted () {
@@ -143,7 +113,6 @@ export default {
       this.onWindowScrollResize()
       this.updateScrollProgress()
       this.rotateEffect()
-      this.updateFoldUpAnimation()
     }
   },
   beforeDestroy () {
@@ -160,47 +129,22 @@ export default {
   height: 100%;
 }
 
-.fold-up {
+.click-me {
   position: absolute;
-  left: 25%;
-  right: 25%;
+  width: 20%;
+  height: 20%;
+  left: 50%;
   bottom: 0;
-  height: 0;
-  background-color: white;
-  pointer-events: none;
-  animation: showFoldUp 5s var(--ease-in-out-quad) infinite;
+  transform: translateX(-50%);
+  --iconColor: rgba(0, 0, 0, 0.25);
 
-  .fold-up-content {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 50%;
-    box-shadow: 0 -0.5px 0 0.5px rgba(0, 0, 0, 0.1) inset;
-    overflow: hidden;
-
-    .fold-up-text {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      line-height: 2.6rem;
-      font-size: 1.1rem;
-      font-weight: 500;
-      opacity: 0.7;
-    }
+  &-enter-active {
+    animation: fadeIn 0.5s var(--ease-in-quad) both;
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 50%;
-    width: 100%;
-    height: 50%;
-    background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.125));
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 -4px 16px rgba(0, 0, 0, 0.1);
+  &-leave-active {
+    animation: fadeOut 0.5s var(--ease-out-quad) both;
   }
 }
+
 </style>
