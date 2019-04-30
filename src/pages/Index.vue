@@ -253,6 +253,8 @@ export default {
     &:nth-child(#{length($site-colors)}n + #{$i}) {
       --section-color: #{$sectionColor};
       --section-color-rgb: #{hexToRGB($sectionColor)};
+      // --section-color-dark: #{darken($sectionColor, 20%)};
+      // --section-color-dark-rgb: #{hexToRGB(darken($sectionColor, 20%))};
     }
   }
 }

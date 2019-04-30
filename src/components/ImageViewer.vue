@@ -90,7 +90,7 @@ export default {
       } else {
         this.previousImage()
       }
-    }, 250),
+    }, 300),
     onSwipe (event) {
       switch (event.direction) {
         case 8:
