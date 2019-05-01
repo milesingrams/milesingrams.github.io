@@ -57,6 +57,10 @@ export default {
     &:not(:last-child) {
       margin-right: 2rem;
     }
+
+    /deep/ img {
+      max-width: 60vw;
+    }
   }
 }
 </style>

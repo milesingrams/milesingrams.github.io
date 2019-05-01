@@ -33,7 +33,7 @@ module.exports = {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'Experience',
-        path: 'experiences/*.md'
+        path: 'experiences/**/*.md'
       }
     }
   ],

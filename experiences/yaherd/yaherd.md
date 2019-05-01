@@ -32,7 +32,8 @@ skills:
       - DNS Management
 
 images:
-  - image: ./images/test.jpg
-  - image: ./images/test1.png
-  - image: ./images/test2.jpg
+  - image: ./media/landing.png
+  - image: ./media/create.png
+  - image: ./media/vote.png
+  - image: ./media/final.png
 ---

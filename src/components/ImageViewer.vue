@@ -13,10 +13,10 @@
         <button class="viewer-button close-button" @click="close">
           <icon-close class="icon"></icon-close>
         </button>
-        <button class="viewer-button left-button" :disabled="this.imageIndex === 0" @click="previousImage">
+        <button class="viewer-button left-button" v-if="this.imageIndex > 0" @click="previousImage">
           <icon-arrow-left class="icon"></icon-arrow-left>
         </button>
-        <button class="viewer-button right-button" :disabled="this.imageIndex === this.images.length - 1" @click="nextImage">
+        <button class="viewer-button right-button" v-if="this.imageIndex < this.images.length - 1" @click="nextImage">
           <icon-arrow-right class="icon"></icon-arrow-right>
         </button>
       </div>
@@ -169,7 +169,6 @@ export default {
 
       img {
         background-color: white;
-        padding: 1rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         pointer-events: all;
         flex: 0;
@@ -194,11 +193,7 @@ export default {
     border: none;
     cursor: pointer;
 
-    &:disabled {
-      color: rgba(255, 255, 255, 0.3);
-    }
-
-    &:enabled:hover {
+    &:hover {
       color: white;
     }
   }
