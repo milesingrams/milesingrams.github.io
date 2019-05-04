@@ -24,4 +24,9 @@ skills:
     items:
       - Direct Laser Writing
       - Soft Lithography
+
+images:
+  - image: ./media/system-diagram.png
+  - image: ./media/chip.jpg
+  - image: ./media/system-resolution.png
 ---

@@ -5,7 +5,8 @@
       <div class="image-viewer-content">
         <div class="images" :style="{'transform': `translateX(calc(${-100 * imageIndex}vw - ${2 * imageIndex}rem))`}">
           <div class="image-wrap" v-for="image in images">
-            <g-image class="current-image" :src="image.image" immediate="true" blur="10"></g-image>
+            <g-image :src="image.image" blur="10"></g-image>
+            <p class="image-caption" v-if="image.caption">{{image.caption}}</p>
           </div>
         </div>
       </div>
@@ -143,7 +144,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: -1;
 }
 
@@ -156,12 +157,14 @@ export default {
     transition: transform 0.2s var(--ease-in-out-quad);
 
     .image-wrap {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100vw;
       height: 100vh;
       padding: 2rem 0;
+
 
       &:not(:last-child) {
         margin-right: 2rem;
@@ -174,6 +177,17 @@ export default {
         flex: 0;
         max-width: 100%;
         max-height: 100%;
+      }
+
+      .image-caption {
+        position: absolute;
+        bottom: 2.5rem;
+        padding: 0.5rem 0.75rem;
+        margin-right: 1rem;
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.8);
+        text-align: center;
+        color: white;
       }
     }
   }
@@ -189,6 +203,7 @@ export default {
     position: absolute;
     padding: 0.75rem;
     color: rgba(255, 255, 255, 0.75);
+    border-radius: 4px;
     transition: color 0.1s var(--ease-in-out-quad);
     border: none;
     cursor: pointer;

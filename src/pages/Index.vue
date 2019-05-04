@@ -7,7 +7,7 @@
     <section class="about-wrap">
       <div class="page-section">
         <div class="section-content section-content-center no-pointer-events">
-          <h2 class="about-text">
+          <h2 class="statement-text">
             Hi, I'm Miles
           </h2>
         </div>
@@ -15,7 +15,7 @@
 
       <div class="page-section">
         <div class="section-content section-content-center no-pointer-events">
-          <h2 class="about-text margin-b-5">
+          <h2 class="statement-text margin-b-5">
             I Like
           </h2>
           <ul class="tag-list like-tags">
@@ -29,11 +29,11 @@
 
       <div class="page-section">
         <div class="section-content section-content-center">
-          <h2 class="about-text">
+          <h2 class="statement-text">
             NYC born and raised, I started dabbling with programming at a young age by making silly Flash games and clunky Lego Mindstorms.
           </h2>
           <div class="divider-line"></div>
-          <h2 class="about-text">
+          <h2 class="statement-text">
             Many years later I'm still doing the same thing, just with MUCH cooler equipment.
           </h2>
         </div>
@@ -41,7 +41,7 @@
 
       <div class="page-section">
         <div class="section-content section-content-center">
-          <h2 class="about-text margin-b-5">
+          <h2 class="statement-text margin-b-5">
             My beliefs are
           </h2>
           <div class="beliefs-list">
@@ -91,7 +91,7 @@
 
       <div class="page-section" v-animate-visible>
         <div class="section-content section-content-center">
-          <h2 class="about-text">
+          <h2 class="statement-text">
             Here's what I've worked on so far
           </h2>
           <div class="work-start-arrow"></div>
@@ -101,6 +101,16 @@
 
     <section class="experiences-wrap">
       <experience :experience="experience" v-for="(experience, index) in $page.experiences.edges" :key="index"></experience>
+    </section>
+
+    <section class="footer-wrap">
+      <div class="page-section">
+        <div class="section-content section-content-center no-pointer-events">
+          <h2 class="statement-text">
+            Get in touch @
+          </h2>
+        </div>
+      </div>
     </section>
   </layout>
 </template>
@@ -121,8 +131,9 @@
           items
         }
         images {
-          preview: image (width: 300)
+          preview: image (width: 280)
           image (width: 1920)
+          caption
         }
       }
     }
@@ -191,7 +202,7 @@ export default {
   }
 }
 
-.about-text {
+.statement-text {
   font-family: 'Averia Serif Libre';
   font-weight: 500;
   text-align: center;
@@ -257,5 +268,8 @@ export default {
       // --section-color-dark-rgb: #{hexToRGB(darken($sectionColor, 20%))};
     }
   }
+}
+
+.footer-wrap {
 }
 </style>

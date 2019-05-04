@@ -29,7 +29,7 @@
         </p>
 
         <div class="achievements-skills-wrap section-content-center">
-          <div class="achievements-wrap">
+          <div class="achievements-wrap" v-if="experience.node.achievements.length">
             <ul class="achievements">
               <li class="achievement-item" v-for="achievement in experience.node.achievements">
                 {{achievement}}
@@ -37,7 +37,7 @@
             </ul>
           </div>
 
-          <div class="skills-wrap">
+          <div class="skills-wrap" v-if="experience.node.skills.length">
             <div class="skills">
               <div class="skill-item" v-for="skillObj in experience.node.skills">
                 <div class="skill-type">
@@ -54,12 +54,12 @@
           </div>
         </div>
 
-        <image-gallery :images="experience.node.images" @image-clicked="openImage"></image-gallery>
+        <image-gallery v-if="experience.node.images.length" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
       </div>
     </div>
 
     <client-only>
-      <image-viewer :images="experience.node.images" ref="imageViewer"></image-viewer>
+      <image-viewer v-if="experience.node.images.length" :images="experience.node.images" ref="imageViewer"></image-viewer>
     </client-only>
   </div>
 </template>

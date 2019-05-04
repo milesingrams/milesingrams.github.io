@@ -39,4 +39,8 @@ skills:
   - type: Battlestar Galactica
     items:
       - Project Management
+
+images:
+  - image: ./media/hydra-cad.png
+  - image: ./media/microscope-module.png
 ---

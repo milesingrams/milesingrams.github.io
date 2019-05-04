@@ -1,7 +1,7 @@
 <template>
   <div class="polaroid-wrap">
     <div class="polaroid" @click="onClick" @mousemove="onMouseMove" @mouseleave="onMouseLeave" :style="{'transform': `translateZ(${translateZ}rem) rotate3d(${axisX}, ${axisY * -1}, 0, ${magnitude * 10}deg)`}">
-      <g-image :src="image.preview" immediate="true" blur="10"></g-image>
+      <g-image :src="image.preview" blur="10"></g-image>
     </div>
   </div>
 </template>

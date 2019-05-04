@@ -38,4 +38,10 @@ skills:
     items:
       - Production Optimization
       - QC / QA Engineering
+
+images:
+  - image: ./media/body-on-a-chip.jpg
+  - image: ./media/lung-on-a-chip.jpg
+  - image: ./media/chip-scan.png
+  - image: ./media/chiptrack.png
 ---

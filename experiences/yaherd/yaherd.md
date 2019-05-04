@@ -33,7 +33,11 @@ skills:
 
 images:
   - image: ./media/landing.png
+    caption: Landing page
   - image: ./media/create.png
+    caption: Event creation page
   - image: ./media/vote.png
+    caption: Event main page with guest list, chat, and poll voting
   - image: ./media/final.png
+    caption: Event main page once the date and time have been finalized
 ---
