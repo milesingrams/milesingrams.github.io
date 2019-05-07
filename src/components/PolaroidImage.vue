@@ -56,8 +56,17 @@ export default {
   transition: all 0.2s var(--ease-out-quad);
   cursor: pointer;
 
+  img {
+    transition: filter 0.2s var(--ease-out-quad);
+    filter: grayscale(100%);
+  }
+
   &:hover {
     box-shadow: 0 5px 20px -10px rgba(0, 0, 0, 0.20), 0 3px 10px -5px rgba(0, 0, 0, 0.25);
+
+    img {
+      filter: none;
+    }
   }
 }
 </style>

@@ -186,7 +186,7 @@ export default {
         margin-right: 1rem;
         border-radius: 4px;
         background-color: rgba(0, 0, 0, 0.8);
-        text-align: center;
+        max-width: 600px;
         color: white;
       }
     }

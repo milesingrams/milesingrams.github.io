@@ -7,7 +7,7 @@ position: Microdevice Design Engineer
 
 tags: [ Bits, Bots, Bio ]
 
-description: As a microdevice design engineer at the Wyss Institute I worked within the Organs-on-Chips project to design and fabricate plastic fluidic microchips for culturing human organ tissues. The microchips enabled tissue culture with unparalleled fidelity by utilizing complex microstructures and bio-coatings that mimic the cellular environment in the body. Ultimately the microchips could be used to accelerate the drug development process by providing a more accurate model of human organ tissues.
+description: As a microdevice design engineer at the Wyss Institute I worked within the Organs-on-Chips project to design and fabricate plastic microfluidic chips for culturing human organ tissues. The microchips enabled tissue culture with unparalleled fidelity by utilizing complex microstructures and bio-coatings that mimic the cellular environment in the body. Ultimately the microchips could be used to accelerate the drug development process by providing a more accurate model of human organ tissues.
 
 achievements:
   - Made major design improvements to the microchips allowing for improved cellular compatibility and experimentation throughput.
@@ -40,8 +40,12 @@ skills:
       - QC / QA Engineering
 
 images:
-  - image: ./media/body-on-a-chip.jpg
   - image: ./media/lung-on-a-chip.jpg
+    caption: Lung-on-a-chip device.
+  - image: ./media/body-on-a-chip.jpg
+    caption: Diagram of the various organs we model using microfluidic chips.
   - image: ./media/chip-scan.png
+    caption: Logging a completed chip into the QC system.
   - image: ./media/chiptrack.png
+    caption: The quality control system interface.
 ---

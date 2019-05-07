@@ -42,5 +42,11 @@ skills:
 
 images:
   - image: ./media/hydra-cad.png
+    caption: CAD of robot.
   - image: ./media/microscope-module.png
+    caption: CAD of 3-axis imaging module.
+  - image: ./media/hydra-setup.png
+    caption: (a) A robot set up for an experiment. (b) Two robots in separate culture incubators. (c) Organ chips in culture cartridges. (d) Top down of organ chips in culture.
+  - image: ./media/hydra-network.png
+    caption: (a) Robot control network. (b) Schematic of software stack and dataflow.
 ---
