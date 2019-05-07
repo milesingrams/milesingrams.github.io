@@ -102,16 +102,6 @@
     <section class="experiences-wrap">
       <experience :experience="experience" v-for="(experience, index) in $page.experiences.edges" :key="index"></experience>
     </section>
-
-    <section class="footer-wrap">
-      <div class="page-section">
-        <div class="section-content section-content-center no-pointer-events">
-          <h2 class="statement-text">
-            Get in touch @
-          </h2>
-        </div>
-      </div>
-    </section>
   </layout>
 </template>
 
@@ -134,6 +124,11 @@
           preview: image (width: 280)
           image (width: 1920)
           caption
+        }
+        publications {
+          title
+          journal
+          link
         }
       }
     }
@@ -264,12 +259,7 @@ export default {
     &:nth-child(#{length($site-colors)}n + #{$i}) {
       --section-color: #{$sectionColor};
       --section-color-rgb: #{hexToRGB($sectionColor)};
-      // --section-color-dark: #{darken($sectionColor, 20%)};
-      // --section-color-dark-rgb: #{hexToRGB(darken($sectionColor, 20%))};
     }
   }
-}
-
-.footer-wrap {
 }
 </style>

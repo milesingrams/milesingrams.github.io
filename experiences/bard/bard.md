@@ -25,6 +25,11 @@ skills:
       - Direct Laser Writing
       - Soft Lithography
 
+publications:
+  - title: A convenient direct laser writing system for the creation of microfluidic masters
+    journal: Microfluidics and Nanofluidics
+    link: https://link.springer.com/article/10.1007/s10404-015-1574-4
+
 images:
   - image: ./media/system-diagram.png
     caption: Diagram of the DLW setup.

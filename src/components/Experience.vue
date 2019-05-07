@@ -54,6 +54,20 @@
           </div>
         </div>
 
+        <div class="publications-wrap section-content-center" v-if="experience.node.publications.length">
+          <ul class="publications" v-if="experience.node.publications.length">
+            <li class="publication-item" v-for="publication in experience.node.publications">
+              <div class="publication-icon">
+                <icon-book class="icon"></icon-book>
+              </div>
+              <a class="publication-link" :href="publication.link" target="_blank">
+                <div class="publication-title">{{publication.title}}</div>
+                <div class="publication-journal">{{publication.journal}}</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
         <image-gallery v-if="experience.node.images.length" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
       </div>
     </div>
@@ -69,6 +83,7 @@ import IconBits from '~/assets/icons/IconBits.svg'
 import IconBots from '~/assets/icons/IconBots.svg'
 import IconBio from '~/assets/icons/IconBio.svg'
 import IconBattlestarGalactica from '~/assets/icons/IconBattlestarGalactica.svg'
+import IconBook from '~/assets/icons/IconBook.svg'
 import ImageGallery from '~/components/ImageGallery'
 import ImageViewer from '~/components/ImageViewer'
 
@@ -80,6 +95,7 @@ export default {
     IconBots,
     IconBio,
     IconBattlestarGalactica,
+    IconBook,
     ImageGallery,
     ImageViewer
   },
@@ -205,6 +221,44 @@ export default {
         margin: 0.15rem;
         background-color: var(--section-color);
       }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+.publications {
+  margin-bottom: 3rem;
+
+  .publication-item {
+    display: flex;
+
+    .publication-icon {
+      display: flex;
+      align-items: center;
+      color: var(--section-color);
+    }
+
+    .publication-link {
+      padding-left: 1rem;
+      color: inherit !important;
+      transition: color 0.1s var(--ease-in-out-quad);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--section-color) !important;
+      }
+    }
+
+    .publication-title {
+      font-size: 1.2rem;
+    }
+
+    .publication-journal {
+      font-size: 1.1rem;
+      font-style: italic;
     }
 
     &:not(:last-child) {

@@ -39,6 +39,11 @@ skills:
       - Production Optimization
       - QC / QA Engineering
 
+publications:
+  - title: Mature induced-pluripotent-stem-cell-derived human podocytes reconstitute kidney glomerular-capillary-wall function on a chip
+    journal: Nature Biomedical Engineering
+    link: https://www.ncbi.nlm.nih.gov/pubmed/29038743
+
 images:
   - image: ./media/lung-on-a-chip.jpg
     caption: A lung-on-a-chip device.

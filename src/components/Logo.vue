@@ -8,7 +8,7 @@
     <transition name="fadeInOut">
       <div class="click-me" v-if="atPageTop && !logoClicked">
         <div class="pulse"></div>
-        <icon-pointer class="pointer-icon"></icon-pointer>
+        <icon-pointer class="icon pointer-icon"></icon-pointer>
       </div>
     </transition>
   </div>
@@ -134,7 +134,7 @@ export default {
 
 .click-me {
   .pointer-icon {
-    --iconColor: #aaa;
+    color: #aaa;
     position: absolute;
     width: 18%;
     height: 18%;
