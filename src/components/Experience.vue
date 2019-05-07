@@ -54,6 +54,7 @@
           </div>
         </div>
 
+
         <div class="publications-wrap section-content-center" v-if="experience.node.publications.length">
           <ul class="publications" v-if="experience.node.publications.length">
             <li class="publication-item" v-for="publication in experience.node.publications">
@@ -200,9 +201,10 @@ export default {
 .skills {
   .skill-item {
     display: flex;
+    font-size: 0.9rem;
 
     .skill-type {
-      margin-top: 0.2rem;
+      padding-top: 0.3rem;
       padding-right: 1rem;
 
       .icon {
@@ -216,7 +218,6 @@ export default {
       margin: -0.15rem;
 
       .tag {
-        font-size: 0.9rem;
         padding: 0.15rem 0.5rem;
         margin: 0.15rem;
         background-color: var(--section-color);
@@ -270,6 +271,7 @@ export default {
 .image-gallery-wrap {
   position: relative;
   width: 100vw;
+  margin-bottom: 3rem;
   z-index: 1000;
 }
 </style>
