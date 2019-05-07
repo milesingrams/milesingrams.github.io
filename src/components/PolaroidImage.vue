@@ -58,7 +58,7 @@ export default {
 
   img {
     transition: filter 0.2s var(--ease-out-quad);
-    filter: grayscale(100%);
+    filter: saturate(50%);
   }
 
   &:hover {
