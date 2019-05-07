@@ -41,11 +41,11 @@ skills:
 
 images:
   - image: ./media/lung-on-a-chip.jpg
-    caption: Lung-on-a-chip device.
-  - image: ./media/body-on-a-chip.jpg
-    caption: Diagram of the various organs we model using microfluidic chips.
-  - image: ./media/chip-scan.png
-    caption: Logging a completed chip into the QC system.
+    caption: A lung-on-a-chip device.
+  - image: ./media/organ-chips.png
+    caption: Diagram of the various organ tissues that are grown in the microfluidic chips.
+  - image: ./media/chips.png
+    caption: Many microfluidic chips ready for use.
   - image: ./media/chiptrack.png
-    caption: The quality control system interface.
+    caption: The quality control system for tracking the microfluidic chips through the fabrication and experimentation process.
 ---
