@@ -42,7 +42,7 @@ skills:
 publications:
   - title: Mature induced-pluripotent-stem-cell-derived human podocytes reconstitute kidney glomerular-capillary-wall function on a chip
     journal: Nature Biomedical Engineering
-    link: https://www.ncbi.nlm.nih.gov/pubmed/29038743
+    link: https://www.nature.com/articles/s41551-017-0069
 
 images:
   - image: ./media/lung-on-a-chip.jpg
