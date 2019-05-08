@@ -55,19 +55,17 @@
         </div>
 
 
-        <div class="publications-wrap section-content-center" v-if="experience.node.publications.length">
-          <ul class="publications" v-if="experience.node.publications.length">
-            <li class="publication-item" v-for="publication in experience.node.publications">
-              <div class="publication-icon">
-                <icon-book class="icon"></icon-book>
-              </div>
-              <a class="publication-link" :href="publication.link" target="_blank">
-                <div class="publication-title">{{publication.title}}</div>
-                <div class="publication-journal">{{publication.journal}}</div>
-              </a>
-            </li>
-          </ul>
-        </div>
+        <ul class="publications-wrap section-content-center" v-if="experience.node.publications.length">
+          <li class="publication-item" v-for="publication in experience.node.publications">
+            <div class="publication-icon">
+              <icon-book class="icon"></icon-book>
+            </div>
+            <a class="publication-link" :href="publication.link" target="_blank">
+              <div class="publication-title">{{publication.title}}</div>
+              <div class="publication-journal">{{publication.journal}}</div>
+            </a>
+          </li>
+        </ul>
 
         <image-gallery v-if="experience.node.images.length" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
 
@@ -192,6 +190,7 @@ export default {
 .achievements {
   .achievement-item {
     padding-left: 1rem;
+    margin-left: -1.5px;
     border-left: 3px solid rgba(var(--section-color-rgb), 0.6);
     font-size: 1.1rem;
 
@@ -212,6 +211,7 @@ export default {
 
       .icon {
         opacity: 0.8;
+        margin-left: -0.5em;
       }
     }
 
@@ -233,17 +233,19 @@ export default {
   }
 }
 
-.publications {
+
+.publications-wrap {
   margin-bottom: 3rem;
 
   .publication-item {
     display: flex;
-    max-width: 70ch;
+    max-width: 700px;
 
     .publication-icon {
       display: flex;
       align-items: center;
       color: var(--section-color);
+      margin-left: -0.5em;
     }
 
     .publication-link {
