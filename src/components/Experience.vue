@@ -69,7 +69,11 @@
           </ul>
         </div>
 
-        <image-gallery v-if="experience.node.images.length" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
+        <image-gallery v-if="experience.node.sitelink" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
+
+        <div class="site-link-wrap section-content-center" v-if="experience.node.sitelink">
+          <a class="site-link" :href="experience.node.sitelink" target="_blank">Visit the {{experience.node.title}} site</a>
+        </div>
       </div>
     </div>
 
@@ -244,7 +248,7 @@ export default {
 
     .publication-link {
       padding-left: 1rem;
-      color: inherit !important;
+      color: black !important;
       transition: color 0.1s var(--ease-in-out-quad);
       text-decoration: none;
 
@@ -273,5 +277,34 @@ export default {
   width: 100vw;
   margin-bottom: 3rem;
   z-index: 1000;
+}
+
+.site-link-wrap {
+  text-align: center;
+
+  .site-link {
+    position: relative;
+    font-size: 1.3rem;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background-color: rgba(var(--section-color-rgb), 0.6);
+      transition: height 0.1s var(--ease-in-out-quad);
+    }
+
+    &:hover {
+      &::before {
+        height: 100%;
+      }
+    }
+  }
 }
 </style>

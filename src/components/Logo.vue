@@ -1,5 +1,5 @@
 <template>
-  <div class="logo" v-show="progress" :class="{'no-pointer-events': !atPageTop}" @click="onLogoClick">
+  <div class="logo" v-show="progress" :class="{'pointer-events': atPageTop}" @click="onLogoClick">
     <client-only>
       <transition appear name="fadeInOut" mode="out-in">
         <component :is="effect" :progress="progress" :options="{ poly, color }"></component>

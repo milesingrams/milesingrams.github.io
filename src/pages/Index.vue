@@ -130,6 +130,7 @@
           journal
           link
         }
+        sitelink
       }
     }
   }
@@ -178,6 +179,7 @@ export default {
   height: 30vh;
   transform: translate(-50%, -50%);
   z-index: 1;
+  pointer-events: none;
 }
 
 .about-wrap {
