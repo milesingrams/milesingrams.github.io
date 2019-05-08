@@ -69,7 +69,7 @@
           </ul>
         </div>
 
-        <image-gallery v-if="experience.node.sitelink" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
+        <image-gallery v-if="experience.node.images.length" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
 
         <div class="site-link-wrap section-content-center" v-if="experience.node.sitelink">
           <a class="site-link" :href="experience.node.sitelink" target="_blank">Visit the {{experience.node.title}} site</a>
@@ -174,7 +174,6 @@ export default {
 
   @include media('>=tablet') {
     flex-basis: 50%;
-    margin-bottom: 3rem;
   }
 }
 
@@ -239,6 +238,7 @@ export default {
 
   .publication-item {
     display: flex;
+    max-width: 70ch;
 
     .publication-icon {
       display: flex;
@@ -248,7 +248,7 @@ export default {
 
     .publication-link {
       padding-left: 1rem;
-      color: black !important;
+      color: inherit !important;
       transition: color 0.1s var(--ease-in-out-quad);
       text-decoration: none;
 
@@ -258,11 +258,13 @@ export default {
     }
 
     .publication-title {
-      font-size: 1.2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
     }
 
     .publication-journal {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       font-style: italic;
     }
 
@@ -287,9 +289,10 @@ export default {
     font-size: 1.3rem;
     text-decoration: none;
     padding: 0.5rem;
-    border-radius: 4px;
+    color: inherit !important;
+    z-index: 1;
 
-    &::before {
+    &::after {
       content: '';
       position: absolute;
       left: 0;
@@ -298,10 +301,11 @@ export default {
       height: 3px;
       background-color: rgba(var(--section-color-rgb), 0.6);
       transition: height 0.1s var(--ease-in-out-quad);
+      z-index: -1;
     }
 
     &:hover {
-      &::before {
+      &::after {
         height: 100%;
       }
     }

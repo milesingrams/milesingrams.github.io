@@ -201,7 +201,7 @@ export default {
 
 .statement-text {
   font-family: 'Averia Serif Libre';
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
 }
 
