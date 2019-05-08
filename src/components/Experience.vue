@@ -24,11 +24,11 @@
 
     <div class="page-section experience-content">
       <div class="section-content">
-        <p class="experience-description section-content-center">
+        <p class="experience-description experience-section section-content-center">
           {{experience.node.description}}
         </p>
 
-        <div class="achievements-skills-wrap section-content-center">
+        <div class="achievements-skills-wrap experience-section section-content-center">
           <div class="achievements-wrap" v-if="experience.node.achievements.length">
             <ul class="achievements">
               <li class="achievement-item" v-for="achievement in experience.node.achievements">
@@ -55,7 +55,7 @@
         </div>
 
 
-        <ul class="publications-wrap section-content-center" v-if="experience.node.publications.length">
+        <ul class="publications-wrap experience-section section-content-center" v-if="experience.node.publications.length">
           <li class="publication-item" v-for="publication in experience.node.publications">
             <div class="publication-icon">
               <icon-book class="icon"></icon-book>
@@ -67,9 +67,9 @@
           </li>
         </ul>
 
-        <image-gallery v-if="experience.node.images.length" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
+        <image-gallery class="experience-section" v-if="experience.node.images.length" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
 
-        <div class="site-link-wrap section-content-center" v-if="experience.node.sitelink">
+        <div class="site-link-wrap experience-section section-content-center" v-if="experience.node.sitelink">
           <a class="site-link" :href="experience.node.sitelink" target="_blank">Visit the {{experience.node.title}} site</a>
         </div>
       </div>
@@ -152,9 +152,13 @@ export default {
   }
 }
 
+.experience-section {
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}
+
 .experience-description {
-  margin: 0 auto;
-  margin-bottom: 3rem;
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 0.025rem;
@@ -168,7 +172,6 @@ export default {
 
 .achievements-wrap, .skills-wrap {
   flex-basis: 100%;
-  margin-bottom: 3rem;
 
   @include media('>=tablet') {
     flex-basis: 50%;
@@ -176,7 +179,10 @@ export default {
 }
 
 .achievements-wrap {
+  margin-bottom: 3rem;
+
   @include media('>=tablet') {
+    margin-bottom: 0rem;
     padding-right: 0.75rem;
   }
 }
@@ -235,7 +241,6 @@ export default {
 
 
 .publications-wrap {
-  margin-bottom: 3rem;
 
   .publication-item {
     display: flex;
@@ -279,7 +284,6 @@ export default {
 .image-gallery-wrap {
   position: relative;
   width: 100vw;
-  margin-bottom: 3rem;
   z-index: 1000;
 }
 
