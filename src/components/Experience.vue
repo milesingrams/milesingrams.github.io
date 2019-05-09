@@ -60,7 +60,7 @@
             <div class="publication-icon">
               <icon-book class="icon"></icon-book>
             </div>
-            <a class="publication-link" :href="publication.link" target="_blank">
+            <a class="publication-link" :class="{'no-pointer-events': !publication.link}" :href="publication.link" target="_blank">
               <div class="publication-title">{{publication.title}}</div>
               <div class="publication-journal">{{publication.journal}}</div>
             </a>

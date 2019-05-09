@@ -1,5 +1,7 @@
 <template>
   <layout>
+    <contact></contact>
+
     <div class="logo-wrap">
       <logo color="#000000"></logo>
     </div>
@@ -138,6 +140,7 @@
 </page-query>
 
 <script>
+import Contact from '~/components/Contact'
 import Logo from '~/components/Logo'
 import IconBits from '~/assets/icons/IconBits.svg'
 import IconBots from '~/assets/icons/IconBots.svg'
@@ -147,6 +150,7 @@ import Experience from '~/components/Experience'
 
 export default {
   components: {
+    Contact,
     Logo,
     IconBits,
     IconBots,
@@ -229,7 +233,7 @@ export default {
       font-size: 1.15rem;
       line-height: 1.2;
       padding-bottom: 0.5rem;
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid #222;
     }
 
     .belief-text {
