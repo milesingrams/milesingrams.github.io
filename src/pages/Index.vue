@@ -165,7 +165,8 @@ export default {
     }
   },
   metaInfo: {
-    title: 'Miles Ingram'
+    title: 'Miles Ingram',
+    titleTemplate: null
   }
 }
 </script>

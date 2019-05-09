@@ -18,7 +18,7 @@ function addStyleResource (rule) {
 
 module.exports = {
   siteName: 'Miles Ingram',
-  siteDescription: 'Miles Ingram\'s Website',
+  siteDescription: 'Miles Ingram\'s Portfolio',
   host: '0.0.0.0',
   transformers: {
     remark: {
