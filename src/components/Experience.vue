@@ -154,7 +154,7 @@ export default {
 
 .experience-section {
   &:not(:last-child) {
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
   }
 }
 
@@ -179,17 +179,17 @@ export default {
 }
 
 .achievements-wrap {
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 
   @include media('>=tablet') {
     margin-bottom: 0rem;
-    padding-right: 0.75rem;
+    padding-right: 1.75rem;
   }
 }
 
 .skills-wrap {
   @include media('>=tablet') {
-    padding-left: 0.75rem;
+    padding-left: 1.75rem;
   }
 }
 
