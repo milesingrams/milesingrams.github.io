@@ -7,17 +7,17 @@
     <section class="about-wrap">
       <div class="page-section">
         <div class="section-content section-content-center no-pointer-events">
-          <h2 class="statement-text">
+          <p class="statement-text">
             Hi, I'm Miles
-          </h2>
+          </p>
         </div>
       </div>
 
       <div class="page-section">
         <div class="section-content section-content-center no-pointer-events">
-          <h2 class="statement-text margin-b-5">
+          <p class="statement-text margin-b-5">
             I Like
-          </h2>
+          </p>
           <ul class="tag-list like-tags">
             <li class="tag" v-for="tag in tags">
               <component :is="iconForTag(tag)" class="icon margin-r-2"></component>
@@ -29,27 +29,27 @@
 
       <div class="page-section">
         <div class="section-content section-content-center">
-          <h2 class="statement-text">
+          <p class="statement-text">
             NYC born and raised, I started dabbling with programming at a young age by making silly Flash games and clunky Lego Mindstorms.
-          </h2>
+          </p>
           <div class="divider-line"></div>
-          <h2 class="statement-text">
+          <p class="statement-text">
             Many years later I'm still doing the same thing, just with MUCH cooler equipment.
-          </h2>
+          </p>
         </div>
       </div>
 
       <div class="page-section">
         <div class="section-content section-content-center">
-          <h2 class="statement-text margin-b-5">
+          <p class="statement-text margin-b-5">
             My beliefs are
-          </h2>
+          </p>
           <div class="beliefs-list">
             <div class="belief">
               <div class="belief-content">
-                <h3 class="belief-header">
+                <h1 class="belief-header">
                   Read Up
-                </h3>
+                </h1>
                 <p class="belief-text">
                   Sure, jumping right in works sometimes, but a little reading goes a long way. Before starting something new I want to know the basics and best practices first. I'll be thankful for it in the long run.
                 </p>
@@ -57,9 +57,9 @@
             </div>
             <div class="belief">
               <div class="belief-content">
-                <h3 class="belief-header">
+                <h1 class="belief-header">
                   Hack if you must
-                </h3>
+                </h1>
                 <p class="belief-text">
                   Most things can be done the <i>right</i> way. But sometimes, to solve an atypical problem within a limited framework I have to shush the perfectionist and channel Dr. Frankenstein.
                 </p>
@@ -67,9 +67,9 @@
             </div>
             <div class="belief">
               <div class="belief-content">
-                <h3 class="belief-header">
+                <h1 class="belief-header">
                   Selectively Optimize
-                </h3>
+                </h1>
                 <p class="belief-text">
                   5% faster isn't worth it if it takes me 500% longer. Particularly processor-hungry code needs to be addressed, but don't spend an hour sharpening your butter knife.
                 </p>
@@ -77,9 +77,9 @@
             </div>
             <div class="belief">
               <div class="belief-content">
-                <h3 class="belief-header">
+                <h1 class="belief-header">
                   Make it Fun
-                </h3>
+                </h1>
                 <p class="belief-text">
                   Work is only as enjoyable as you make it. Finding ways to get excited about a project can inspire both me and my team to skip the procrastination and face the challenges head-on.
                 </p>
@@ -91,9 +91,9 @@
 
       <div class="page-section" v-animate-visible>
         <div class="section-content section-content-center">
-          <h2 class="statement-text">
+          <p class="statement-text">
             Here's what I've worked on so far
-          </h2>
+          </p>
           <div class="work-start-arrow"></div>
         </div>
       </div>
@@ -201,6 +201,7 @@ export default {
 
 .statement-text {
   font-family: 'Averia Serif Libre';
+  font-size: 1.5rem;
   font-weight: 400;
   text-align: center;
 }
@@ -224,6 +225,7 @@ export default {
     }
 
     .belief-header {
+      font-size: 1.15rem;
       line-height: 1.2;
       padding-bottom: 0.5rem;
       border-bottom: 1px solid black;

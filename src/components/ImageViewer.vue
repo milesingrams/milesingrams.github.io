@@ -11,13 +11,13 @@
         </div>
       </div>
       <div class="image-viewer-nav">
-        <button class="viewer-button close-button" @click="close">
+        <button class="viewer-button close-button" aria-label="close" @click="close">
           <icon-close class="icon"></icon-close>
         </button>
-        <button class="viewer-button left-button" :disabled="this.imageIndex === 0" @click="previousImage">
+        <button class="viewer-button left-button" aria-label="previous" :disabled="this.imageIndex === 0" @click="previousImage">
           <icon-arrow-left class="icon"></icon-arrow-left>
         </button>
-        <button class="viewer-button right-button" :disabled="this.imageIndex === this.images.length - 1" @click="nextImage">
+        <button class="viewer-button right-button" aria-label="next" :disabled="this.imageIndex === this.images.length - 1" @click="nextImage">
           <icon-arrow-right class="icon"></icon-arrow-right>
         </button>
       </div>

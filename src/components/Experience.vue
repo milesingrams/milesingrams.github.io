@@ -3,9 +3,9 @@
 
     <div class="page-section experience-header">
       <div class="section-content section-content-center">
-        <h2 class="experience-title">
+        <h1 class="experience-title">
           {{experience.node.title}}
-        </h2>
+        </h1>
 
         <div class="divider-line"></div>
 
