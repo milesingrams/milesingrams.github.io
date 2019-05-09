@@ -216,7 +216,6 @@ export default {
       padding-right: 1rem;
 
       .icon {
-        opacity: 0.8;
         margin-left: -0.5em;
       }
     }

@@ -160,7 +160,7 @@ export default {
 
 @keyframes clickMePointer {
   0% {
-    top: 94%;
+    top: 92%;
     opacity: 0;
   }
 
@@ -170,12 +170,12 @@ export default {
   }
 
   66% {
-    top: 94%;
+    top: 92%;
     opacity: 1;
   }
 
   100% {
-    top: 94%;
+    top: 92%;
     opacity: 0;
   }
 }
