@@ -91,7 +91,12 @@ export default {
       this.effect = this.effectsToView[randomEffectIndex]
       this.effectsToView.splice(randomEffectIndex, 1)
       localStorage.setItem('previousEffect', this.effect)
-      this.animationProgress = 10
+
+      if (this.animationReverse) {
+        this.animationProgress = 1
+      } else {
+        this.animationProgress = 0
+      }
     },
     onWindowScrollResize () {
       this.scrollY = window.pageYOffset
