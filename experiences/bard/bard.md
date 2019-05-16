@@ -35,6 +35,8 @@ images:
     caption: Diagram of the DLW setup.
   - image: ./media/chip.jpg
     caption: A microfluidic chip fabricated using the DLW system.
+  - image: ./media/interface.jpeg
+    caption: The user interface for pattern design and system operation.
   - image: ./media/system-resolution.png
     caption: Line width of the DLW system at various combinations of speed, power, and focal distance.
 ---
