@@ -9,6 +9,9 @@
     <a class="contact-button" href="https://github.com/milesingrams" target="_blank">
       <icon-github class="icon"></icon-github>
     </a>
+    <a class="contact-button" href="files/miles-ingram-cv.pdf" target="_blank">
+      <icon-file class="icon"></icon-file>
+    </a>
   </div>
 </template>
 
@@ -16,13 +19,15 @@
 import IconEmail from '~/assets/icons/IconEmail.svg'
 import IconLinkedin from '~/assets/icons/IconLinkedin.svg'
 import IconGithub from '~/assets/icons/IconGithub.svg'
+import IconFile from '~/assets/icons/IconFile.svg'
 
 export default {
   name: 'Contact',
   components: {
     IconEmail,
     IconLinkedin,
-    IconGithub
+    IconGithub,
+    IconFile
   }
 }
 </script>
