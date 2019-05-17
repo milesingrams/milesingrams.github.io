@@ -1,7 +1,7 @@
 ---
 date: 2016-01-01
 
-title: Wyss Institute
+title: Wyss Institute at Harvard University
 
 position: Systems Engineer
 

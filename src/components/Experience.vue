@@ -290,29 +290,15 @@ export default {
   text-align: center;
 
   .site-link {
-    position: relative;
     font-size: 1.3rem;
     text-decoration: none;
-    padding: 0.5rem;
+    padding-bottom: 0.4rem;
     color: inherit !important;
-    z-index: 1;
-
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 3px;
-      background-color: rgba(var(--section-color-rgb), 0.6);
-      transition: height 0.1s var(--ease-in-out-quad);
-      z-index: -1;
-    }
+    border-bottom: 3px solid rgba(var(--section-color-rgb), 0.6);
+    transition: all 0.1s var(--ease-in-out-quad);
 
     &:hover {
-      &::after {
-        height: 100%;
-      }
+      border-bottom: 6px solid rgba(var(--section-color-rgb), 0.6);
     }
   }
 }
