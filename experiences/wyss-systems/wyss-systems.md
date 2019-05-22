@@ -44,8 +44,8 @@ publications:
   - title: A robotic platform for fluidically linked human body-on-chips experimentation
     journal: Nature Biomedical Engineering (in review)
     link: https://www.biorxiv.org/content/10.1101/569541v1
-  - title: Quantitative prediction of human drug pharmacokinetic responses enabled by fluidically coupled multi-organ chips
-    journal: Nature (in review)
+  - title: Quantitative prediction of human drug pharmacokinetic responses enabled by fluidically coupled vascularized organ chips
+    journal: Nature Biomedical Engineering (in review)
 
 images:
   - image: ./media/hydra-cad.png
