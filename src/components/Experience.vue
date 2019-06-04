@@ -70,7 +70,7 @@
         <image-gallery class="experience-section" v-if="experience.node.images.length" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
 
         <div class="site-link-wrap experience-section section-content-center" v-if="experience.node.sitelink">
-          <a class="site-link" :href="experience.node.sitelink" target="_blank">Visit the {{experience.node.title}} site</a>
+          <a class="site-link" :href="experience.node.sitelink" target="_blank">Visit {{experience.node.title}}.co</a>
         </div>
       </div>
     </div>
@@ -290,15 +290,18 @@ export default {
   text-align: center;
 
   .site-link {
-    font-size: 1.3rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
     text-decoration: none;
-    padding-bottom: 0.4rem;
-    color: inherit !important;
-    border-bottom: 3px solid rgba(var(--section-color-rgb), 0.6);
-    transition: all 0.1s var(--ease-in-out-quad);
+    font-weight: 400;
+    color: var(--section-color);
+    border: 2px solid var(--section-color);
+    border-radius: 4px;
+    transition: background-color 0.3s var(--ease-in-out-quad), color 0.3s var(--ease-in-out-quad);
 
     &:hover {
-      border-bottom: 6px solid rgba(var(--section-color-rgb), 0.6);
+      background-color: var(--section-color);
+      color: white;
     }
   }
 }
