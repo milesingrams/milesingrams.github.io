@@ -8,18 +8,18 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "animejs": "^3.0.1",
-    "gridsome": "^0.5.8",
-    "polygon-clipping": "^0.14.0",
+    "animejs": "^3.1.0",
+    "gridsome": "^0.6.7",
+    "polygon-clipping": "^0.14.2",
     "robust-point-in-polygon": "^1.0.3",
     "simplex-noise": "^2.4.0",
     "typeface-averia-serif-libre": "^0.0.72",
-    "typeface-lato": "^0.0.54",
+    "typeface-lato": "^0.0.75",
     "vue2-hammer": "^2.1.2"
   },
   "devDependencies": {
-    "@gridsome/source-filesystem": "^0.3.0",
-    "@gridsome/transformer-remark": "^0.2.1",
+    "@gridsome/source-filesystem": "^0.5.0",
+    "@gridsome/transformer-remark": "^0.3.2",
     "http-server": "^0.11.1",
     "include-media": "^1.4.9",
     "node-sass": "^4.12.0",
