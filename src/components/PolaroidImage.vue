@@ -58,7 +58,7 @@ export default {
 
   img {
     transition: filter 0.2s $ease-out-quad;
-    filter: saturate(50%);
+    filter: saturate(25%);
   }
 
   &:hover {
