@@ -2,7 +2,7 @@
   <div :style="styleObj">
     <svg v-if="running" class="ink-filter-svg" xmlns="http://www.w3.org/2000/svg">
       <filter :id="filterId">
-        <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="2" :seed="seed" />
+        <feTurbulence type="fractalNoise" :baseFrequency="mergedOptions.frequency" numOctaves="2" :seed="seed" />
         <feColorMatrix :values="colorMatrixValues" result="texture" />
         <feComposite in="SourceGraphic" in2="texture" operator="in" />
       </filter>
@@ -27,7 +27,8 @@ export default {
       seed: Math.floor(Math.random() * 9999),
       baseOptions: {
         duration: 2,
-        intensity: 10
+        frequency: 0.005,
+        sharpness: 20
       }
     }
   },
@@ -39,7 +40,7 @@ export default {
       return Object.assign({}, this.baseOptions, this.options)
     },
     colorMatrixValues () {
-      return `0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 ${-this.mergedOptions.intensity} ${this.progress * this.mergedOptions.intensity}`
+      return `0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 ${-this.mergedOptions.sharpness} ${this.progress * this.mergedOptions.sharpness}`
     },
     styleObj () {
       if (this.running) {
@@ -70,7 +71,7 @@ export default {
   },
   mounted () {
     let observerOptions = {
-      threshold: 0.5
+      threshold: 0
     }
 
     this.intersectionObserver = new IntersectionObserver((entries) => {

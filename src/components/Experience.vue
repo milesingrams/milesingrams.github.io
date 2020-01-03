@@ -1,28 +1,26 @@
 <template>
   <div class="experience">
 
-    <appear-ink>
-      <div class="page-section experience-header">
-        <div class="section-content section-content-center">
-          <h1 class="experience-title">
-            {{experience.node.title}}
-          </h1>
+    <div class="page-section experience-header">
+      <div class="section-content section-content-center">
+        <h1 class="experience-title">
+          {{experience.node.title}}
+        </h1>
 
-          <div class="divider-line"></div>
+        <div class="divider-line"></div>
 
-          <h2 class="experience-position">
-            {{experience.node.position}}
-          </h2>
-        </div>
-
-        <ul class="tag-list experience-tags">
-          <li class="tag" v-for="tag in experience.node.tags">
-            <component :is="iconForTag(tag)" class="icon mr-xxs"></component>
-            {{tag}}
-          </li>
-        </ul>
+        <h2 class="experience-position">
+          {{experience.node.position}}
+        </h2>
       </div>
-    </appear-ink>
+
+      <ul class="tag-list experience-tags">
+        <li class="tag" v-for="tag in experience.node.tags">
+          <component :is="iconForTag(tag)" class="icon mr-xxs"></component>
+          {{tag}}
+        </li>
+      </ul>
+    </div>
 
     <div class="page-section experience-content">
       <div class="section-content">
@@ -84,7 +82,6 @@
 </template>
 
 <script>
-import AppearInk from '~/components/AppearInk'
 import IconBits from '~/assets/icons/IconBits.svg'
 import IconBots from '~/assets/icons/IconBots.svg'
 import IconBio from '~/assets/icons/IconBio.svg'
@@ -97,7 +94,6 @@ export default {
   name: 'Experience',
   props: ['experience'],
   components: {
-    AppearInk,
     IconBits,
     IconBots,
     IconBio,
