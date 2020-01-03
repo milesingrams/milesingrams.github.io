@@ -1,9 +1,10 @@
-@import "~normalize-scss/sass/normalize";
+@import "reboot.scss";
 
-@import "css-variables";
-@import "base";
-@import "utility";
-@import "components";
 @import "typography";
+@import "structure";
+@import "objects";
+
 @import "animations";
-@import "vue-transitions";
+@import "vueAnimations";
+@import "utilities";
+@import "spacing";

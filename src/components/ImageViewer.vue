@@ -1,8 +1,8 @@
 <template>
-  <transition appear name="image-viewer">
-    <div class="image-viewer" v-if="isOpen" @wheel="onWheel" v-hammer:swipe="onSwipe">
+  <transition appear>
+    <div class="image-viewer t-fade" v-if="isOpen" @wheel="onWheel" v-hammer:swipe="onSwipe">
       <div class="image-viewer-background" @click="close"></div>
-      <div class="image-viewer-content">
+      <div class="image-viewer-content t-deep t-fadeUp">
         <div class="images" :style="{'transform': `translateX(calc(${-100 * imageIndex}vw - ${2 * imageIndex}rem))`}">
           <div class="image-wrap" v-for="image in images">
             <g-image :src="image.image" blur="10" :alt="image.caption"></g-image>
@@ -154,7 +154,7 @@ export default {
   .images {
     display: flex;
     align-items: flex-start;
-    transition: transform 0.2s var(--ease-in-out-quad);
+    transition: transform 0.2s $ease-in-out-quad;
 
     .image-wrap {
       position: relative;
@@ -194,7 +194,7 @@ export default {
 }
 
 .image-viewer-nav {
-  transition: opacity 0.2s var(--ease-in-out-quad);
+  transition: opacity 0.2s $ease-in-out-quad;
 
   .viewer-button {
     display: flex;
@@ -205,7 +205,7 @@ export default {
     color: rgba(255, 255, 255, 0.75);
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 4px;
-    transition: color 0.1s var(--ease-in-out-quad);
+    transition: color 0.1s $ease-in-out-quad;
     border: none;
     cursor: pointer;
     font-size: 1.05rem;
@@ -240,22 +240,6 @@ export default {
 
   @include media('>=desktop') {
     opacity: 0;
-  }
-}
-
-.image-viewer-enter-active {
-  animation: fadeIn 0.3s var(--ease-in-quad) both;
-
-  .image-viewer-content {
-    animation: fadeInUp 0.4s var(--ease-out-quad) 0.4s both;
-  }
-}
-
-.image-viewer-leave-active {
-  animation: fadeOut 0.3s var(--ease-out-quad) both;
-
-  .image-viewer-content {
-    animation: fadeOutDown 0.4s var(--ease-in-quad) both;
   }
 }
 </style>

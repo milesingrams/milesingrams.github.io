@@ -53,11 +53,11 @@ export default {
   background-color: white;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.15);
   padding: 0.75rem;
-  transition: all 0.2s var(--ease-out-quad);
+  transition: all 0.2s $ease-out-quad;
   cursor: pointer;
 
   img {
-    transition: filter 0.2s var(--ease-out-quad);
+    transition: filter 0.2s $ease-out-quad;
     filter: saturate(50%);
   }
 

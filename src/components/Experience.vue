@@ -16,7 +16,7 @@
 
       <ul class="tag-list experience-tags">
         <li class="tag" v-for="tag in experience.node.tags">
-          <component :is="iconForTag(tag)" class="icon margin-r-2"></component>
+          <component :is="iconForTag(tag)" class="icon mr-xxs"></component>
           {{tag}}
         </li>
       </ul>
@@ -60,7 +60,7 @@
             <div class="publication-icon">
               <icon-book class="icon"></icon-book>
             </div>
-            <a class="publication-link" :class="{'no-pointer-events': !publication.link}" :href="publication.link" target="_blank">
+            <a class="publication-link" :class="{'pe-none': !publication.link}" :href="publication.link" target="_blank">
               <div class="publication-title">{{publication.title}}</div>
               <div class="publication-journal">{{publication.journal}}</div>
             </a>
@@ -255,7 +255,7 @@ export default {
     .publication-link {
       padding-left: 1rem;
       color: inherit !important;
-      transition: color 0.1s var(--ease-in-out-quad);
+      transition: color 0.1s $ease-in-out-quad;
       text-decoration: none;
 
       &:hover {
@@ -297,7 +297,7 @@ export default {
     color: var(--section-color);
     border: 2px solid var(--section-color);
     border-radius: 4px;
-    transition: background-color 0.3s var(--ease-in-out-quad), color 0.3s var(--ease-in-out-quad);
+    transition: background-color 0.3s $ease-in-out-quad, color 0.3s $ease-in-out-quad;
 
     &:hover {
       background-color: var(--section-color);

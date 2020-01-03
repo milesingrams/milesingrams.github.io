@@ -47,7 +47,7 @@ export default {
     justify-content: center;
     color: black !important;
     opacity: 0.7;
-    transition: transform .2s var(--ease-in-out-quad);
+    transition: transform .2s $ease-in-out-quad;
 
     .icon {
       height: 20px;

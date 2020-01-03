@@ -1,12 +1,12 @@
 <template>
-  <div class="logo" v-show="progress" :class="{'pointer-events': atPageTop}" @click="onLogoClick">
+  <div class="logo" v-show="progress" :class="{'pe-all': atPageTop}" @click="onLogoClick">
     <client-only>
-      <transition appear name="fadeInOut" mode="out-in">
-        <component :is="effect" :progress="progress" :options="{ poly, color }"></component>
+      <transition appear mode="out-in">
+        <component class="t-fade" :is="effect" :progress="progress" :options="{ poly, color }"></component>
       </transition>
     </client-only>
-    <transition name="fadeInOut">
-      <div class="click-me" v-if="atPageTop && !logoClicked">
+    <transition>
+      <div class="click-me t-fade" v-if="atPageTop && !logoClicked">
         <div class="pulse"></div>
         <icon-pointer class="icon pointer-icon"></icon-pointer>
       </div>
@@ -147,7 +147,7 @@ export default {
     top: 88%;
     transform: translateX(-33%);
     opacity: 0;
-    animation: clickMePointer 1.5s var(--ease-in-out-quad) 3.5s forwards;
+    animation: clickMePointer 1.5s $ease-in-out-quad 3.5s forwards;
   }
 
   .pulse {
@@ -159,7 +159,7 @@ export default {
     background: radial-gradient(transparent 25%, rgba(0, 0, 0, 0.5));
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    animation: clickMePulse 1s var(--ease-out-quad) 3.9s forwards;
+    animation: clickMePulse 1s $ease-out-quad 3.9s forwards;
   }
 }
 

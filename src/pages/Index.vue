@@ -17,12 +17,12 @@
 
       <div class="page-section">
         <div class="section-content section-content-center no-pointer-events">
-          <p class="statement-text margin-b-5">
+          <p class="statement-text mb-s">
             I Like
           </p>
           <ul class="tag-list like-tags">
             <li class="tag" v-for="tag in tags">
-              <component :is="iconForTag(tag)" class="icon margin-r-2"></component>
+              <component :is="iconForTag(tag)" class="icon mr-xxs"></component>
               {{tag}}
             </li>
           </ul>
@@ -43,7 +43,7 @@
 
       <div class="page-section">
         <div class="section-content section-content-center">
-          <p class="statement-text margin-b-5">
+          <p class="statement-text mb-s">
             My beliefs are
           </p>
           <div class="beliefs-list">
@@ -254,7 +254,7 @@ export default {
   height: 75px;
   background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, black $line-spacing, black ($line-spacing + 1px));
   clip-path: polygon(0 -100%, 50% 0, 100% -100%);
-  transition: clip-path 1s var(--ease-out-quad);
+  transition: clip-path 1s $ease-out-quad;
 
   .animate-visible & {
     clip-path: polygon(0 0, 50% 100%, 100% 0);

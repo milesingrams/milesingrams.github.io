@@ -1,0 +1,105 @@
+$keyframes-list: 'fade', 'fadeGrow', 'fadeGrowSmall', 'fadeGrowHeight', 'fadeGrowWidth', 'fadeUp', 'fadeUp100', 'fadeDown', 'fadeDown100', 'fadeRight', 'fadeRight100', 'fadeLeft', 'fadeLeft100';
+$default-duration: .3s;
+$default-delay: 0s;
+$default-easing-in: $ease-out-quad;
+$default-easing-out: $ease-in-quad;
+$default-stagger-delay: .1s;
+$num-t-staggered-elements: 20;
+$num-t-utility-levels: 20;
+
+@for $i from 1 through length($keyframes-list) {
+  $anim-name: nth($keyframes-list, $i);
+
+  .t-#{$anim-name} {
+    --t-name: #{$anim-name};
+    --t-duration: #{$default-duration};
+    --t-delay: #{$default-delay};
+    --t-easing-in: #{$default-easing-in};
+    --t-easing-out: #{$default-easing-out};
+  }
+}
+
+.t-none {
+  --t-name: initial;
+  --t-duration: #{$default-duration};
+  --t-delay: #{$default-delay};
+  --t-easing-in: #{$default-easing-in};
+  --t-easing-out: #{$default-easing-out};
+}
+
+@mixin t-enter() {
+  animation: var(--t-name) var(--t-duration, $default-duration) var(--t-easing-in, $default-easing-in) var(--t-delay, $default-delay) both !important;
+}
+
+@mixin t-leave() {
+  animation: var(--t-name) var(--t-duration, $default-duration) var(--t-easing-out, $default-easing-out) var(--t-delay, $default-delay) both !important;
+  animation-direction: reverse !important;
+}
+
+.v-enter-active, .t-appear-staggered, .t-appear-staggered-rev {
+  @include t-enter;
+  .t-deep {
+    @include t-enter;
+  }
+
+  &.t-noFlow {
+    position: absolute !important;
+  }
+}
+
+.v-leave-active,  {
+  @include t-leave;
+  .t-deep {
+    @include t-leave;
+  }
+
+  &.t-noFlow {
+    position: absolute !important;
+  }
+}
+
+.v-move {
+  &.t-movable {
+    transition: transform var(--t-duration, $default-duration) $ease-in-out-quad !important;
+  }
+}
+
+.t-appear-staggered {
+  @for $i from 1 through $num-t-staggered-elements {
+    $animation-delay: calc(var(--t-delay, $default-delay) + #{$i - 1} * var(--t-staggered-delay, #{$default-stagger-delay}));
+
+    &:nth-child(#{$i}) {
+      animation-delay: $animation-delay !important;
+      .t-deep {
+        animation-delay: $animation-delay !important;
+      }
+    }
+  }
+}
+
+.t-appear-staggered-rev {
+  @for $i from 1 through $num-t-staggered-elements {
+    $animation-delay: calc(var(--t-delay, $default-delay) + #{$i - 1} * var(--t-staggered-delay, #{$default-stagger-delay}));
+
+    &:nth-last-child(#{$i}) {
+      animation-delay: $animation-delay !important;
+      .t-deep {
+        animation-delay: $animation-delay !important;
+      }
+    }
+  }
+}
+
+@for $i from 0 through $num-t-utility-levels {
+  .t-duration-#{$i} {
+    --t-duration: #{$i * .1s};
+  }
+
+  .t-delay-#{$i} {
+    --t-delay: #{$i * .1s};
+  }
+
+  .t-staggered-delay-#{$i} {
+    --t-staggered-delay: #{$i * .1s};
+  }
+}
