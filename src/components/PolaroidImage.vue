@@ -58,11 +58,11 @@ export default {
 
   img {
     transition: filter 0.2s $ease-out-quad;
-    filter: saturate(25%);
+    filter: saturate(50%);
   }
 
   &:hover {
-    box-shadow: 0 5px 20px -10px rgba(0, 0, 0, 0.20), 0 3px 10px -5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 5px 20px -10px rgba(0, 0, 0, 0.25), 0 3px 10px -5px rgba(0, 0, 0, 0.3);
 
     img {
       filter: none;
