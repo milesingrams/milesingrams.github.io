@@ -70,7 +70,7 @@
         <image-gallery class="experience-section" v-if="experience.node.images.length" :images="experience.node.images" @image-clicked="openImage"></image-gallery>
 
         <div class="site-link-wrap experience-section section-content-center" v-if="experience.node.sitelink">
-          <a class="site-link" :href="experience.node.sitelink" target="_blank">Visit {{experience.node.title}}.co</a>
+          <a class="site-link" :href="experience.node.sitelink" target="_blank">{{experience.node.sitelink}}</a>
         </div>
       </div>
     </div>
