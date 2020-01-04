@@ -3,7 +3,7 @@
     <contact></contact>
 
     <div class="logo-wrap">
-      <logo color="#222"></logo>
+      <logo color="#222222"></logo>
     </div>
 
     <section class="about-wrap">
