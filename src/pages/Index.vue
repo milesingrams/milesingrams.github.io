@@ -3,7 +3,7 @@
     <contact></contact>
 
     <div class="logo-wrap">
-      <logo color="#222222"></logo>
+      <logo color="#222"></logo>
     </div>
 
     <section class="about-wrap">
@@ -233,7 +233,7 @@ export default {
       font-size: 1.15rem;
       line-height: 1.2;
       padding-bottom: 0.5rem;
-      border-bottom: 1px solid #222;
+      border-bottom: 1px solid $darkest-grey;
     }
 
     .belief-text {
@@ -252,7 +252,7 @@ export default {
   margin: 0 auto;
   margin-top: -0.25rem;
   height: 75px;
-  background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, black $line-spacing, black ($line-spacing + 1px));
+  background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, $darkest-grey $line-spacing, $darkest-grey ($line-spacing + 1px));
   clip-path: polygon(0 -100%, 50% 0, 100% -100%);
   transition: clip-path 1s $ease-out-quad;
 
