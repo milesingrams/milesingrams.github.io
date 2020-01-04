@@ -22,8 +22,8 @@ export default {
         poly: null,
         color: 'white',
         totalOpacity: 1,
-        minOpacity: 0.4,
-        maxOpacity: 0.6,
+        minDropOpacity: 0.6,
+        maxDropOpacity: 1,
         maxDepth: 4,
         maxDelay: 1,
         duration: 0.1,
@@ -72,7 +72,7 @@ export default {
 
       if (depth === this.mergedOptions.maxDepth) {
         if (this.inside([cx, cy])) {
-          let newOpacity = this.mergedOptions.minOpacity + Math.random() * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity)
+          let newOpacity = this.mergedOptions.minDropOpacity + Math.random() * (this.mergedOptions.maxDropOpacity - this.mergedOptions.minDropOpacity)
           this.droplets.push(droplet)
 
           this.animationTimeline.add({
@@ -113,7 +113,7 @@ export default {
         if (cornersInM) {
           for (let i = 0; i < corners.length; i++) {
             let corner = corners[i]
-            let opacity = this.mergedOptions.minOpacity + (cornersInM / 4) * (this.mergedOptions.maxOpacity - this.mergedOptions.minOpacity)
+            let opacity = this.mergedOptions.minDropOpacity + (cornersInM / 4) * (this.mergedOptions.maxDropOpacity - this.mergedOptions.minDropOpacity)
             this.createDroplet(corner[0], corner[1], halfRad, opacity, depth + 1, delay)
           }
         }

@@ -30,10 +30,10 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        totalOpacity: 0.6,
-        strokeOpacity: 1,
-        minStrokeWidth: 2,
-        maxStrokeWidth: 8,
+        totalOpacity: 1,
+        strokeOpacity: 0.8,
+        minStrokeWidth: 3,
+        maxStrokeWidth: 6,
         numPaths: 50,
         numPointsPerPath: 10,
         maxDelay: 2,
@@ -84,15 +84,15 @@ export default {
           dString,
           color: this.mergedOptions.color,
           opacity: this.mergedOptions.strokeOpacity,
-          strokeWidth: this.mergedOptions.maxStrokeWidth,
           dashArray: 500 * this.mergedOptions.numPointsPerPath,
+          strokeWidth: this.mergedOptions.maxStrokeWidth,
           dashOffset: 0
         }
 
         this.animationTimeline.add({
           targets: path,
-          dashOffset: 500 * this.mergedOptions.numPointsPerPath,
           strokeWidth: this.mergedOptions.minStrokeWidth,
+          dashOffset: 500 * this.mergedOptions.numPointsPerPath,
           easing: 'easeInOutQuad',
           duration: this.mergedOptions.duration * 1000
         }, Math.random() * this.mergedOptions.maxDelay * 1000)
@@ -130,5 +130,6 @@ export default {
 .path {
   fill: none;
   stroke: black;
+  stroke-linecap: round;
 }
 </style>

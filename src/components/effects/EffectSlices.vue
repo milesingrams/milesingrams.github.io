@@ -1,6 +1,6 @@
 <template>
   <svg class="effect-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <g class="slices-wrap" :opacity="mergedOptions.totalOpacity">
+    <g class="slices-wrap">
       <path class="slice" v-for="(slice, index) in slices" :d="slice.dString" :opacity="slice.opacity" :fill="slice.color" :style="{'transform': `translate3d(${slice.translateX}px, ${slice.translateY}px, 0px) scale(${slice.scale})`}" :key="index"></path>
     </g>
   </svg>
@@ -20,8 +20,7 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        totalOpacity: 0.8,
-        opacity: 0.25,
+        sliceOpacity: 0.3,
         numSlices: 25,
         numPointsPerPolygon: 3,
         translateSpread: 0.5,
@@ -88,7 +87,7 @@ export default {
           let slice = {
             dString,
             color: this.mergedOptions.color,
-            opacity: this.mergedOptions.opacity,
+            opacity: this.mergedOptions.sliceOpacity,
             translateX: 0,
             translateY: 0,
             scale: 1

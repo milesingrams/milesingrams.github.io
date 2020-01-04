@@ -27,7 +27,7 @@ export default {
       baseOptions: {
         poly: null,
         color: 'white',
-        maxOpacity: 0.9,
+        totalOpacity: 1,
         noiseScale: 15,
         noiseSpeed: 1
       }
@@ -65,7 +65,7 @@ export default {
         for (let y = 0; y <= this.$refs.canvas.height; y++) {
           let yPos = y / this.mergedOptions.noiseScale
           let noise = this.noise.noise3D(xPos, yPos, this.progress * this.mergedOptions.noiseSpeed)
-          let alpha = Math.abs(noise) * this.progress * this.mergedOptions.maxOpacity
+          let alpha = Math.abs(noise) * this.progress * this.mergedOptions.totalOpacity
           this.context.fillStyle = `rgba(${this.colorRGB}, ${alpha})`
           this.context.clearRect(x, y, 1, 1)
           this.context.fillRect(x, y, 1, 1)
