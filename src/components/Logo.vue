@@ -40,7 +40,7 @@ export default {
       animationReverse: true,
       animationProgressTarget: 0,
       animationProgress: 0,
-      animationEase: 0.075,
+      animationEase: 0.05,
       animationPageCoverage: 1.25,
       logoClicked: false,
       poly: [
