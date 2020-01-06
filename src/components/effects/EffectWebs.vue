@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     updateSeek () {
-      this.animationTimeline.seek(this.progress * this.animationTimeline.duration)
+      this.animationTimeline.seek(this.progress * this.animationTimeline.duration * 0.9)
     },
     randomPointPerimeter () {
       let rand = -Math.PI + Math.random() * Math.PI * 2

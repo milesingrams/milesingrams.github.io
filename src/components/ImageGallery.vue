@@ -43,7 +43,7 @@ export default {
 <style lang="scss" scoped>
 .image-gallery-wrap {
   margin: -2rem 0;
-  overflow-x: scroll;
+  overflow-x: auto;
   @include scroll-mobile;
   display: flex;
 }
