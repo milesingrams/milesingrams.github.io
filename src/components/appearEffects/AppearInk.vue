@@ -1,6 +1,6 @@
 <template>
   <div :style="styleObj">
-    <svg v-if="running" class="ink-filter-svg" xmlns="http://www.w3.org/2000/svg">
+    <svg v-if="running" class="filter-svg" xmlns="http://www.w3.org/2000/svg">
       <filter :id="filterId">
         <feTurbulence type="fractalNoise" :baseFrequency="mergedOptions.frequency" numOctaves="2" :seed="seed" />
         <feColorMatrix :values="colorMatrixValues" result="texture" />
@@ -13,14 +13,15 @@
 
 <script>
 import anime from 'animejs'
+import RunOnVisible from '~/mixins/RunOnVisible'
 
 export default {
   name: 'AppearInk',
   props: ['options'],
+  mixins: [RunOnVisible],
   data () {
     return {
       animation: null,
-      intersectionObserver: null,
       progress: 0,
       running: false,
       finished: false,
@@ -68,31 +69,12 @@ export default {
       this.running = false
       this.finished = true
     }
-  },
-  mounted () {
-    let observerOptions = {
-      threshold: 0
-    }
-
-    this.intersectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.run()
-          this.intersectionObserver.disconnect()
-        }
-      })
-    }, observerOptions)
-
-    this.intersectionObserver.observe(this.$el)
-  },
-  beforeDestroy () {
-    this.intersectionObserver.disconnect()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.ink-filter-svg {
+.filter-svg {
   position: absolute;
   width: 0;
   height: 0;
