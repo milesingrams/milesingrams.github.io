@@ -45,7 +45,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $darkest-grey;
+    color: $textGray;
     opacity: 0.8;
     transition: transform .2s $ease-in-out-quad;
 

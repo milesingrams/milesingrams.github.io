@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import anime from 'animejs'
-
 export default {
   name: 'PolaroidImage',
   props: ['image'],

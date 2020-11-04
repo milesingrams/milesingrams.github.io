@@ -58,7 +58,7 @@ export default {
       margin-right: 2rem;
     }
 
-    /deep/ img {
+    ::v-deep img {
       max-width: 60vw;
     }
   }

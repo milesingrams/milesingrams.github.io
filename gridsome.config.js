@@ -20,40 +20,44 @@ module.exports = {
   siteName: 'Miles Ingram',
   siteDescription: 'Miles Ingram\'s Portfolio',
   host: '0.0.0.0',
-  transformers: {
-    remark: {
-      externalLinksTarget: '_blank',
-      externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
-      anchorClassName: 'icon icon-link',
-      plugins: []
-    }
+  runtimeCompiler: true,
+  icon: {
+    favicon: './src/assets/images/favicon.png',
+    touchicon: './src/assets/images/favicon.png',
   },
   plugins: [
     {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'Experience',
-        path: 'experiences/**/*.md'
+        baseDir: 'experiences',
+        path: '**/*.md'
       }
-    }
+    },
+    {
+			use: 'gridsome-plugin-sass-resources-loader',
+			options: {
+				resources: '~/assets/styles/variables/_index.scss',
+			},
+		},
+    {
+			use: 'gridsome-plugin-svg',
+			options: {
+				svgo: [
+					{
+						removeViewBox: false,
+					},
+					{
+						prefixIds: false,
+					},
+				],
+			},
+		},
   ],
-  chainWebpack: config => {
-    const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
-    types.forEach(type => addStyleResource(config.module.rule('scss').oneOf(type)))
-
-    const svgRule = config.module.rule('svg')
-    svgRule.uses.clear()
-    svgRule
-      .use('vue-svg-loader')
-      .loader('vue-svg-loader')
-      .options({
-        svgo: {
-          plugins: [
-            {
-              removeViewBox: false
-            }
-          ]
-        }
-      })
-  }
+  transformers: {
+    remark: {
+      slug: false,
+      plugins: [],
+    }
+  },
 }

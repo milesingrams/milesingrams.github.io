@@ -30,8 +30,9 @@
     color: white;
     padding: 0.25rem 0.5rem;
     margin: 0.25rem;
-    background-color: $darkest-grey;
+    background-color: $textGray;
     border-radius: 4px;
+    font-weight: 600;
   }
 }
 
@@ -50,7 +51,7 @@
     width: 100%;
     height: 100%;
     opacity: 0.75;
-    background-image: url('../images/textures/paper.png');
+    background-image: url('~@/assets/images/textures/paper.png');
     pointer-events: none;
     z-index: 100;
   }

@@ -1,3 +1,5 @@
+// SHAPE -------------------------------------
+
 @mixin size($size) {
   width: $size;
   height: $size;
@@ -9,7 +11,7 @@
   border-radius: $size / 2;
 }
 
-//BORDERS
+// BORDERS -------------------------------------
 
 @mixin curved-top($size: $br-m) {
   border-top-left-radius: $size;
@@ -21,7 +23,7 @@
   border-bottom-right-radius: $size;
 }
 
-//COLORS
+// COLORS -------------------------------------
 
 @function hexToRGB($colorHex) {
   @return #{red($colorHex)}, #{green($colorHex)}, #{blue($colorHex)};
@@ -37,7 +39,7 @@
   @return mix(black, $color, $percent);
 }
 
-//TYPOGRAPHY
+// TYPOGRAPHY -------------------------------------
 
 @mixin text-ellipsis {
   text-overflow: ellipsis;
@@ -45,7 +47,7 @@
   overflow: hidden;
 }
 
-//UTILITIES
+// UTILITIES -------------------------------------
 
 @mixin scroll-mobile {
   -webkit-overflow-scrolling: touch;

@@ -205,9 +205,8 @@ export default {
 }
 
 .statement-text {
-  font-family: 'Averia Serif Libre';
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 500;
   text-align: center;
 }
 
@@ -233,7 +232,7 @@ export default {
       font-size: 1.15rem;
       line-height: 1.2;
       padding-bottom: 0.5rem;
-      border-bottom: 1px solid $darkest-grey;
+      border-bottom: 1px solid $textGray;
     }
 
     .belief-text {
@@ -252,7 +251,7 @@ export default {
   margin: 0 auto;
   margin-top: -0.25rem;
   height: 75px;
-  background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, $darkest-grey $line-spacing, $darkest-grey ($line-spacing + 1px));
+  background: repeating-linear-gradient(180deg, transparent, transparent $line-spacing, $textGray $line-spacing, $textGray ($line-spacing + 1px));
   clip-path: polygon(0 -100%, 50% 0, 100% -100%);
   transition: clip-path 1s $ease-out-quad;
 

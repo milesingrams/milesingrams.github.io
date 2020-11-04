@@ -120,21 +120,22 @@ export default {
 }
 
 .experience-title, .experience-position {
-  font-family: 'Averia Serif Libre';
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.2;
   text-align: center;
 }
 
 .experience-title {
-  font-size: 1.7rem;
+  font-size: 2rem;
   letter-spacing: 0.3rem;
+  font-weight: 600;
 }
 
 .experience-position {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   letter-spacing: 0.2rem;
+  font-weight: 600;
 }
 
 .experience-tags {
@@ -160,7 +161,7 @@ export default {
 
 .experience-description {
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.025rem;
 }
 
@@ -198,7 +199,7 @@ export default {
     padding-left: 1rem;
     margin-left: -1.5px;
     border-left: 3px solid rgba(var(--section-color-rgb), 0.6);
-    font-size: 1.1rem;
+    font-size: 1.25rem;
 
     &:not(:last-child) {
       margin-bottom: 1.5rem;
@@ -209,7 +210,7 @@ export default {
 .skills {
   .skill-item {
     display: flex;
-    font-size: 0.9rem;
+    font-weight: 600;
 
     .skill-type {
       padding-top: 0.3rem;
@@ -264,13 +265,12 @@ export default {
     }
 
     .publication-title {
-      font-size: 1rem;
-      font-weight: 700;
+      font-weight: 600;
       line-height: 1.2;
     }
 
     .publication-journal {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-style: italic;
     }
 
@@ -293,7 +293,7 @@ export default {
     padding: 0.5rem;
     font-size: 1.2rem;
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 500;
     color: var(--section-color);
     border: 2px solid var(--section-color);
     border-radius: 4px;

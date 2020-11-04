@@ -5,12 +5,6 @@
         <component class="t-fade" :is="effect" :progress="progress" :options="{ poly, color }"></component>
       </transition>
     </client-only>
-    <transition>
-      <div class="click-me t-fade" v-if="atPageTop && !logoClicked">
-        <div class="pulse"></div>
-        <icon-pointer class="icon pointer-icon"></icon-pointer>
-      </div>
-    </transition>
   </div>
 </template>
 
@@ -19,7 +13,6 @@ import EffectDroplets from '~/components/effects/EffectDroplets'
 import EffectGradient from '~/components/effects/EffectGradient'
 import EffectSlices from '~/components/effects/EffectSlices'
 import EffectWebs from '~/components/effects/EffectWebs'
-import IconPointer from '~/assets/icons/IconPointer.svg'
 import anime from 'animejs'
 
 export default {
@@ -29,8 +22,7 @@ export default {
     EffectDroplets,
     EffectGradient,
     EffectSlices,
-    EffectWebs,
-    IconPointer
+    EffectWebs
   },
   data () {
     return {
@@ -42,7 +34,6 @@ export default {
       animationProgress: 0,
       animationEase: 0.05,
       animationPageCoverage: 1.25,
-      logoClicked: false,
       poly: [
         [0, 0],
         [50, 49.5],
@@ -110,7 +101,6 @@ export default {
       window.requestAnimationFrame(this.updateScrollProgress)
     },
     onLogoClick () {
-      this.logoClicked = true
       this.rotateEffect()
     }
   },

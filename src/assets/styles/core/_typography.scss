@@ -1,0 +1,30 @@
+html, body {
+  color: $textGray;
+  font-family: $font-stack;
+  font-weight: 500;
+  line-height: 1.5;
+  font-size: 14px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+
+  @include media('>=small') {
+    font-size: 16px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25;
+}
+
+p, a, label, h1, h2, h3, h4, h5, h6, ul, ol, dl {
+  margin: 0;
+}
+
+textarea {
+  display: block;
+}
+
+ol, ul {
+  padding: 0;
+  list-style: none;
+}

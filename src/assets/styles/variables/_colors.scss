@@ -1,2 +1,19 @@
-$darkest-grey: #222;
 $site-colors: #00bf9f, #118ab2, #e5a91d;
+
+// GRAYSCALE -------------------------------------
+
+$textGray: #222222; $textGray-rgb: hexToRGB($textGray);
+
+$white: #ffffff; $white-rgb: hexToRGB($white);
+$black: #000000; $black-rgb: hexToRGB($black);
+
+$gray50:  darken($white, 3%);
+$gray100: darken($white, 6%);
+$gray200: darken($white, 17%);
+$gray300: darken($white, 28%);
+$gray400: darken($white, 39%);
+$gray500: darken($white, 50%);
+$gray600: darken($white, 61%);
+$gray700: darken($white, 72%);
+$gray800: darken($white, 83%);
+$gray900: darken($white, 94%);
