@@ -10,12 +10,13 @@
   "dependencies": {
     "@animxyz/vue": "^0.0.23",
     "animejs": "^3.2.1",
+    "fontsource-averia-serif-libre": "^3.0.5",
+    "fontsource-lato": "^3.0.9",
     "gridsome": "^0.7.22",
     "polygon-clipping": "^0.15.1",
     "ress": "^3.0.0",
     "robust-point-in-polygon": "^1.0.3",
     "simplex-noise": "^2.4.0",
-    "typeface-dosis": "^1.1.13",
     "vue2-hammer": "^2.1.2"
   },
   "devDependencies": {

@@ -120,9 +120,9 @@ export default {
 }
 
 .experience-title, .experience-position {
+  font-family: $font-stack-serif;
   text-transform: uppercase;
-  font-weight: 500;
-  line-height: 1.2;
+	line-height: 1.2;
   text-align: center;
 }
 
@@ -293,7 +293,6 @@ export default {
     padding: 0.5rem;
     font-size: 1.2rem;
     text-decoration: none;
-    font-weight: 500;
     color: var(--section-color);
     border: 2px solid var(--section-color);
     border-radius: 4px;

@@ -46,8 +46,8 @@
           <p class="statement-text mb-s">
             My beliefs are
           </p>
-          <div class="beliefs-list">
-            <div class="belief">
+          <div class="beliefs-list xyz-in xyz-none" xyz="fade down stagger-2">
+            <div class="belief xyz-nested">
               <div class="belief-content">
                 <h1 class="belief-header">
                   Read Up
@@ -57,7 +57,7 @@
                 </p>
               </div>
             </div>
-            <div class="belief">
+            <div class="belief xyz-nested">
               <div class="belief-content">
                 <h1 class="belief-header">
                   Hack if you must
@@ -67,7 +67,7 @@
                 </p>
               </div>
             </div>
-            <div class="belief">
+            <div class="belief xyz-nested">
               <div class="belief-content">
                 <h1 class="belief-header">
                   Selectively Optimize
@@ -77,7 +77,7 @@
                 </p>
               </div>
             </div>
-            <div class="belief">
+            <div class="belief xyz-nested">
               <div class="belief-content">
                 <h1 class="belief-header">
                   Make it Fun
@@ -87,7 +87,7 @@
                 </p>
               </div>
             </div>
-          </div>
+        	</div>
         </div>
       </div>
 
@@ -205,8 +205,8 @@ export default {
 }
 
 .statement-text {
+	font-family: $font-stack-serif;
   font-size: 1.5rem;
-  font-weight: 500;
   text-align: center;
 }
 
